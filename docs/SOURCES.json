@@ -13,8 +13,9 @@
     "version": "0.13.10"
   },
   "flightgear_target": {
-    "version": "2024.1.4",
-    "fgdata_version": "2024.1.4",
+    "version": "2024.1.7",
+    "simgear_version": "2024.1.7",
+    "fgdata_version": "2024.1.7",
     "bundled": false
   }
 }
