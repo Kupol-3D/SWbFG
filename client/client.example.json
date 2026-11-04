@@ -1,0 +1,13 @@
+{
+  "fgfs": "fgfs",
+  "mode": "baseline",
+  "solo": true,
+  "server": null,
+  "local_ip": "0.0.0.0",
+  "callsign": "PIL001",
+  "server_port": 5000,
+  "receive_port": 5005,
+  "airport": "KSFO",
+  "runway": "28R",
+  "terrasync": true
+}

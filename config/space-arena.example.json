@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "design-example-not-loaded-by-runtime",
+  "theme": "space-factions-fan-prototype",
+  "phase": "atmosphere",
+  "mode": "team-pvp",
+  "network": {
+    "transport": "planned-tls-websocket-gateway",
+    "host": null,
+    "port": 5000,
+    "local_bind": "0.0.0.0",
+    "authentication": "invitation-gateway-planned-not-implemented",
+    "deployment": "design-only",
+    "publish_native_fgms_udp": false,
+    "gateway": {"url": null, "tls_required": true, "status": "design-only"}
+  },
+  "match": {
+    "authority": "not-selected",
+    "team_labels": {"rebels": "Rebels", "empire": "Empire"},
+    "score": "confirmed-enemy-destructions",
+    "target_kills": 15,
+    "friendly_fire": false,
+    "team_locked_until_round_end": true,
+    "initial_spawn_consumes_slot": true,
+    "reconnect_refills_budget": false,
+    "round_duration_seconds": null,
+    "ships": [],
+    "spawn_budget": {"per_ship_type": 1}
+  },
+  "test_flight": {
+    "aircraft": "c172p",
+    "airport": "KSFO",
+    "runway": "28R",
+    "purpose": "network-and-controls-only-not-a-starship"
+  },
+  "space": {"enabled": false, "physics_backend": "not-selected"}
+}

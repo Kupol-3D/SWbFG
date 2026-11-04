@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<PropertyList>
+  <fx>
+
+    <!-- MG fire - 7.62mm, rifle caliber -->
+    <fire-mg>
+      <name>fire-mg</name>
+      <path>AI/Aircraft/Bombable-Sounds/fire-mg.wav</path>
+      <mode>once</mode>
+      <condition>
+        <property>bombable/fire-trigger-mg</property>
+      </condition>
+      <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>50</reference-dist>
+      <max-dist>3000</max-dist>
+    </fire-mg>
+
+    <!-- Heavy MG fire - .50cal, 12.7mm -->
+    <fire-heavy-mg>
+      <name>fire-heavy-mg</name>
+      <path>AI/Aircraft/Bombable-Sounds/fire-heavy-mg.wav</path>
+      <mode>once</mode>
+      <condition>
+        <property>bombable/fire-trigger-heavy-mg</property>
+      </condition>
+      <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>4000</max-dist>
+    </fire-heavy-mg>
+
+    <!-- Cannon fire - 20mm-40mm -->
+    <fire-cannon>
+      <name>fire-cannon</name>
+      <path>AI/Aircraft/Bombable-Sounds/fire-cannon.wav</path>
+      <mode>once</mode>
+      <condition>
+        <property>bombable/fire-trigger-cannon</property>
+      </condition>
+      <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>150</reference-dist>
+      <max-dist>6000</max-dist>
+    </fire-cannon>
+
+    <!-- Shell fire - 76mm+ tank/artillery -->
+    <fire-shell>
+      <name>fire-shell</name>
+      <path>AI/Aircraft/Bombable-Sounds/fire-shell.wav</path>
+      <mode>once</mode>
+      <condition>
+        <property>bombable/fire-trigger-shell</property>
+      </condition>
+      <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>10000</max-dist>
+    </fire-shell>
+
+    <!-- Rocket fire -->
+    <fire-rocket>
+      <name>fire-rocket</name>
+      <path>AI/Aircraft/Bombable-Sounds/fire-rocket.wav</path>
+      <mode>once</mode>
+      <condition>
+        <property>bombable/fire-trigger-rocket</property>
+      </condition>
+      <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>8000</max-dist>
+    </fire-rocket>
+
+    <!-- Missile fire -->
+    <fire-missile>
+      <name>fire-missile</name>
+      <path>AI/Aircraft/Bombable-Sounds/fire-missile.wav</path>
+      <mode>once</mode>
+      <condition>
+        <property>bombable/fire-trigger-missile</property>
+      </condition>
+      <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>300</reference-dist>
+      <max-dist>10000</max-dist>
+    </fire-missile>
+
+    <!-- Bomb release -->
+    <fire-bomb>
+      <name>fire-bomb</name>
+      <path>AI/Aircraft/Bombable-Sounds/fire-bomb.wav</path>
+      <mode>once</mode>
+      <condition>
+        <property>bombable/fire-trigger-bomb</property>
+      </condition>
+      <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>200</reference-dist>
+      <max-dist>6000</max-dist>
+    </fire-bomb>
+
+    <!-- Torpedo release -->
+    <fire-torpedo>
+      <name>fire-torpedo</name>
+      <path>AI/Aircraft/Bombable-Sounds/fire-torpedo.wav</path>
+      <mode>once</mode>
+      <condition>
+        <property>bombable/fire-trigger-torpedo</property>
+      </condition>
+      <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>200</reference-dist>
+      <max-dist>6000</max-dist>
+    </fire-torpedo>
+
+    <!-- MG impact -->
+    <impact-mg>
+      <name>impact-mg</name>
+      <path>AI/Aircraft/Bombable-Sounds/impact-mg.wav</path>
+      <mode>once</mode>
+      <condition>
+        <property>bombable/impact-trigger-mg</property>
+      </condition>
+      <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>150</reference-dist>
+      <max-dist>3000</max-dist>
+    </impact-mg>
+
+    <!-- Shell/cannon impact -->
+    <impact-shell>
+      <name>impact-shell</name>
+      <path>AI/Aircraft/Bombable-Sounds/impact-shell.wav</path>
+      <mode>once</mode>
+      <condition>
+        <property>bombable/impact-trigger-shell</property>
+      </condition>
+      <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>6000</max-dist>
+    </impact-shell>
+
+    <!-- Rocket/missile/bomb/torpedo impact -->
+    <impact-explosion>
+      <name>impact-explosion</name>
+      <path>AI/Aircraft/Bombable-Sounds/impact-rocket.wav</path>
+      <mode>once</mode>
+      <condition>
+        <property>bombable/impact-trigger-explosion</property>
+      </condition>
+      <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>200</reference-dist>
+      <max-dist>10000</max-dist>
+    </impact-explosion>
+
+    <!-- Ambient fire - distant AI shooting at other AI (softer volume) -->
+
+    <ambient-mg>
+     <name>ambient-mg</name>
+     <path>AI/Aircraft/Bombable-Sounds/fire-mg.wav</path>
+     <mode>once</mode>
+     <condition><property>/bombable/ambient-trigger-mg</property></condition>
+     <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>50</reference-dist>
+      <max-dist>800</max-dist>
+    </ambient-mg>
+
+    <ambient-heavy-mg>
+     <name>ambient-heavy-mg</name>
+     <path>AI/Aircraft/Bombable-Sounds/fire-heavy-mg.wav</path>
+     <mode>once</mode>
+     <condition><property>/bombable/ambient-trigger-heavy-mg</property></condition>
+     <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>50</reference-dist>
+      <max-dist>800</max-dist>
+    </ambient-heavy-mg>
+
+    <ambient-cannon>
+     <name>ambient-cannon</name>
+     <path>AI/Aircraft/Bombable-Sounds/fire-cannon.wav</path>
+     <mode>once</mode>
+     <condition><property>/bombable/ambient-trigger-cannon</property></condition>
+     <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>50</reference-dist>
+      <max-dist>800</max-dist>
+    </ambient-cannon>
+
+    <ambient-shell>
+     <name>ambient-shell</name>
+     <path>AI/Aircraft/Bombable-Sounds/fire-shell.wav</path>
+     <mode>once</mode>
+     <condition><property>/bombable/ambient-trigger-shell</property></condition>
+     <volume>
+        <max>0.5</max>
+      </volume>
+      <reference-dist>50</reference-dist>
+      <max-dist>800</max-dist>
+    </ambient-shell>
+
+    <ambient-bomb>
+     <name>ambient-bomb</name>
+     <path>AI/Aircraft/Bombable-Sounds/fire-bomb.wav</path>
+     <mode>once</mode>
+      <condition><property>/bombable/ambient-trigger-bomb</property></condition>
+      <volume>
+        <max>0.1</max>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>3000</max-dist>
+    </ambient-bomb>
+
+    <ambient-rocket>
+     <name>ambient-rocket</name>
+     <path>AI/Aircraft/Bombable-Sounds/fire-rocket.wav</path>
+     <mode>once</mode>
+      <condition><property>/bombable/ambient-trigger-rocket</property></condition>
+      <volume>
+        <max>0.1</max>
+      </volume>
+      <reference-dist>50</reference-dist>
+      <max-dist>800</max-dist>
+    </ambient-rocket>
+
+    <ambient-missile>
+     <name>ambient-missile</name>
+     <path>AI/Aircraft/Bombable-Sounds/fire-missile.wav</path>
+     <mode>once</mode>
+      <condition><property>/bombable/ambient-trigger-missile</property></condition>
+      <volume>
+        <max>0.1</max>
+      </volume>
+      <reference-dist>50</reference-dist>
+      <max-dist>800</max-dist>
+    </ambient-missile>
+
+    <ambient-torpedo>
+     <name>ambient-torpedo</name>
+     <path>AI/Aircraft/Bombable-Sounds/fire-torpedo.wav</path>
+     <mode>once</mode>
+      <condition><property>/bombable/ambient-trigger-torpedo</property></condition>
+      <volume>
+        <max>0.1</max>
+      </volume>
+      <reference-dist>50</reference-dist>
+      <max-dist>800</max-dist>
+    </ambient-torpedo>
+
+  </fx>
+</PropertyList>

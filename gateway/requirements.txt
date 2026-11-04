@@ -1,0 +1,3 @@
+# Runtime dependency of the transport spike (exact pin, binary wheel available).
+# Transitive deps installed with it: none for websockets itself.
+websockets==17.4

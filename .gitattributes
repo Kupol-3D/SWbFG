@@ -1,0 +1,14 @@
+* text=auto
+*.py text eol=lf
+*.sh text eol=lf
+*.xml text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.ac text
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.wav binary
+*.glb binary
+# Immutable upstream snapshot: do not normalize or reformat its bytes.
+/vendor/bombable/** -text

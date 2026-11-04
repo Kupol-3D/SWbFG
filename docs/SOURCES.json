@@ -1,0 +1,20 @@
+{
+  "bombable": {
+    "url": "https://github.com/Aether-FGFS/Bombable-6.0.git",
+    "commit": "4c3a95d772a3c85a3e921aa2f50482c62fcfcf5a",
+    "path": "vendor/bombable",
+    "modified": false,
+    "license": "GPL-2.0-or-later",
+    "license_file": "vendor/bombable/Docs/COPYING"
+  },
+  "fgms": {
+    "url": "https://github.com/FlightGear/fgms.git",
+    "commit": "26e3dbd4124a10ea825806b77d32e046527cfe9d",
+    "version": "0.13.10"
+  },
+  "flightgear_target": {
+    "version": "2024.1.4",
+    "fgdata_version": "2024.1.4",
+    "bundled": false
+  }
+}

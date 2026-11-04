@@ -1,0 +1,2 @@
+# Test dependencies for the maintained Space Arena baseline.
+-r gateway/requirements-test.txt

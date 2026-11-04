@@ -1,0 +1,21 @@
+{
+  "services": {
+    "fgms": {
+      "networks": ["arena", "smoke"],
+      "ports": [
+        {
+          "target": 5000,
+          "published": "5500",
+          "host_ip": "127.0.0.1",
+          "protocol": "udp"
+        }
+      ]
+    }
+  },
+  "networks": {
+    "smoke": {
+      "driver": "bridge",
+      "internal": false
+    }
+  }
+}

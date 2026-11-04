@@ -1,0 +1,26 @@
+# Static unit tests for the maintained baseline only.  This workflow never
+# starts FlightGear and never runs Docker; real Docker/TLS/two-client smoke
+# tests remain a human administrator task (see server/space/README.md).
+name: tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  unittest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+      - name: Unit tests (stdlib unittest; no FlightGear, no Docker)
+        run: python -m unittest discover -s tools -p 'test_*.py' -v

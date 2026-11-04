@@ -1,0 +1,6 @@
+# Test-only dependencies for tools/test_gateway_auth.py.
+# cryptography is used ONLY to mint throwaway CA/server certificates in tmp dirs;
+# it is not a runtime dependency of the gate (TLS itself is stdlib ssl).
+# Transitive deps installed with it: cffi==2.1.1, pycparser==3.12.
+-r requirements.txt
+cryptography==50.0.2

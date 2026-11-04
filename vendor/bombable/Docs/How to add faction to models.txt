@@ -1,0 +1,74 @@
+_____________________________________________________________________
+
+Add faction to AI and Model in bombableinclude.xml under updateTime_s 
+_____________________________________________________________________
+
+var bombableObject = {
+  objectNodeName : thisNodeName,
+  objectNode     : props.globals.getNode(thisNodeName),
+  updateTime_s   : 1/3,
+  faction        : "A",
+
+____________________________________________________________________
+
+Add into registered Model nasal or create model-faction.nas file :
+____________________________________________________________________
+
+
+
+   setprop("/bombable/player-faction", "A");
+
+
+
+___________________________________________________________________
+
+Add into AI Model nasal or create model-faction.nas file :
+___________________________________________________________________
+
+
+setlistener("/sim/signals/fdm-initialized", func {
+  var myNode = cmdarg().getPath();
+  var elapsed = 0;
+  var trySet = func {
+    if (contains(bombable.attributes, myNode)) {
+      bombable.attributes[myNode].faction = "A";
+    } else {
+      elapsed += 1;
+      if (elapsed < 40) settimer(trySet, 1);
+    }
+  };
+  settimer(trySet, 2);
+});
+
+____________________________________________________________________
+
+Register model-faction.nas in AI and Model -set.xml :
+____________________________________________________________________
+  
+
+    <nasal>
+      <model_faction>
+          <path>Nasal/model-faction.nas</path>
+      </model_faction>
+    </nasal>
+
+
+
+___________________________________________________________________
+
+How to use it : 
+___________________________________________________________________
+
+ "A" is side we want to set to AI model. We can 
+ use format "A,B" or "A,B,C" if we want to let AI 
+ shoot only at Model marked with "D".AI set with 
+ "A" will not shoot at Model marked as "A" in model-set.xml 
+ , bombableinclude.xml and .nas file, until AI friendly 
+ fire is allowed in the Bombable menu. To set allies/hostiles, 
+ simply set "A"/"B" side, where "A" will attack "B". 
+
+___________________________________________________________________
+
+ Aether 2026
+
+

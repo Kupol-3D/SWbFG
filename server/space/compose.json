@@ -1,0 +1,40 @@
+{
+  "name": "space-arena",
+  "services": {
+    "fgms": {
+      "build": {
+        "context": "..",
+        "dockerfile": "Dockerfile"
+      },
+      "image": "space-arena-fgms:0.13.10",
+      "init": true,
+      "read_only": true,
+      "user": "65534:65534",
+      "cap_drop": ["ALL"],
+      "security_opt": ["no-new-privileges:true"],
+      "expose": ["5000/udp"],
+      "networks": ["arena"],
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "./fgms.conf",
+          "target": "/config/fgms.conf",
+          "read_only": true
+        }
+      ],
+      "tmpfs": ["/tmp:rw,nosuid,nodev,size=16m,mode=1777"],
+      "logging": {
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    }
+  },
+  "networks": {
+    "arena": {
+      "driver": "bridge",
+      "internal": true
+    }
+  }
+}

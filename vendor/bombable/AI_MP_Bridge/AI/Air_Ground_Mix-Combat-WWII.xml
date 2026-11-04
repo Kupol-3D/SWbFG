@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<PropertyList>
+ <scenario>
+   <description>Air_Ground_Mix-Combat-WWII Training scenario.  Starts at KSFO! </description>
+		
+   <entry>
+     <search-order>PREFER_AI</search-order>
+     <type>aircraft</type>
+     <callsign>Alpha</callsign>
+     <name>BF110 Leader</name>
+     <model type="string">Aircraft/Messerschmitt-BF110/Models/bf110.xml</model>
+     <latitude type="double">37.608720</latitude>
+     <longitude type="double">-122.3076</longitude>
+     <altitude type="double">309</altitude>
+     <speed>230.0</speed>
+     <heading type="double">192</heading>
+   </entry>
+    
+   <entry>
+     <search-order>PREFER_AI</search-order>
+     <type>aircraft</type>
+     <callsign>Bravo</callsign>
+     <name>BF110 Wingman</name>
+     <model type="string">Aircraft/Messerschmitt-BF110/Models/bf110.xml</model>
+     <latitude type="double">37.608200</latitude>
+     <longitude type="double">-122.2988</longitude>
+     <altitude type="double">309</altitude>
+     <speed>220.0</speed>
+     <heading type="double">192</heading>
+   </entry>
+
+   <entry>
+     <type>aircraft</type>
+     <callsign>Charlie</callsign>
+     <name>IL-2 Leader</name>
+     <model type="string">Aircraft/IL-2/Models/il2.xml</model>
+     <latitude type="double">37.608820</latitude>
+     <longitude type="double">-122.3076</longitude>
+     <altitude type="double">309</altitude>
+     <speed>230.0</speed>
+     <heading type="double">192</heading>
+   </entry>
+    
+   <entry>
+     <type>aircraft</type>
+     <callsign>Delta</callsign>
+     <name>IL-2 Wingman</name>
+     <model type="string">Aircraft/IL-2/Models/il2.xml</model>
+     <latitude type="double">37.608300</latitude>
+     <longitude type="double">-122.2988</longitude>
+     <altitude type="double">309</altitude>
+     <speed>220.0</speed>
+     <heading type="double">192</heading>
+   </entry>
+
+    <entry>
+     <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>Echo</callsign>
+      <name>Panzer</name>
+      <model type="string">Aircraft/panzer/Models/panzer.xml</model>
+      <latitude type="double">37.608150</latitude>
+      <longitude type="double">-122.2702</longitude>
+      <altitude type="double">0</altitude>
+      <speed>8</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">110</heading>
+    </entry>
+
+    <entry>
+     <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>Foxtrot</callsign>
+      <name>Panzer-1</name>
+      <model type="string">Aircraft/panzer/Models/panzer.xml</model>
+      <latitude type="double">37.608350</latitude>
+      <longitude type="double">-122.2702</longitude>
+      <altitude type="double">0</altitude>
+      <speed>8</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">110</heading>
+    </entry>
+    
+    <entry>
+     <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>Golf</callsign>
+      <name>T-34</name>
+      <model type="string">Aircraft/T-34/Models/T-34-76.xml</model>
+      <latitude type="double">37.608650</latitude>
+      <longitude type="double">-122.2901</longitude>
+      <altitude type="double">0</altitude>
+      <speed>8</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">110</heading>
+    </entry>
+    
+    <entry>
+     <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>Hotel</callsign>
+      <name>T-34-1</name>
+      <model type="string">Aircraft/T-34/Models/T-34-76.xml</model>
+      <latitude type="double">37.608450</latitude>
+      <longitude type="double">-122.2901</longitude>
+      <altitude type="double">0</altitude>
+      <speed>8</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">110</heading>
+    </entry>
+
+ </scenario>
+
+</PropertyList>
+

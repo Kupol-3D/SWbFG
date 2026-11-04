@@ -1,0 +1,37 @@
+_________________________________________________________________________________________
+
+   Notes: How to add Sounds into AI model.
+_________________________________________________________________________________________
+
+
+ 
+   -If we do not need to use other sounds for AI model, we can use our 
+    bombable-weapons-sound.xml at relative path located under folder
+    bombable-6.0/FGData/AI/Aircraft/Bombable-Sounds with relative path
+    "AI/Aircraft/Bombable-Sounds" to add weapons sounds into model direct trough
+    some-sound.xml located under fgdata/AI/Aircraft/model-name/Sounds folder. 
+
+
+________________________________________________________________________________________
+
+
+
+   -To have different sounds.. engine and other you must use sound under
+    flightgear installation AI/Aircraft/Bombable-Sounds. Simlpy copy file
+    bombable-weapons-sound.xml , rename it to ai-sound.xml and paste it 
+    under AI/Aircraft/your model/Sounds folder. Add your sounds into ai-sound.xml
+    do not forget to register new ai-sound.xml inside model.xml to play sounds
+    and you are done. Bombable will play sounds from inside of your AI Sounds.
+
+
+_______________________________________________________________________________________
+
+
+    Aether 2026
+_______________________________________________________________________________________
+
+
+
+
+
+
