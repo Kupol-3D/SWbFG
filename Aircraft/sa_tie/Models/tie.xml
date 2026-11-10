@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-2.0-or-later -->
+<PropertyList>
+  <path>tie.ac</path>
+  <effect>
+    <inherits-from>Aircraft/sa_tie/Effects/greybox</inherits-from>
+    <default type="bool">true</default>
+    <!-- Explicit targets also override the stock effects that SimGear
+         injects for material animations, so emission uses the same path. -->
+    <object-name>engine-1-glow</object-name>
+    <object-name>engine-2-glow</object-name>
+    <object-name>panel-light-strips</object-name>
+    <object-name>panel-light-indicator</object-name>
+  </effect>
+  <!-- AC3D axis conversion is performed by SimGear; no extra rotation here. -->
+  <animation>
+    <type>material</type>
+    <object-name>engine-1-glow</object-name>
+    <object-name>engine-2-glow</object-name>
+    <emission>
+      <red>1.0</red><green>0.12</green><blue>0.08</blue>
+      <factor-prop>/sim/space-arena/visual/throttle</factor-prop>
+    </emission>
+  </animation>
+  <!-- Panel lighting is emissive geometry, not a dynamic light source. -->
+  <animation>
+    <type>material</type>
+    <object-name>panel-light-strips</object-name>
+    <object-name>panel-light-indicator</object-name>
+    <emission>
+      <red>0.18</red><green>1.0</green><blue>0.42</blue>
+      <factor-prop>/sim/space-arena/visual/tie-panel-light</factor-prop>
+    </emission>
+  </animation>
+  <!-- Catch the click before adding the visual rocker rotation. -->
+  <animation>
+    <type>pick</type>
+    <object-name>panel-light-switch</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-toggle</command>
+        <property>/sim/space-arena/visual/tie-panel-light</property>
+      </binding>
+    </action>
+  </animation>
+  <animation>
+    <type>rotate</type>
+    <object-name>panel-light-switch</object-name>
+    <property>/sim/space-arena/visual/tie-panel-light</property>
+    <factor>24</factor><offset-deg>-12</offset-deg>
+    <center><x-m>-0.61</x-m><y-m>0.48</y-m><z-m>-0.40</z-m></center>
+    <axis><x>0</x><y>1</y><z>0</z></axis>
+  </animation>
+</PropertyList>
