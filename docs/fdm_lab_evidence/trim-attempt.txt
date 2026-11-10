@@ -1,0 +1,20 @@
+Actual rejected startup-trim attempt (not the accepted run).
+  Sorry, wdot doesn't appear to be trimmable
+  Trim Results:
+       Angle of Attack:    7.5  wdot: -3.31e-02 Tolerance: 1e-03  Failed
+              Throttle:    0.5  udot:  2.58e-04 Tolerance: 1e-03  Passed
+            Pitch Trim:      0  qdot: -2.22e-02 Tolerance: 1e-04  Failed
+            Roll Angle:      0  vdot: -3.03e-15 Tolerance: 1e-03  Passed
+              Ailerons:      0  pdot: -1.90e-16 Tolerance: 1e-04  Passed
+                Rudder:      0  rdot:  0.00e+00 Tolerance: 1e-04  Passed
+
+  Trim Statistics:
+    Total Iterations: 1
+    Sub-iterations:
+    wdot: 0 average: 0  successful:  0  stability: 2
+    udot: 0 average: 0  successful:  1  stability: 2
+    qdot: 0 average: 0  successful:  1  stability: 2
+    vdot: 0 average: 0  successful:  1  stability: 2
+    pdot: 0 average: 0  successful:  1  stability: 2
+    rdot: 0 average: 0  successful:  1  stability: 2
+    Run Count: 54

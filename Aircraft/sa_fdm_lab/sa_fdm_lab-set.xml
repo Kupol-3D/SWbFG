@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-2.0-or-later -->
+<PropertyList>
+  <sim>
+    <description>Space Arena — assisted atmospheric FDM laboratory</description>
+    <author>Space Arena contributors; OpenAI Codex assisted</author>
+    <aircraft-version>0.1.0</aircraft-version>
+    <minimum-fg-version>2024.1.7</minimum-fg-version>
+    <status>alpha</status>
+    <flight-model>jsb</flight-model><aero>sa_fdm_lab</aero>
+    <model><path>Aircraft/sa_fdm_lab/Models/lab.xml</path></model>
+    <presets><onground>false</onground><trim>false</trim></presets>
+    <chase-distance-m type="double">-18</chase-distance-m>
+    <help>
+      <line>Experimental repulsor, not a conventional aeroplane. Start at 1000 m MSL.</line>
+      <line>W/S: thrust +/-10%; B: brake toggle; J/L: yaw left/right; K: stop yaw.</line>
+      <line>R/F: altitude target +/-50 ft. Standard aileron/elevator: attitude commands.</line>
+      <line>V: change view. FDM properties: /fdm/jsbsim/lab/. See package README.</line>
+    </help>
+    <!-- Camera axes right/up/aft; model axes aft/right/up. -->
+    <view n="0">
+      <name>Lab pilot</name><type>lookfrom</type><internal type="bool">true</internal>
+      <config>
+        <from-model type="bool">true</from-model><from-model-idx type="int">0</from-model-idx>
+        <x-offset-m>0</x-offset-m><y-offset-m>0.8</y-offset-m><z-offset-m>-0.5</z-offset-m>
+        <heading-offset-deg>0</heading-offset-deg><pitch-offset-deg>0</pitch-offset-deg><roll-offset-deg>0</roll-offset-deg>
+        <default-field-of-view-deg>75</default-field-of-view-deg>
+        <ground-level-nearplane-m>0.05</ground-level-nearplane-m>
+      </config>
+    </view>
+    <view n="1">
+      <name>Lab exterior</name><type>lookat</type><internal type="bool">false</internal>
+      <config>
+        <from-model type="bool">true</from-model><from-model-idx type="int">0</from-model-idx>
+        <at-model type="bool">true</at-model><at-model-idx type="int">0</at-model-idx>
+        <eye-heading-deg-path>/orientation/heading-deg</eye-heading-deg-path>
+        <eye-pitch-deg-path>/orientation/pitch-deg</eye-pitch-deg-path>
+        <eye-roll-deg-path>/orientation/roll-deg</eye-roll-deg-path>
+        <x-offset-m>12</x-offset-m><y-offset-m>7</y-offset-m><z-offset-m>18</z-offset-m>
+        <default-field-of-view-deg>45</default-field-of-view-deg>
+        <ground-level-nearplane-m>0.1</ground-level-nearplane-m>
+      </config>
+    </view>
+  </sim>
+  <input><keyboard>
+    <key n="119"><name>w</name><desc>Increase lab thrust</desc><binding><command>property-adjust</command><property>/fdm/jsbsim/lab/throttle</property><step>0.1</step><min>0</min><max>1</max></binding></key>
+    <key n="115"><name>s</name><desc>Decrease lab thrust</desc><binding><command>property-adjust</command><property>/fdm/jsbsim/lab/throttle</property><step>-0.1</step><min>0</min><max>1</max></binding></key>
+    <key n="98"><name>b</name><desc>Toggle lab brake</desc><binding><command>property-toggle</command><property>/fdm/jsbsim/lab/brake</property></binding></key>
+    <key n="106"><name>j</name><desc>Yaw left</desc><binding><command>property-assign</command><property>/fdm/jsbsim/lab/yaw</property><value>-1</value></binding></key>
+    <key n="108"><name>l</name><desc>Yaw right</desc><binding><command>property-assign</command><property>/fdm/jsbsim/lab/yaw</property><value>1</value></binding></key>
+    <key n="107"><name>k</name><desc>Stop yaw</desc><binding><command>property-assign</command><property>/fdm/jsbsim/lab/yaw</property><value>0</value></binding></key>
+    <key n="114"><name>r</name><desc>Raise altitude target</desc><binding><command>property-adjust</command><property>/fdm/jsbsim/lab/altitude-ft</property><step>50</step><min>2500</min><max>4000</max></binding></key>
+    <key n="102"><name>f</name><desc>Lower altitude target</desc><binding><command>property-adjust</command><property>/fdm/jsbsim/lab/altitude-ft</property><step>-50</step><min>2500</min><max>4000</max></binding></key>
+  </keyboard></input>
+  <nasal><sa_fdm_lab><file>Aircraft/sa_fdm_lab/Nasal/experiment.nas</file></sa_fdm_lab></nasal>
+</PropertyList>

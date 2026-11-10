@@ -1,0 +1,11 @@
+{
+  "exit_code": 0,
+  "samples": 411,
+  "start_s": 0.0,
+  "end_s": 205.0,
+  "all_finite": true,
+  "altitude_min_m": 1000.0052616646171,
+  "altitude_max_m": 1000.0126180594773,
+  "final_altitude_m": 1000.0126180492581,
+  "final_w_mps": -2.425280179269601e-10
+}

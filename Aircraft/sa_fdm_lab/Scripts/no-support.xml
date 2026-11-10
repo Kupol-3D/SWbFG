@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-2.0-or-later -->
+<runscript name="Control experiment: remove weight support">
+  <use aircraft="sa_fdm_lab" initialize="reset00"/>
+  <run start="0" end="5" dt="0.008333333333333333">
+    <event name="Disable repulsor at two seconds">
+      <condition>simulation/sim-time-sec ge 2</condition>
+      <set name="lab/support" value="0"/>
+    </event>
+  </run>
+</runscript>

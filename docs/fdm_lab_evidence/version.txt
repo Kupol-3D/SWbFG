@@ -1,0 +1,24 @@
+    0.20 [WARN]:general    scenery path not found:Path "<FG_INSTALL>/fgdata/Scenery"
+FlightGear version: 2024.1.7
+Revision: 7241807173248abd838e2ab11337fbc5b2ae20b0
+Build-Id: none
+Build-Type: Release
+FG_ROOT=<FG_INSTALL>/fgdata
+FG_HOME=<RUN_DIR>/fg-home
+FG_SCENERY=<RUN_DIR>/fg-home/TerraSync
+SimGear version: 2024.1.7
+OSG version: 3.6.5
+PLIB version: 185
+Base Package (FGData) at Path "<FG_INSTALL>/fgdata" is version:2024.1.7
+    0.20 [ALRT]:event      Shutdown of non-init-ed group:
+    0.20 [ALRT]:event      Shutdown of non-init-ed group:
+    0.20 [ALRT]:event      Shutdown of non-init-ed group:
+    0.20 [ALRT]:event      Shutdown of non-init-ed group:
+    0.20 [ALRT]:event      Shutdown of non-init-ed group:
+    0.20 [ALRT]:event      Shutdown of non-init-ed group:
+    0.20 [ALRT]:event      Unbind of non-bound group:
+    0.20 [ALRT]:event      Unbind of non-bound group:
+    0.20 [ALRT]:event      Unbind of non-bound group:
+    0.20 [ALRT]:event      Unbind of non-bound group:
+    0.20 [ALRT]:event      Unbind of non-bound group:
+    0.20 [ALRT]:event      Unbind of non-bound group:

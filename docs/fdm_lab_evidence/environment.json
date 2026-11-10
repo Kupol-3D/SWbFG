@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-10",
+  "os": "macOS 26.5.1 (25F80), arm64",
+  "python": "3.11.6",
+  "flightgear": "2024.1.7",
+  "simgear": "2024.1.7",
+  "fgdata": "2024.1.7",
+  "fg_revision": "7241807173248abd838e2ab11337fbc5b2ae20b0",
+  "mode": "Real graphical FlightGear; no network property server; fresh FG_HOME",
+  "physics_hz": 120,
+  "frame_rate_cap_hz": 30,
+  "scenario": "Nasal command driver; native JSBSim integration, IC reset once before measurement",
+  "package_sha256": {
+    "sa_fdm_lab-set.xml": "67b681e7d0070193ac22d72580fda5ebe8425876a4d363c77c6316ee31ac3c92",
+    "sa_fdm_lab.xml": "4447dc716ea6335a031f5bdd973ba26022d2033c38b5df988f49ae06b3b25022",
+    "Nasal/experiment.nas": "7e56478dde76e82b2de828186154ca02f9c5b7da57907691420d9679c5d8f085",
+    "Models/lab.xml": "3bd41d912cd5363ab5572b66ab78653ac6f4c48b53cb2e7c2ef59ecffe5fb4c8",
+    "Models/lab.ac": "996330b157d71005c8cd92d5353c013aeca4c6e6a9901c10eea570be24fc40c6",
+    "reset00.xml": "c4b9de90b6840c9be91e780a3c6d371bb3a28b5baa0a0edcf7f8ddc67ee22466"
+  }
+}

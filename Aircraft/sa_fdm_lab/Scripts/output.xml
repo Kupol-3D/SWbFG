@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-2.0-or-later -->
+<output name="native-hover.csv" type="CSV" rate="2">
+  <property>position/h-sl-ft</property>
+  <property>velocities/u-fps</property><property>velocities/v-fps</property><property>velocities/w-fps</property>
+  <property>attitude/phi-rad</property><property>attitude/theta-rad</property>
+  <property>lab/support-lbs</property>
+</output>
