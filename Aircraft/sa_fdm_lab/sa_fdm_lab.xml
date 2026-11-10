@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-2.0-or-later -->
+<fdm_config name="sa_fdm_lab" version="2.0" release="ALPHA">
+  <fileheader>
+    <author>Space Arena contributors; OpenAI Codex assisted</author>
+    <filecreationdate>2026-11-10</filecreationdate>
+    <description>1000 kg atmospheric repulsor test rig; engineering assumptions, no canon data.</description>
+  </fileheader>
+  <metrics>
+    <wingarea unit="M2">8</wingarea><wingspan unit="M">4</wingspan><chord unit="M">2</chord>
+    <location name="AERORP" unit="M"><x>0</x><y>0</y><z>0</z></location>
+    <location name="EYEPOINT" unit="M"><x>-0.5</x><y>0</y><z>0.8</z></location>
+    <location name="VRP" unit="M"><x>0</x><y>0</y><z>0</z></location>
+  </metrics>
+  <mass_balance>
+    <ixx unit="KG*M2">1200</ixx><iyy unit="KG*M2">2500</iyy><izz unit="KG*M2">3000</izz>
+    <emptywt unit="KG">1000</emptywt>
+    <location name="CG" unit="M"><x>0</x><y>0</y><z>0</z></location>
+  </mass_balance>
+  <ground_reactions>
+    <!-- Emergency skids only. Ground launch/landing is outside the flight test. -->
+    <contact type="STRUCTURE" name="nose-skid">
+      <location unit="M"><x>-2</x><y>0</y><z>-0.5</z></location>
+      <static_friction>0.8</static_friction><dynamic_friction>0.5</dynamic_friction>
+      <spring_coeff unit="N/M">100000</spring_coeff><damping_coeff unit="N/M/SEC">10000</damping_coeff>
+    </contact>
+    <contact type="STRUCTURE" name="left-skid">
+      <location unit="M"><x>1.5</x><y>-1.5</y><z>-0.5</z></location>
+      <static_friction>0.8</static_friction><dynamic_friction>0.5</dynamic_friction>
+      <spring_coeff unit="N/M">100000</spring_coeff><damping_coeff unit="N/M/SEC">10000</damping_coeff>
+    </contact>
+    <contact type="STRUCTURE" name="right-skid">
+      <location unit="M"><x>1.5</x><y>1.5</y><z>-0.5</z></location>
+      <static_friction>0.8</static_friction><dynamic_friction>0.5</dynamic_friction>
+      <spring_coeff unit="N/M">100000</spring_coeff><damping_coeff unit="N/M/SEC">10000</damping_coeff>
+    </contact>
+  </ground_reactions>
+  <external_reactions>
+    <force name="repulsor" frame="LOCAL">
+      <location unit="M"><x>0</x><y>0</y><z>0</z></location>
+      <direction><x>0</x><y>0</y><z>-1</z></direction>
+    </force>
+    <force name="drive" frame="BODY">
+      <location unit="M"><x>0</x><y>0</y><z>0</z></location>
+      <direction><x>1</x><y>0</y><z>0</z></direction>
+    </force>
+    <force name="lateral-assist" frame="BODY">
+      <location unit="M"><x>0</x><y>0</y><z>0</z></location>
+      <direction><x>0</x><y>1</y><z>0</z></direction>
+    </force>
+    <moment name="roll-assist" frame="BODY"><direction><x>1</x><y>0</y><z>0</z></direction></moment>
+    <moment name="pitch-assist" frame="BODY"><direction><x>0</x><y>1</y><z>0</z></direction></moment>
+    <moment name="yaw-assist" frame="BODY"><direction><x>0</x><y>0</y><z>1</z></direction></moment>
+  </external_reactions>
+  <flight_control name="Explicit fictional repulsor and attitude controller">
+    <property value="1">lab/support</property><property value="1">lab/stabilize</property>
+    <property value="3280.839895013123">lab/altitude-ft</property>
+    <property value="0">lab/throttle</property><property value="0">lab/brake</property><property value="0">lab/yaw</property>
+    <channel name="Bounded commands">
+      <pure_gain name="lab/throttle-limited"><input>lab/throttle</input><gain>1</gain><clipto><min>0</min><max>1</max></clipto></pure_gain>
+      <pure_gain name="lab/brake-limited"><input>lab/brake</input><gain>1</gain><clipto><min>0</min><max>1</max></clipto></pure_gain>
+      <pure_gain name="lab/yaw-limited"><input>lab/yaw</input><gain>1</gain><clipto><min>-1</min><max>1</max></clipto></pure_gain>
+    </channel>
+    <channel name="Weight support in local vertical">
+      <fcs_function name="lab/support-accel">
+        <function><sum><value>32.174</value>
+          <product><value>0.8</value><difference><property>lab/altitude-ft</property><property>position/h-sl-ft</property></difference></product>
+          <product><value>1.8</value><property>velocities/v-down-fps</property></product>
+        </sum></function><clipto><min>0</min><max>64.348</max></clipto>
+      </fcs_function>
+      <fcs_function name="lab/support-lbs">
+        <function><product><property>lab/support</property><property>inertia/mass-slugs</property><property>lab/support-accel</property></product></function>
+        <output>external_reactions/repulsor/magnitude</output>
+      </fcs_function>
+    </channel>
+    <channel name="Longitudinal drive and brake">
+      <fcs_function name="lab/drive-lbs">
+        <function><difference>
+          <product><value>1798.471550968</value><property>lab/throttle-limited</property></product>
+          <product><value>1.5</value><property>inertia/mass-slugs</property><property>lab/brake-limited</property><property>velocities/u-fps</property></product>
+          <!-- Quadratic body-axis air resistance, Cd*A = 1.3 m2 = 13.9931 ft2. -->
+          <product><value>6.996541771</value><property>atmosphere/rho-slugs_ft3</property><property>velocities/u-fps</property><abs><property>velocities/u-fps</property></abs></product>
+        </difference></function><clipto><min>-4496.17887742</min><max>1798.471550968</max></clipto>
+        <output>external_reactions/drive/magnitude</output>
+      </fcs_function>
+      <fcs_function name="lab/lateral-lbs">
+        <function><product><value>-1</value><property>lab/stabilize</property><property>inertia/mass-slugs</property><property>velocities/v-fps</property></product></function>
+        <clipto><min>-2697.707326452</min><max>2697.707326452</max></clipto>
+        <output>external_reactions/lateral-assist/magnitude</output>
+      </fcs_function>
+    </channel>
+    <channel name="Attitude and yaw rate control">
+      <fcs_function name="lab/roll-lbsft">
+        <function><product><property>lab/stabilize</property><property>inertia/ixx-slugs_ft2</property><sum>
+          <product><value>3</value><difference><product><value>0.25</value><property>fcs/aileron-cmd-norm</property></product><property>attitude/phi-rad</property></difference></product>
+          <product><value>-2.8</value><property>velocities/p-rad_sec</property></product>
+        </sum></product></function><clipto><min>-7375.621493</min><max>7375.621493</max></clipto>
+        <output>external_reactions/roll-assist/magnitude-lbsft</output>
+      </fcs_function>
+      <fcs_function name="lab/pitch-lbsft">
+        <function><product><property>lab/stabilize</property><property>inertia/iyy-slugs_ft2</property><sum>
+          <product><value>3</value><difference><product><value>-0.17</value><property>fcs/elevator-cmd-norm</property></product><property>attitude/theta-rad</property></difference></product>
+          <product><value>-2.8</value><property>velocities/q-rad_sec</property></product>
+        </sum></product></function><clipto><min>-7375.621493</min><max>7375.621493</max></clipto>
+        <output>external_reactions/pitch-assist/magnitude-lbsft</output>
+      </fcs_function>
+      <fcs_function name="lab/yaw-lbsft">
+        <function><product><value>2</value><property>lab/stabilize</property><property>inertia/izz-slugs_ft2</property><difference>
+          <product><value>0.1745329252</value><property>lab/yaw-limited</property></product><property>velocities/r-rad_sec</property>
+        </difference></product></function><clipto><min>-7375.621493</min><max>7375.621493</max></clipto>
+        <output>external_reactions/yaw-assist/magnitude-lbsft</output>
+      </fcs_function>
+    </channel>
+  </flight_control>
+  <!-- No lifting surfaces. Weight support must come from the repulsor. -->
+  <aerodynamics/>
+</fdm_config>

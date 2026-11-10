@@ -1,0 +1,244 @@
+
+
+     JSBSim Flight Dynamics Model vcompiled from FlightGear 2024.1.7 Nov  1 2026 19:21:41
+            [JSBSim-ML v2.0]
+
+JSBSim startup beginning ...
+
+Reading Aircraft Configuration File: sa_fdm_lab
+                            Version: 2.0
+
+
+This aircraft model is an ALPHA release!!!
+
+This aircraft model may not even properly load, and probably will not fly as expected.
+
+Use this model for development purposes ONLY!!!
+
+  Description:   1000 kg atmospheric repulsor test rig; engineering assumptions, no canon data.
+  Model Author:  Space Arena contributors; OpenAI Codex assisted
+  Creation Date: 2026-11-10
+
+  Aircraft Metrics:
+    WingArea: 86.111284
+    WingSpan: 13.123360
+    Incidence: 0.000000
+    Chord: 6.561680
+    H. Tail Area: 0.000000
+    H. Tail Arm: 0.000000
+    V. Tail Area: 0.000000
+    V. Tail Arm: 0.000000
+    Eyepoint (x, y, z): -19.685039 , 0.000000 , 31.496063
+    Ref Pt (x, y, z): 0.000000 , 0.000000 , 0.000000
+    Visual Ref Pt (x, y, z): 0.000000 , 0.000000 , 0.000000
+
+  Mass and Balance:
+    baseIxx: 884.994911 slug-ft2
+    baseIyy: 1843.739398 slug-ft2
+    baseIzz: 2212.487278 slug-ft2
+    baseIxy: -0.000000 slug-ft2
+    baseIxz: 0.000000 slug-ft2
+    baseIyz: -0.000000 slug-ft2
+    Empty Weight: 2204.622622 lbm
+    CG (x, y, z): 0.000000 , 0.000000 , 0.000000
+
+  Ground Reactions:
+    STRUCTURE nose-skid
+      Location: -78.740158 , 0.000000 , -19.685039
+      Spring Constant:  6852.177965
+      Damping Constant: 685.217796 (linear)
+      Rebound Damping Constant: 685.217796 (linear)
+      Dynamic Friction: 0.500000
+      Static Friction:  0.800000
+    STRUCTURE left-skid
+      Location: 59.055118 , -59.055118 , -19.685039
+      Spring Constant:  6852.177965
+      Damping Constant: 685.217796 (linear)
+      Rebound Damping Constant: 685.217796 (linear)
+      Dynamic Friction: 0.500000
+      Static Friction:  0.800000
+    STRUCTURE right-skid
+      Location: 59.055118 , 59.055118 , -19.685039
+      Spring Constant:  6852.177965
+      Damping Constant: 685.217796 (linear)
+      Rebound Damping Constant: 685.217796 (linear)
+      Dynamic Friction: 0.500000
+      Static Friction:  0.800000
+
+  External Reactions:
+
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+
+    Declared properties
+
+      lab/support (initial value: 1.000000)
+
+      lab/stabilize (initial value: 1.000000)
+
+      lab/altitude-ft (initial value: 3280.839895)
+
+      lab/throttle (initial value: 0.000000)
+
+      lab/brake (initial value: 0.000000)
+
+      lab/yaw (initial value: 0.000000)
+
+
+  FCS: Explicit fictional repulsor and attitude controller
+
+    Channel Bounded commands
+
+    Loading Component "lab/throttle-limited" of type: PURE_GAIN
+      Minimum limit: constant value 0.000000
+      Maximum limit: constant value 1.000000
+      INPUT: throttle
+      GAIN: constant value 1.000000
+      OUTPUT: throttle-limited
+
+    Loading Component "lab/brake-limited" of type: PURE_GAIN
+      Minimum limit: constant value 0.000000
+      Maximum limit: constant value 1.000000
+      INPUT: brake
+      GAIN: constant value 1.000000
+      OUTPUT: brake-limited
+
+    Loading Component "lab/yaw-limited" of type: PURE_GAIN
+      Minimum limit: constant value -1.000000
+      Maximum limit: constant value 1.000000
+      INPUT: yaw
+      GAIN: constant value 1.000000
+      OUTPUT: yaw-limited
+
+    Channel Weight support in local vertical
+
+    Loading Component "lab/support-accel" of type: FCS_FUNCTION
+      Minimum limit: constant value 0.000000
+      Maximum limit: constant value 64.348000
+      OUTPUT: support-accel
+
+    Loading Component "lab/support-lbs" of type: FCS_FUNCTION
+      OUTPUT: magnitude
+      OUTPUT: support-lbs
+
+    Channel Longitudinal drive and brake
+
+    Loading Component "lab/drive-lbs" of type: FCS_FUNCTION
+      Minimum limit: constant value -4496.178877
+      Maximum limit: constant value 1798.471551
+      OUTPUT: magnitude
+      OUTPUT: drive-lbs
+
+    Loading Component "lab/lateral-lbs" of type: FCS_FUNCTION
+      Minimum limit: constant value -2697.707326
+      Maximum limit: constant value 2697.707326
+      OUTPUT: magnitude
+      OUTPUT: lateral-lbs
+
+    Channel Attitude and yaw rate control
+
+    Loading Component "lab/roll-lbsft" of type: FCS_FUNCTION
+      Minimum limit: constant value -7375.621493
+      Maximum limit: constant value 7375.621493
+      OUTPUT: magnitude-lbsft
+      OUTPUT: roll-lbsft
+
+    Loading Component "lab/pitch-lbsft" of type: FCS_FUNCTION
+      Minimum limit: constant value -7375.621493
+      Maximum limit: constant value 7375.621493
+      OUTPUT: magnitude-lbsft
+      OUTPUT: pitch-lbsft
+
+    Loading Component "lab/yaw-lbsft" of type: FCS_FUNCTION
+      Minimum limit: constant value -7375.621493
+      Maximum limit: constant value 7375.621493
+      OUTPUT: magnitude-lbsft
+      OUTPUT: yaw-lbsft
+
+  Aerodynamics (Lift|Side|Drag axes):
+
+
+Script: "Control experiment: remove weight support"
+  begins at 0.000000 seconds and runs to 5.008250 seconds with dt = 0.008333 (120.000000 Hz)
+
+
+Event 0 (Disable repulsor at two seconds):
+  When first triggered, executes once  if all of the following are true: {
+    sim-time-sec ge constant value 2.000000
+  }
+  Actions taken:
+    {
+      set lab/support to 0.000000 (constant via step)
+    }
+
+
+  Output data set: 0
+    Properties logged:
+      - h-sl-ft
+      - u-fps
+      - v-fps
+      - w-fps
+      - phi-rad
+      - theta-rad
+      - support-lbs
+
+  Mass Properties Report (English units: lbf, in, slug-ft^2)
+                                      Weight    CG-X    CG-Y    CG-Z         Ixx         Iyy         Izz         Ixy         Ixz         Iyz
+    Base Vehicle                      2204.6     0.0     0.0     0.0       885.0      1843.7      2212.5        -0.0         0.0        -0.0
+
+    Total:                            2204.6     0.0     0.0     0.0       885.0      1843.7      2212.5         0.0         0.0         0.0
+
+End of vehicle configuration loading.
+-------------------------------------------------------------------------------
+
+Simulation Configuration
+------------------------
+Mass Properties Model:
+Ground Reactions Model:
+Aerodynamics Model:
+FGPropulsion
+
+------------------------------------------------------------------
+State Report at sim time: 0.000000 seconds
+  Position
+    ECI:   -8871568.822080011, -14033434.1837704, 12700044.65756645 (x,y,z, in ft)
+    ECEF:  -8871568.822080 , -14033434.183770 , 12700044.657566 (x,y,z, in ft)
+    Local: 37.600000, -122.300000, 3280.857158 (geodetic lat, lon, alt ASL in deg and ft)
+
+  Orientation
+    ECI:   180, -52.40000000000001, 57.70000000000001 (phi, theta, psi in deg)
+    Local: 6.19977312022508e-16, -2.519920534248412e-15, 360 (phi, theta, psi in deg)
+
+  Velocity
+    ECI:   1023.334159129849, -646.9250008102198, 0 (x,y,z in ft/s)
+    ECEF:  0, 0, 0 (x,y,z in ft/s)
+    Local: 0.000000 , 0.000000 , 0.000000 (n,e,d in ft/sec)
+    Body:  0.000000 , 0.000000 , 0.000000 (u,v,w in ft/sec)
+
+  Body Rates (relative to given frame, expressed in body frame)
+    ECI:   0.003310244864144297, 2.319297050102033e-19, -0.002549231726207467 (p,q,r in deg/s)
+    ECEF:  0, 0, 0 (p,q,r in deg/s)
+
+---- JSBSim Execution beginning ... --------------------------------------------
+
+Start: Tuesday November 10 2026 23:29:07 (HH:MM:SS)
+End: Tuesday November 10 2026 23:29:07 (HH:MM:SS)
+
+  The aerodynamic axis system has been set by default to the Lift/Side/Drag system.
+
+  The aerodynamic moment axis system has been set by default to the bodyXYZ system.
