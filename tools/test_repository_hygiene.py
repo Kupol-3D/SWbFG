@@ -8,6 +8,9 @@ so caches, virtualenvs and other gitignored runtime junk created by CI or
 local runs stays out of the checks; while there is no .git yet, a minimal
 .gitignore-aware walk approximates the same set.
 
+Set SPACE_ARENA_NO_GIT=1 to use the working-tree walk even in a checkout;
+this mode never invokes Git and does not inspect its publication index.
+
 Guards:
   * no personal root-level journals/notes/prompt files get published;
   * no caches, virtualenvs or secret-named files get published;
@@ -26,6 +29,7 @@ import os
 import re
 import subprocess
 import unittest
+from unittest import mock
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -106,7 +110,9 @@ def _ignored(parts, is_dir=False):
 
 
 def _published_files():
-    if (ROOT / '.git').is_dir():
+    # Allow source-tree audits without invoking Git (for example in archives
+    # or when the repository owner handles all Git operations).
+    if (ROOT / '.git').is_dir() and os.environ.get('SPACE_ARENA_NO_GIT') != '1':
         proc = subprocess.run(
             ('git', 'ls-files', '--cached', '--others', '--exclude-standard'),
             cwd=ROOT, capture_output=True, text=True, check=True)
@@ -156,6 +162,14 @@ def _text_blobs():
 
 
 class TestPublicationSet(unittest.TestCase):
+    def test_working_tree_audit_does_not_invoke_git(self):
+        with mock.patch.dict(os.environ, {'SPACE_ARENA_NO_GIT': '1'}), \
+                mock.patch.object(subprocess, 'run',
+                                  side_effect=AssertionError('Git is disabled')):
+            files = _published_files()
+        self.assertIn('README.md', files)
+        self.assertTrue(all('.git' not in Path(rel).parts for rel in files))
+
     def test_publication_set_represents_real_sources(self):
         for expected in ('README.md', 'server/space/compose.json',
                          'tools/test_space_server.py'):

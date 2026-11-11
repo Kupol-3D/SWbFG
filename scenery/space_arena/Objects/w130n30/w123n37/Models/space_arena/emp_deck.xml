@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- space_arena greybox model wrapper (TASK4; own geometry;
+     GPL-2.0-or-later). Direct <path> form per the FGData
+     shared-model dialect: loads the sibling .ac with identity
+     offsets so the AC3D axes stay the documented source.
+     NOT runtime-verified: FlightGear is absent on this host. -->
+<PropertyList>
+  <path>emp_deck.ac</path>
+</PropertyList>

@@ -26,10 +26,10 @@ SOURCES_JSON = ROOT / 'docs' / 'SOURCES.json'
 BUNDLE_KEYS = ('version', 'simgear_version', 'fgdata_version')
 LISTED_DOCS = (
     'README.md',
-    'TASK1.md',
-    'TASK2.md',
-    'TASK3.md',
-    'TASK4.md',
+    'TASK/TASK1.md',
+    'TASK/TASK2.md',
+    'TASK/TASK3.md',
+    'TASK/TASK4.md',
     'docs/TEAM_ENVIRONMENT.md',
     'docs/SOURCES.json',
 )

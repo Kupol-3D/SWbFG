@@ -126,7 +126,7 @@ class GateAuthTests(unittest.IsolatedAsyncioTestCase):
         cls.cert_file.write_bytes(_pem(server) + _pem(ca))
         cls.key_file.write_bytes(_key_pem(server_key))
         cls.key_file.chmod(0o600)
-        cls.rogue, _ = rogue, rogue_key          # second CA, never trusted by the gate
+        # the rogue CA above exists only as rogue-ca.pem below: never trusted here
         cls.server_ctx = load_server_tls_context(str(cls.cert_file), str(cls.key_file))
 
     @classmethod
