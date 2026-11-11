@@ -1,6 +1,6 @@
 # Static unit tests for the maintained baseline only.  This workflow never
-# starts FlightGear and never runs Docker; real Docker/TLS/two-client smoke
-# tests remain a human administrator task (see server/space/README.md).
+# starts FlightGear and never runs Docker. Loopback TLS/WS/UDP tests use a
+# fake backend; real FGMS/two-client smoke remains a host acceptance task.
 name: tests
 
 on:
