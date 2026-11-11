@@ -8,6 +8,14 @@ logic.  It authenticates the handshake (TLS 1.3, exact path ``/mp``,
 to ``max_sessions``, then hands binary frames to the caller's async
 ``on_message(identity, payload)``.  Not production: loopback bind only, no rate
 limit, no invitations, expiry, revocation or storage (see gateway/README.md).
+
+Lifecycle hooks are optional and run for an admitted session only:
+``await on_open(identity, channel)`` before the first frame is read, where
+``channel`` is a ticket-bound, send-only `SessionChannel` (it has no recv), and
+``await on_close(identity)`` when that same session ends.  A reverse stream can
+therefore push frames while the peer sends nothing at all.  A callback rejects
+application data with `PolicyViolation` (generic close 1008); any other callback
+failure closes 1011 and logs one value-free line.
 """
 from __future__ import annotations
 
@@ -20,12 +28,12 @@ import secrets
 import ssl
 import traceback
 from collections.abc import Awaitable, Callable, Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from http import HTTPStatus
 from ipaddress import ip_address
 from types import MappingProxyType
 
-from websockets.asyncio.server import Server, ServerConnection, serve
+from websockets.asyncio.server import ServerConnection, serve
 from websockets.datastructures import Headers
 from websockets.exceptions import ConnectionClosed
 
@@ -44,6 +52,14 @@ class GatewayError(RuntimeError):
 
 class TlsRequiredError(GatewayError):
     """Raised when a gate would start without a TLS >= 1.3 server context."""
+
+
+class PolicyViolation(GatewayError):
+    """Application-level reject of one frame, raised by a caller's callback.
+
+    The gate closes with the generic policy code and never forwards or logs this
+    message, so it must not be used to carry packet contents to a peer either.
+    """
 
 
 def generate_token() -> str:
@@ -133,27 +149,79 @@ def make_logger(name: str = "space_gateway.gate") -> logging.Logger:
     return logger
 
 
+def _is_async(func: object) -> bool:
+    """True for an async function or an async ``__call__`` (awaitable callback)."""
+    return (inspect.iscoroutinefunction(func)
+            or inspect.iscoroutinefunction(getattr(func, "__call__", None)))
+
+
+@dataclass(frozen=True)
+class SessionChannel:
+    """Send half of ONE admitted session; the gate wires the two callables.
+
+    It is frozen, ticket-bound and send-only: there is no recv here and no raw
+    connection object, so a reverse producer cannot read the peer, cannot pick
+    which session it writes to and cannot outlive its own admission — a sender
+    retained from a finished session is refused before it reaches the wire.
+    ``send_impl``/``close_impl`` are gate internals; callers never pass them.
+    """
+
+    identity: str
+    ticket: int                                 # this admission, not the identity
+    max_message_bytes: int
+    send_impl: Callable[[bytes], Awaitable[None]] = field(repr=False)
+    close_impl: Callable[[], Awaitable[None]] = field(repr=False)
+
+    async def send(self, payload) -> None:
+        """Queue exactly one binary frame; rejects shape/size without echoing them."""
+        if not isinstance(payload, (bytes, bytearray, memoryview)):
+            raise GatewayError("channel send needs a binary payload")
+        try:
+            size = payload.nbytes if isinstance(payload, memoryview) else len(payload)
+        except (ValueError, TypeError):
+            raise GatewayError("channel send needs a valid binary payload") from None
+        if not 1 <= size <= self.max_message_bytes:
+            raise GatewayError("channel send payload is outside the configured size")
+        try:
+            frame = bytes(payload)
+        except (ValueError, TypeError):
+            raise GatewayError("channel send needs a valid binary payload") from None
+        if not 1 <= len(frame) <= self.max_message_bytes:
+            raise GatewayError("channel send payload is outside the configured size")
+        await self.send_impl(frame)             # ticket check lives in the gate
+
+    async def close(self) -> None:
+        """End this session with the generic policy close, never an app reason."""
+        await self.close_impl()
+
+
 OnMessage = Callable[[str, bytes], Awaitable["bytes | None"]]
+OnOpen = Callable[[str, SessionChannel], Awaitable[None]]
+OnClose = Callable[[str], Awaitable[None]]
 
 
 class TlsAuthGate:
     """Admit authenticated identities, then stream binary frames to on_message."""
 
     def __init__(self, *, registry: IdentityRegistry, on_message: OnMessage,
+                 on_open: OnOpen | None = None, on_close: OnClose | None = None,
                  max_sessions: int = MAX_SESSIONS,
                  max_message_bytes: int = MAX_MESSAGE_BYTES, max_queue: int = MAX_QUEUE,
                  open_timeout: float = OPEN_TIMEOUT,
                  logger: logging.Logger | None = None) -> None:
         if not isinstance(registry, IdentityRegistry):
             raise GatewayError("registry must be an IdentityRegistry")
-        if not (inspect.iscoroutinefunction(on_message)
-                or inspect.iscoroutinefunction(getattr(on_message, "__call__", None))):
+        if not _is_async(on_message):
             raise GatewayError("on_message must be an async callable")
+        for name, hook in (("on_open", on_open), ("on_close", on_close)):
+            if hook is not None and not _is_async(hook):
+                raise GatewayError(f"{name} must be an async callable or None")
         if not 1 <= int(max_sessions) <= 1024 or not 16 <= int(max_message_bytes) <= 65536:
             raise GatewayError("max_sessions/max_message_bytes out of range")
         if not 1 <= int(max_queue) <= 64 or not 0 < float(open_timeout) <= 60:
             raise GatewayError("max_queue/open_timeout out of range")
         self._registry, self._on_message = registry, on_message
+        self._on_open, self._on_close = on_open, on_close
         self._max_sessions, self._max_bytes = int(max_sessions), int(max_message_bytes)
         self._max_queue, self._open_timeout = int(max_queue), float(open_timeout)
         self._log = make_logger("space_gateway.gate" if logger is None
@@ -233,26 +301,70 @@ class TlsAuthGate:
             return
         self._log.info("session admitted")
         try:
-            while True:
-                try:
-                    message = await connection.recv()
-                except ConnectionClosed:
-                    break                       # includes oversized 1009 closes
-                if isinstance(message, str):
-                    self._log.warning("text frame rejected")
-                    await connection.close(code=CLOSE_UNSUPPORTED_DATA, reason="binary only")
-                    return
-                reply = await self._on_message(identity, bytes(message))
-                if reply is None:
-                    continue
-                if not isinstance(reply, (bytes, bytearray, memoryview)):
-                    self._log.error("callback returned non-bytes")
-                    await connection.close(code=CLOSE_INTERNAL, reason="bad reply")
-                    return
-                await connection.send(bytes(reply))
-        finally:                                # error, disconnect or cancellation
+            try:                                # only an admitted session has hooks
+                await self._session(identity, ticket, connection)
+            finally:                            # its own end, whatever caused it
+                await self._closed(identity)    # a failure there is logged, not raised
+        except PolicyViolation:                 # app-level reject: generic, no details
+            self._log.warning("session closed by policy")
+            await connection.close(code=CLOSE_POLICY, reason="rejected")
+        except ConnectionClosed:                # the peer left while we were working
+            self._log.info("session closed by peer")
+        except Exception:                       # callback bug; no raw exception text
+            self._log.error("session closed after a callback failure")
+            await connection.close(code=CLOSE_INTERNAL, reason="internal")
+        finally:                                # nested: the slot always comes back
             self._release(identity, ticket)
             self._log.debug("session closed identity=%s", identity)
+
+    async def _session(self, identity: str, ticket: int,
+                       connection: ServerConnection) -> None:
+        """on_open first, so a producer may send before the peer ever sends."""
+        if self._on_open is not None:
+            await self._on_open(identity, self._channel(identity, ticket, connection))
+        while True:
+            try:
+                message = await connection.recv()
+            except ConnectionClosed:
+                return                          # includes oversized 1009 closes
+            if isinstance(message, str):
+                self._log.warning("text frame rejected")
+                await connection.close(code=CLOSE_UNSUPPORTED_DATA, reason="binary only")
+                return
+            reply = await self._on_message(identity, bytes(message))
+            if reply is None:
+                continue
+            if not isinstance(reply, (bytes, bytearray, memoryview)):
+                self._log.error("callback returned non-bytes")
+                await connection.close(code=CLOSE_INTERNAL, reason="bad reply")
+                return
+            await connection.send(bytes(reply))
+
+    async def _closed(self, identity: str) -> None:
+        """Run on_close for an admitted session; its failure must not trap the gate."""
+        if self._on_close is None:
+            return
+        try:
+            await self._on_close(identity)
+        except Exception:                       # CancelledError must still propagate
+            self._log.error("close callback failed")
+
+    def _channel(self, identity: str, ticket: int,
+                 connection: ServerConnection) -> SessionChannel:
+        """Bind the send side to exactly this admission, never to the identity name."""
+        async def _send(frame: bytes) -> None:
+            if self._active.get(identity) != ticket:
+                raise GatewayError("channel belongs to a finished session")
+            await connection.send(frame)
+
+        async def _close() -> None:
+            # This admission's connection only, and closing an already closed one
+            # is a no-op: a retained channel can never touch a later session.
+            await connection.close(code=CLOSE_POLICY, reason="rejected")
+
+        return SessionChannel(identity=identity, ticket=ticket,
+                              max_message_bytes=self._max_bytes,
+                              send_impl=_send, close_impl=_close)
 
 
 def load_server_tls_context(certfile: str, keyfile: str) -> ssl.SSLContext:

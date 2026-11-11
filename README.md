@@ -9,9 +9,8 @@ Rebels против Empire, выбор корабля, атмосферный б
 
 1. Установить FlightGear/FGData 2024.1.7 отдельно от Git-репозитория.
 2. Подготовить Python и выполнить тесты: [TEAM_ENVIRONMENT](docs/TEAM_ENVIRONMENT.md).
-3. Прочитать [общие интерфейсы](docs/TEAM_INTERFACES.md) и свою задачу
-   [TASK1](TASK1.md), [TASK2](TASK2.md), [TASK3](TASK3.md), [TASK4](TASK4.md),
-   [TASK5](TASK5.md), [TASK6](TASK6.md) или [TASK7](TASK7.md).
+3. Прочитать [статусы и следующие шаги](TASK-HISTORY/README.md),
+   [поставленные задачи](TASK/README.md) и [общие интерфейсы](docs/TEAM_INTERFACES.md).
 4. Работать в своей ветке, сдавать небольшой PR: [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Состав
@@ -19,21 +18,37 @@ Rebels против Empire, выбор корабля, атмосферный б
 | Каталог | Назначение |
 |---|---|
 | `Aircraft/`, `scenery/` | Разрабатываемые корабли и локация |
-| `gateway/` | Loopback TLS/auth spike; UDP relay ещё предстоит |
+| `gateway/` | Loopback TLS/auth и двунаправленный WS↔UDP relay |
 | `server/space/` | Приватная конфигурация FGMS и локальный smoke-override |
 | `client/`, `tools/launch.py` | Пример профиля и диагностический c172p launcher |
+| `client/space_ui/` | Tk/ttk GUI, демонстрационный каталог и solo-запуск c172p |
+| `match_core/` | Детерминированные offline-правила и snapshot-контракт |
 | `config/` | Общие примеры; конфиг матча пока design-only |
 | `tools/test_*.py` | Автоматические проверки проекта |
 | `vendor/bombable/` | Неизменный сторонний add-on с исходниками и лицензией |
 | `docs/` | Архитектура, интерфейсы, план и происхождение зависимостей |
+| `TASK/`, `TASK-HISTORY/` | Исходные задания, отчёты и открытая приёмка |
 
 ## Статус и границы
 
 Это исходная платформа, **не готовая мультиплеерная игра**. Реализованы
-диагностический solo/direct launcher и TLS/auth spike. Защищённый UDP-мост,
-полный GUI, авторитетный матч и корабли — задачи разработки.
+greybox арены, диагностический solo/direct launcher, Tk GUI с mock-каталогом,
+TLS/auth, локальный WS↔UDP relay и offline-ядро матча.
+Полный защищённый маршрут с client companion, публичный deploy, подключение
+авторитетного матча и корабли — следующие этапы.
 Успех Python-тестов не доказывает запуск FlightGear, Docker или двух игроков.
 FGMS UDP не предназначен для публичного доступа без защищённого шлюза.
+
+| Задача | Текущее состояние |
+|---|---|
+| TASK1–3 | Не реализованы: пакеты кораблей и FDM-стенд отсутствуют |
+| TASK4 | Пакет и статические проверки готовы; FG/физическая приёмка открыта |
+| TASK5 | Локальный relay и loopback-тесты выполнены; настоящий FGMS smoke не проведён |
+| TASK6 | GUI и headless-проверки готовы; ручной GUI/FG-запуск не принят |
+| TASK7 | Выполнена в пределах offline-ядра; сетевой авторитет вне задачи |
+
+Подробные результаты — [TASK-HISTORY](TASK-HISTORY/README.md). Суффикс
+`COMPLETED` у отчёта не означает закрытия перечисленных в нём runtime-блокеров.
 
 - [План месяца](docs/TEAM_PLAN.md)
 - [Правила и архитектура](docs/SPACE_ARENA_PLAN.md)
