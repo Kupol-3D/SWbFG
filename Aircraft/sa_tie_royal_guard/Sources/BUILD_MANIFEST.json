@@ -1,0 +1,36 @@
+{
+  "aero": null,
+  "asset_id": "royal_guard",
+  "cockpit_mode": "canon",
+  "collision_status": "pending_collision_backend",
+  "files": {
+    "Config/flight_profile.json": "030a54fe959441ff80440a51b5f53dce71c9cfc6a3481436b090af2a21929141",
+    "Effects/visual.eff": "814bbe68e44c2b3044ed7a8462301399dad81f3d5185eca89ce5f9515b9a5000",
+    "LICENSE_ATTRIBUTION.md": "40358f6db6bbd4c69629000c8ca50a375279883e857f22a28828cb0632a3f07d",
+    "Models/royal_guard-collision.glb": "36dd960f588bb327775e7334829ff174c171efcd8348db80fdd641b4ee107e02",
+    "Models/royal_guard.ac": "56d598511072d1a06d7074ccea0d7133807831a31a71d49eedae77521af2c259",
+    "Models/royal_guard.xml": "f311317038a1c1cbac0d057bc036e1c77e313e6ea3df9ef88df74aa7cd8bc6ac",
+    "Models/royal_guard_lod1.ac": "1ba51cc293103c35817fbe1a5089b22f223febb4c7479362b6e633cf92339b48",
+    "Models/royal_guard_lod2.ac": "b8769047cddf5a8a2973bf4bead05215a289d5108c78d1e868c7174cdb8dc1dc",
+    "Models/textures/royal_guard_solar_grid.png": "05d495feb55d6b094465203cad922fcee41499279fb9d35120ade8455fcacc08",
+    "Models/textures/royal_solar_fine.png": "ee467feeb57f650827508023e28b678466735041d9d4c730dbfb11e809fd1196",
+    "README.md": "d010e10795ebf8386e2c882152bac3c5383e8bd3befe3f144eb77369b43e1d15",
+    "Sources/SHA256SUMS": "1aa6317935ac44a288b04f26e6b3123837f09d67433b57c874467f20e8cfce74",
+    "sa_tie_royal_guard-set.xml": "3d387a13cca915cf60b744f954b8426362004faa1e61461110dd118915f2e2ef"
+  },
+  "flight_model": "null",
+  "generator": "tools/build_tie_packages.py",
+  "package": "sa_tie_royal_guard",
+  "schema": "bombable.tie-package-build/v1",
+  "sources": {
+    "royal_guard/export/cockpit.ac": "0abb152e9ea40cfac5f9fa54c50c37e49134dad0eb7c193b698846deadb9db0e",
+    "royal_guard/export/collision.glb": "36dd960f588bb327775e7334829ff174c171efcd8348db80fdd641b4ee107e02",
+    "royal_guard/export/game_lod0.ac": "55f4370d7a481169325e11a89e9220feab8ed9802030e88cc48be9e0d7ea23b6",
+    "royal_guard/export/game_lod1.ac": "1ba51cc293103c35817fbe1a5089b22f223febb4c7479362b6e633cf92339b48",
+    "royal_guard/export/game_lod2.ac": "b8769047cddf5a8a2973bf4bead05215a289d5108c78d1e868c7174cdb8dc1dc",
+    "royal_guard/export/integration.json": "50f0471358e26bc524b11efcbc6525fbcb7cfb5e4d75294911ec71f7dfff0220",
+    "royal_guard/export/textures/royal_guard_solar_grid.png": "05d495feb55d6b094465203cad922fcee41499279fb9d35120ade8455fcacc08",
+    "royal_guard/export/textures/royal_solar_fine.png": "ee467feeb57f650827508023e28b678466735041d9d4c730dbfb11e809fd1196",
+    "royal_guard/flight_profile.json": "030a54fe959441ff80440a51b5f53dce71c9cfc6a3481436b090af2a21929141"
+  }
+}

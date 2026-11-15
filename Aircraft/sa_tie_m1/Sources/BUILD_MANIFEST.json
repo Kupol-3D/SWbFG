@@ -1,0 +1,34 @@
+{
+  "aero": null,
+  "asset_id": "m1_bizarro",
+  "cockpit_mode": "remote",
+  "collision_status": "pending_collision_backend",
+  "files": {
+    "Config/flight_profile.json": "25ae86019bd649739e4fb6808644d1df87a961708bb60eb9e2e8e815a1eb164f",
+    "Effects/visual.eff": "e940a21b1a6171e89e34c6313096a9459edb44f0b4a31401060c64536882ba17",
+    "LICENSE_ATTRIBUTION.md": "ac1ca660bd8ee42d5935c06a48b4cb56af66f67dd60a2e5dda586c00f7a8977a",
+    "Models/m1_bizarro-collision.glb": "6c76efda1fab1aff187f16d415d1d913778b882794eba5546f14c5dc3264eb9f",
+    "Models/m1_bizarro.ac": "aee1b4451b4aa65822dd78f04776c5d38aec32afe2f003b91c4c0e28afb76510",
+    "Models/m1_bizarro.xml": "818f49b43f526aedd17180ca51e6fcc15093996048b005deb017501f4f628f08",
+    "Models/m1_bizarro_lod1.ac": "5c41efa4ca2ebea77a393745c53d8038cedcf9a28ab3bda910e8862962bc1968",
+    "Models/m1_bizarro_lod2.ac": "722f20c3df978e6e0e49ae907ae0ecf8737c58285f42d668b3009a1b70a8ab6e",
+    "Models/textures/m1_bizarro_solar_grid.png": "05d495feb55d6b094465203cad922fcee41499279fb9d35120ade8455fcacc08",
+    "README.md": "4da6901c699cab57bafe294b2755e352347af2bd1acacf3f19056ba357776e9d",
+    "Sources/SHA256SUMS": "b217afe9f83bd95ce7c9247b24361acf03417a1dfa5b4d978d6c60b548c0b7e3",
+    "sa_tie_m1-set.xml": "e8c8807c75867e666fdabf59b680597137b57c069cc6a95fd08a871b4dfb5212"
+  },
+  "flight_model": "null",
+  "generator": "tools/build_tie_packages.py",
+  "package": "sa_tie_m1",
+  "schema": "bombable.tie-package-build/v1",
+  "sources": {
+    "m1_bizarro/export/cockpit.ac": "3d473a9de4b86f4cb2ba0d499edd4eeb22c3ef7723dbac2664a305aa022779e2",
+    "m1_bizarro/export/collision.glb": "6c76efda1fab1aff187f16d415d1d913778b882794eba5546f14c5dc3264eb9f",
+    "m1_bizarro/export/game_lod0.ac": "a7760818af760eafdd74e3cc12553f9fc57169c2b4ff5247d748d3615ce085c2",
+    "m1_bizarro/export/game_lod1.ac": "5c41efa4ca2ebea77a393745c53d8038cedcf9a28ab3bda910e8862962bc1968",
+    "m1_bizarro/export/game_lod2.ac": "722f20c3df978e6e0e49ae907ae0ecf8737c58285f42d668b3009a1b70a8ab6e",
+    "m1_bizarro/export/integration.json": "1a8a5ab01dabc89a4bff3e19df92525666e9c2aa62832b88c8d098b725d88d27",
+    "m1_bizarro/export/textures/m1_bizarro_solar_grid.png": "05d495feb55d6b094465203cad922fcee41499279fb9d35120ade8455fcacc08",
+    "m1_bizarro/flight_profile.json": "25ae86019bd649739e4fb6808644d1df87a961708bb60eb9e2e8e815a1eb164f"
+  }
+}

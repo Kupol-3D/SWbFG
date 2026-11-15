@@ -8,6 +8,7 @@
 |---|---|---|---|
 | TASK1 | Пакет `sa_xwing` отсутствует | Не выполнена | Задание в TASK/ |
 | TASK2 | `sa_tie`: модель, кабина, анимации и штатный ALS | Greybox проверен в FG 2024.1.7 | [TASK2](TASK2-COMPLETED.md) |
+| TASK2+ | Три TIE-ассета (Royal Guard/M1/Boarding) + статические пакеты `sa_tie_*` и сводка интеграции | Blender MVP + статическая интеграция; полная in-game приёмка открыта | [TASK2+](TASK2+-COMPLETED.md) |
 | TASK3 | `sa_fdm_lab`, JSBSim, FDM_SPIKE и телеметрия | Реальный FG-прогон 205.15 s; GO только для режима с помощниками | [TASK3](TASK3-COMPLETED.md) |
 | TASK4 | Реализованы | Открыта: визуальная/физическая FG и два клиента | [TASK4](TASK4-COMPLETED.md) |
 | TASK5 | Реализованы и проверены loopback TLS/WS/UDP | Локальный инкремент выполнен; FGMS smoke не проведён | [TASK5](TASK5-COMPLETED.md) |
