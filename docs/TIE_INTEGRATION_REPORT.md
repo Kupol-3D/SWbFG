@@ -84,7 +84,7 @@ labelled inertia/CG proxy; it does not use lore constants.
 - Version: `2024.1.4` (SimGear 2024.1.4, OSG 3.6.5). This is **not** the
   project's pinned FlightGear 2024.1.7, so no runtime acceptance claim is made.
 - FGData: `/usr/share/games/flightgear`
-- Scenery: `/home/arseniy/.fgfs/TerraSync`
+- Scenery: `$TERRASYNC_ROOT`
 
 One bounded null-model run was performed for `sa_tie_royal_guard` with a 45 s
 timeout. The process reached terrain initialization with no aircraft-loading or

@@ -8,8 +8,8 @@
 ## Observed host/runtime facts (static evidence)
 - Host FG binary: `/usr/games/fgfs` (real path), FlightGear **2024.1.4** (`flightgear 1:2024.1.4+dfsg-2`, data packages `*-2024.1.4` installed). Project target is **2024.1.7** (diagnostic only; OS packages not changed).
 - `FG_ROOT`: `/usr/share/games/flightgear` (`Models/` present, `Scenery/` absent).
-- Existing TerraSync root: `/home/arseniy/.fgfs/TerraSync` with `Models/` and `.dirindex/.dirhash` trees, but incomplete.
-- Original problematic launch context: `--fg-scenery=/home/arseniy/.fgfs/TerraSync --disable-terrasync` — with TerraSync disabled, incomplete shared models cannot be auto-repaired.
+- Existing TerraSync root: `$TERRASYNC_ROOT` with `Models/` and `.dirindex/.dirhash` trees, but incomplete.
+- Original problematic launch context: `--fg-scenery=$TERRASYNC_ROOT --disable-terrasync` — with TerraSync disabled, incomplete shared models cannot be auto-repaired.
 - FG 2024.1.4 startup sentinel shared-model paths (contiguous in `fgfs` strings; verified on host):  
   `Models/Airport/windsock_lit.xml`, `Models/Industrial/generic_chimney_01.xml`, `Models/Airport/Vehicle/Cobus_3000.xml`, `Models/Industrial/GenericStorageTank40m.ac`, `Models/Boundaries/Fence_50m.ac`, `Models/Residential/french_house_s.xml`.
 - Missing before repair (in FG_ROOT + existing TerraSync root): `Models/Airport/Vehicle/Cobus_3000.xml` and `Models/Residential/french_house_s.xml` **plus their local dependencies** (`.ac`/texture PNGs referenced by those models).
@@ -18,7 +18,7 @@
 - Source: **official TerraSync HTTP directory/index content** at `https://flightgear.sourceforge.net/scenery` (directory structure with `.dirindex`). Missing files were fetched by exact `.dirindex`-listed paths; SHA1 hashes matched the published `.dirindex` entries.
 - Repair scope limited to the missing sentinel shared-model files and their recursively referenced local deps (no whole-archive/world-terrain download; total **7 files, 459,340 bytes**).
 - Installed into a **new host/shared-workspace scenery root** (not an existing user scenery root, not FG_ROOT):  
-  - Host/container: `/home/arseniy/projects/university/Kupol3D/agent-box/work/runtime/tie-shared-scenery` (`/workspace/work/runtime/tie-shared-scenery`)
+  - Host/container: `<repo>/work/runtime/tie-shared-scenery` 
   - Contents installed: `Models/Airport/Vehicle/Cobus_3000.{xml,ac,png}`, `Models/Residential/french_house_s.{xml,ac}`, `Models/Residential/texture_french_house_s{1,2}.png`
 - **Existing files unmodified, none deleted/overwritten, no backups required/created.** No user FG config changed. Newly downloaded scenery is runtime data (not committed to repo).
 - Evidence/manifest: `/workspace/work/runtime/tie-scenery-repair/repair-manifest.json` (and host `fetch-missing.json`), including SHA1s, sizes, source URLs, before/after preflight results.
@@ -32,7 +32,7 @@
 Prepend the repair root so its `Models/` are found before the incomplete TerraSync root:
 
 ```bash
---fg-scenery=/home/arseniy/projects/university/Kupol3D/agent-box/work/runtime/tie-shared-scenery:/home/arseniy/.fgfs/TerraSync --disable-terrasync
+--fg-scenery=<repo>/work/runtime/tie-shared-scenery:$TERRASYNC_ROOT --disable-terrasync
 ```
 
 (If TerraSync is enabled and allowed to complete, it may also supply missing shared models; this path is for the observed `--disable-terrasync` case and uses verified official files in an isolated root.)

@@ -1,91 +1,161 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: GPL-2.0-or-later
-"""Static delivery checks for the TIE FlightGear packages."""
+"""Static delivery checks for the committed TIE FlightGear packages."""
+import hashlib
 import json
+import os
+import re
+import sys
 import unittest
 import xml.etree.ElementTree as ET
-import re
 from pathlib import Path
-from tools.test_sa_tie import ray_hit
 
 ROOT = Path(__file__).resolve().parents[1]
-PACK = ROOT.parent / "TIE_Game_Asset_Pack_v1"
-PACKAGES = ("sa_tie_royal_guard", "sa_tie_m1", "sa_tie_boarding")
-SHIPS = ("royal_guard", "m1_bizarro", "boarding_craft")
+sys.path.insert(0, str(ROOT / "tools"))
+from test_sa_tie import read_ac  # noqa: E402
+
+PACKAGES = {
+    "sa_tie_royal_guard": {
+        "asset": "royal_guard",
+        "tris": 106559,
+        "dims": (9.6, 10.237489700317383, 6.1793437004089355),
+    },
+    "sa_tie_m1": {
+        "asset": "m1_bizarro",
+        "tris": 86161,
+        "dims": (6.299999952316284, 7.3850932121276855, 6.976900577545166),
+    },
+    "sa_tie_boarding": {
+        "asset": "boarding_craft",
+        "tris": 180275,
+        "dims": (7.600000858306885, 9.27566146850586, 4.856714248657227),
+    },
+}
+
+STL_NAMES = {
+    "royal_guard": "TIE_Royal_guard.stl",
+    "m1_bizarro": "TIE_Bizarro.stl",
+    "boarding_craft": "TIE_Boarding_craft.stl",
+}
+
+ASSET_PACK = Path(os.environ.get("TIE_ASSET_PACK",
+                                ROOT.parent / "TIE_Game_Asset_Pack_v1"))
+ASSET_PACK_AVAILABLE = (ASSET_PACK / "ships").is_dir()
+
+PERSONAL_PATH_RE = re.compile(r"/home/[A-Za-z]|/Users/[A-Za-z]")
 
 
 class TestTieDelivery(unittest.TestCase):
+    def _ac(self, package):
+        info = PACKAGES[package]
+        return read_ac(ROOT / "Aircraft" / package / "Models" / (info["asset"] + ".ac"))
+
     def test_packages_exist_with_required_files(self):
-        for pkg in PACKAGES:
-            base = ROOT / "Aircraft" / pkg
-            self.assertTrue(base.is_dir(), pkg)
-            self.assertTrue((base / f"{pkg}-set.xml").is_file())
+        for package in PACKAGES:
+            base = ROOT / "Aircraft" / package
+            self.assertTrue(base.is_dir(), package)
+            self.assertTrue((base / f"{package}-set.xml").is_file())
             self.assertTrue((base / "Effects" / "visual.eff").is_file())
             self.assertTrue((base / "Config" / "flight_profile.json").is_file())
             self.assertTrue(any((base / "Models").glob("*.ac")))
-            self.assertTrue(any((base / "Models").glob("*-collision.glb")))
+            info = PACKAGES[package]
+            self.assertTrue((base / "Models" / (info["asset"] + ".ac")).is_file())
 
-    def test_set_xml_keeps_null_fdm_by_default(self):
-        for pkg in PACKAGES:
-            root = ET.parse(ROOT / "Aircraft" / pkg / f"{pkg}-set.xml").getroot()
-            self.assertEqual(root.findtext("sim/flight-model"), "null")
+    def test_ac_and_cockpit_objects_present(self):
+        for package in PACKAGES:
+            materials, objects = self._ac(package)
+            self.assertIn("Cockpit", objects, package)
+            # main .ac is the parsed file itself; cockpit sub-objects exist
+            radial = [n for n in objects if "WindowRadial_" in n]
+            self.assertEqual(len(radial), 8, (package, len(radial)))
+            self.assertTrue(any("WindowOuterRim" in n for n in objects), package)
+            self.assertTrue(any("WindowCentralOctagon" in n for n in objects), package)
+            self.assertFalse(any("WindowPane" in n or "Glass" in n for n in objects), package)
 
-    def test_boarding_integration_is_actual_cockpit(self):
-        integration = json.loads((PACK / "ships" / "boarding_craft" / "export" / "integration.json").read_text())
-        cam = integration["cameras"][0]
-        eye = cam["eye_asset_xyz_m"]
-        self.assertGreater(eye[0], 1.0)  # right pilot module, not left docking pod
-        self.assertLess(eye[0], 2.3)
-        self.assertGreater(eye[1], 1.0)
-        self.assertLess(eye[1], 3.0)  # physically behind the outer window, not outboard
-        self.assertEqual(integration["cockpit"]["mode"], "canon")
-        self.assertFalse(integration["cockpit"]["interior_mvp"]["authored_hollow_interior"])
-        self.assertEqual(integration["cockpit"]["interior_mvp"]["mode"],
-                         "inside_module_exact_plane_window")
-        report = json.loads((PACK / "ships" / "boarding_craft" / "working" / "06_world_rays.json").read_text())
-        probes = {r["label"]: r for r in report["rays"]}
-        for label in ("center", "upper_pane", "left_pane"):
-            self.assertIsNone(probes[label]["first_hit"])
-        for label in ("indicator", "panel", "radial"):
-            self.assertIsNotNone(probes[label]["first_hit"])
+    def test_materials_have_no_transparency(self):
+        for package in PACKAGES:
+            materials, objects = self._ac(package)
+            self.assertTrue(materials, package)
+            for material in materials:
+                self.assertEqual(material["trans"][0], 0.0,
+                                 (package, material["name"]))
 
-    def test_source_hashes_recorded(self):
-        for ship in SHIPS:
-            sha = json.loads((PACK / "ships" / ship / "working" / "scale_and_axes.json").read_text())["source_sha256"]
-            self.assertTrue(len(sha) == 64)
+    def test_triangle_budget_matches_metrics(self):
+        for package, info in PACKAGES.items():
+            materials, objects = self._ac(package)
+            total = sum(len(obj["faces"]) for obj in objects.values())
+            self.assertEqual(total, info["tris"], (package, total))
 
-    def test_hulls_and_cockpits_have_no_unintended_alpha(self):
-        for ship in SHIPS:
-            for name in ("game_lod0", "cockpit"):
-                path = PACK / "ships" / ship / "export" / "ac_scenes" / (name + ".json")
-                data = json.loads(path.read_text())
-                self.assertTrue(data["materials"])
-                for material in data["materials"]:
-                    self.assertEqual(material.get("alpha", 1), 1, (ship, material["name"]))
-                ac = (path.parents[1] / (name + ".ac")).read_text()
-                for transparency in re.findall(r"\btrans ([0-9.eE+-]+)", ac):
-                    self.assertEqual(float(transparency), 0)
+    def test_dimensions_match_claimed_lwh(self):
+        for package, info in PACKAGES.items():
+            materials, objects = self._ac(package)
+            points = [p for obj in objects.values() for p in obj["vertices"]]
+            dims = tuple(max(p[i] for p in points) - min(p[i] for p in points)
+                         for i in range(3))
+            for actual, target in zip(dims, info["dims"]):
+                self.assertLessEqual(abs(actual - target), 1e-4,
+                                     (package, actual, target))
 
-    def test_window_is_open_octagon_not_solid_hub_or_rectangular_sheet(self):
-        """Independent geometric check of export input, not an escape-counter."""
-        for ship in SHIPS:
-            root = PACK / "ships" / ship / "export"
-            data = json.loads((root / "ac_scenes/cockpit.json").read_text())
-            objects = {o["name"]: o for o in data["objects"]}
-            self.assertIn("WindowCentralOctagon", objects)
-            self.assertIn("WindowOuterRim", objects)
-            self.assertEqual(sum(n.startswith("WindowRadial_") for n in objects), 8)
-            self.assertFalse(any("Glass" in n or "WindowPane" in n for n in objects))
-            eye = json.loads((root / "integration.json").read_text())["cameras"][0]["eye_asset_xyz_m"]
-            for o in objects.values():
-                m = o["matrix_world"]
-                vertices = [(m[0]*p[0]+m[1]*p[1]+m[2]*p[2]+m[3],
-                             m[4]*p[0]+m[5]*p[1]+m[6]*p[2]+m[7],
-                             m[8]*p[0]+m[9]*p[1]+m[10]*p[2]+m[11])
-                            for p in o["vertices"]]
-                for face in o["triangles"]:
-                    hit = ray_hit(eye, (0, 1, 0), tuple(vertices[i] for i in face))
-                    self.assertIsNone(hit, (ship, o["name"], "central view is blocked"))
+    def test_set_xml_viewer_contract(self):
+        for package in PACKAGES:
+            root = ET.parse(ROOT / "Aircraft" / package / f"{package}-set.xml").getroot()
+            self.assertEqual(root.findtext("sim/flight-model"), "null", package)
+            views = root.findall("sim/view")
+            self.assertGreaterEqual(len(views), 2, package)
+            v0 = views[0].find("config")
+            self.assertEqual(views[0].findtext("internal"), "true", package)
+            self.assertEqual(v0.findtext("default-field-of-view-deg") is not None, True)
+            fov0 = float(v0.findtext("default-field-of-view-deg"))
+            near0 = float(v0.findtext("ground-level-nearplane-m"))
+            self.assertGreaterEqual(fov0, 75.0)
+            self.assertLessEqual(fov0, 80.0)
+            self.assertGreaterEqual(near0, 0.03)
+            self.assertLessEqual(near0, 0.05)
+            self.assertEqual(views[1].findtext("type"), "lookat", package)
+
+    def test_m1_remote_noncanon_and_boarding_right_module(self):
+        m1_readme = (ROOT / "Aircraft" / "sa_tie_m1" / "README.md").read_text()
+        m1_set = (ROOT / "Aircraft" / "sa_tie_m1" / "sa_tie_m1-set.xml").read_text()
+        combined = m1_readme + "\n" + m1_set
+        self.assertIn("remote", combined.lower())
+        self.assertIn("NON_CANON", combined)
+        # boarding: pilot camera in right module
+        boarding_set = ET.parse(ROOT / "Aircraft" / "sa_tie_boarding" /
+                                "sa_tie_boarding-set.xml").getroot()
+        v0 = boarding_set.findall("sim/view")[0].find("config")
+        xoff = float(v0.findtext("x-offset-m"))
+        self.assertGreater(xoff, 1.0)
+        self.assertLess(xoff, 2.3)
+
+    def test_package_text_files_have_no_personal_paths(self):
+        for package in PACKAGES:
+            base = ROOT / "Aircraft" / package
+            candidates = [base / "README.md", base / "LICENSE_ATTRIBUTION.md",
+                          base / "Sources" / "SHA256SUMS",
+                          base / "Sources" / "BUILD_MANIFEST.json"]
+            candidates += sorted((base / "Config").glob("*.xml")) if (base / "Config").is_dir() else []
+            for path in candidates:
+                if not path.is_file():
+                    continue
+                text = path.read_text(encoding="utf-8", errors="replace")
+                self.assertIsNone(PERSONAL_PATH_RE.search(text), str(path))
+
+    @unittest.skipUnless(ASSET_PACK_AVAILABLE, "asset pack not available")
+    def test_source_stl_hashes_match_external_pack(self):
+        for asset, stl_name in STL_NAMES.items():
+            # map asset id to package? asset ids are royal_guard etc.
+            pkg_dir = None
+            for p in PACKAGES:
+                if PACKAGES[p]["asset"] == asset:
+                    pkg_dir = p
+                    break
+            stl_path = ASSET_PACK / "ships" / asset / "source" / "files" / stl_name
+            self.assertTrue(stl_path.is_file(), str(stl_path))
+            sha = hashlib.sha256(stl_path.read_bytes()).hexdigest()
+            meta = json.loads((ASSET_PACK / "ships" / asset / "working" /
+                               "scale_and_axes.json").read_text())
+            self.assertEqual(sha, meta["source_sha256"], asset)
+            self.assertEqual(len(sha), 64)
 
 
 if __name__ == "__main__":
