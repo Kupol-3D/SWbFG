@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-2.0-or-later (placement wrapper only). -->
+<!-- Canonical meshes live in Aircraft; add the repository Aircraft root to FG_AIRCRAFT. -->
+<PropertyList>
+  <path>Aircraft/sa_venator/Models/carrier.xml</path>
+</PropertyList>

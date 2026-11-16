@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<PropertyList>
+  <model><name>Carrier_LOD0_container</name><path>carrier_lod0.ac</path></model>
+  <model><name>Carrier_LOD1_container</name><path>carrier_lod1.ac</path></model>
+  <model><name>Carrier_LOD2_container</name><path>carrier_lod2.ac</path></model>
+  <animation><type>range</type><object-name>Venator_LOD0</object-name><min-m>0</min-m><max-m>2500</max-m></animation>
+  <animation><type>range</type><object-name>Venator_LOD1</object-name><min-m>2500</min-m><max-m>9000</max-m></animation>
+  <animation><type>range</type><object-name>Venator_LOD2</object-name><min-m>9000</min-m><max-m>1000000</max-m></animation>
+</PropertyList>

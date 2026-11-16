@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-2.0-or-later (configuration, not third-party meshes). -->
+<PropertyList>
+  <sim>
+    <description>Space Arena Venator carrier - recessed hangar, motion backend pending</description>
+    <author>Space Arena contributors; original hull by dermalt; see LICENSE_ATTRIBUTION.md</author>
+    <aircraft-version>0.1.0</aircraft-version>
+    <minimum-fg-version>2024.1.0</minimum-fg-version>
+    <status>alpha</status>
+    <flight-model>null</flight-model>
+    <model><path>Aircraft/sa_venator/Models/carrier.xml</path></model>
+    <chase-distance-m type="double">-4000</chase-distance-m>
+    <space-arena>
+      <ship-id>venator</ship-id>
+      <team-id>empire</team-id>
+      <role>carrier</role>
+      <motion-status>pending-motion-backend</motion-status>
+      <collision-status>pending-collision-backend</collision-status>
+    </space-arena>
+    <help>
+      <line>Carrier asset package: three complete LODs and an integrated recessed hangar.</line>
+      <line>Flight model is null. Selecting this package does not provide a flyable carrier.</line>
+      <line>AI movement, supported deck, fighter spawn and multiplayer are not integrated.</line>
+      <line>Door leaves are modelled in a static open position.</line>
+      <line>View 0 inspects the hangar; view 1 inspects the exterior.</line>
+    </help>
+    <!-- Camera axes right/up/aft; asset axes right/forward/up. -->
+    <view n="0">
+      <name>Hangar inspection</name><type>lookfrom</type><internal type="bool">true</internal>
+      <config>
+        <from-model type="bool">true</from-model><from-model-idx type="int">0</from-model-idx>
+        <x-offset-m type="double">138.87960052490234</x-offset-m>
+        <y-offset-m type="double">-97</y-offset-m><z-offset-m type="double">321</z-offset-m>
+        <heading-offset-deg type="double">90</heading-offset-deg>
+        <pitch-offset-deg type="double">0</pitch-offset-deg><roll-offset-deg type="double">0</roll-offset-deg>
+        <default-field-of-view-deg type="double">80</default-field-of-view-deg>
+        <ground-level-nearplane-m type="double">0.05</ground-level-nearplane-m>
+      </config>
+    </view>
+    <view n="1">
+      <name>Carrier exterior</name><type>lookat</type><internal type="bool">false</internal>
+      <config>
+        <from-model type="bool">true</from-model><from-model-idx type="int">0</from-model-idx>
+        <at-model type="bool">true</at-model><at-model-idx type="int">0</at-model-idx>
+        <eye-heading-deg-path>/orientation/heading-deg</eye-heading-deg-path>
+        <eye-pitch-deg-path>/orientation/pitch-deg</eye-pitch-deg-path>
+        <eye-roll-deg-path>/orientation/roll-deg</eye-roll-deg-path>
+        <x-offset-m type="double">0</x-offset-m><y-offset-m type="double">1300</y-offset-m>
+        <z-offset-m type="double">3400</z-offset-m><heading-offset-deg type="double">180</heading-offset-deg>
+        <pitch-offset-deg type="double">0</pitch-offset-deg><roll-offset-deg type="double">0</roll-offset-deg>
+        <default-field-of-view-deg type="double">65</default-field-of-view-deg>
+        <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+      </config>
+    </view>
+  </sim>
+</PropertyList>

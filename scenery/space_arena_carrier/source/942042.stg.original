@@ -1,0 +1,17 @@
+# space_arena greybox placements (TASK4, own geometry).
+# OBJECT_STATIC_AGL: offset field = meters above ground level
+# at the anchor, written 0.0 for every placement (terrain MSL
+# was never measured here; see manifest.json/VALIDATION.md).
+# heading = counter-clockwise degrees from north
+# (Docs/README.scenery); intended true bearings are in the
+# manifest. NOT verified against a running FlightGear 2024.1.
+OBJECT_STATIC_AGL Models/space_arena/reb_platform.xml -122.430000 37.430000 0.0 110.00
+OBJECT_STATIC_AGL Models/space_arena/reb_hangar.xml -122.429321 37.430000 0.0 290.00
+OBJECT_STATIC_AGL Models/space_arena/reb_tower.xml -122.429717 37.429596 0.0 110.00
+OBJECT_STATIC_AGL Models/space_arena/reb_tanks.xml -122.429796 37.430359 0.0 110.00
+OBJECT_STATIC_AGL Models/space_arena/reb_masts.xml -122.429548 37.429371 0.0 110.00
+OBJECT_STATIC_AGL Models/space_arena/emp_deck.xml -122.455000 37.415000 0.0 110.00
+OBJECT_STATIC_AGL Models/space_arena/emp_frame.xml -122.454208 37.415000 0.0 110.00
+OBJECT_STATIC_AGL Models/space_arena/emp_carrier.xml -122.454208 37.415000 0.0 110.00
+OBJECT_STATIC_AGL Models/space_arena/emp_rack.xml -122.454604 37.415494 0.0 110.00
+OBJECT_STATIC_AGL Models/space_arena/emp_rack.xml -122.454604 37.414506 0.0 290.00
