@@ -1,0 +1,34 @@
+{
+  "aero": null,
+  "asset_id": "boarding_craft",
+  "cockpit_mode": "canon",
+  "collision_status": "pending_collision_backend",
+  "files": {
+    "Config/flight_profile.json": "e4b48833ebfca9ec433e74c2020eea79c5d0646618841619766ac4e309f23ede",
+    "Effects/visual.eff": "7589d905e3cd1484ea835a8ef424db13661d5b78d59a7eaf35d81e0741333748",
+    "LICENSE_ATTRIBUTION.md": "43a63ede408c4ce720149478e477b7e4b7779265605c3141d191c25b158c64ca",
+    "Models/boarding_craft-collision.glb": "de3a60dac2c01ec5770968b727062ac4c798b3a9c39dda4dac8461a78e3e8d34",
+    "Models/boarding_craft.ac": "aa7585294e9ab3a138af4a7725acbcd69b632198b255e64daef4e6c3eba569d5",
+    "Models/boarding_craft.xml": "3bd60a39190462b0fadb5e68a0495c61236c0d7ca4580a62ca04ad16738a0801",
+    "Models/boarding_craft_lod1.ac": "366b0c1f15acd471eec7c690589deeb3a7f81c0c9dde9de4d982516b60f50ee7",
+    "Models/boarding_craft_lod2.ac": "f361a46051c8de6b1934e0fdb7a6ea7b77fdc38dfc479360c2666e5850b8c3fa",
+    "Models/textures/boarding_craft_solar_grid.png": "05d495feb55d6b094465203cad922fcee41499279fb9d35120ade8455fcacc08",
+    "README.md": "8752c6506544929f19c17ae330e30dca017e3cfc65a391969066e75c30b3eb47",
+    "Sources/SHA256SUMS": "fc879197f3f511289fa3fad5f4a079e216169717347d689a4fe78a5d1698985d",
+    "sa_tie_boarding-set.xml": "67559504f5a11d5664a84fb3a5e259584bff027a04d3af45a332108c57207029"
+  },
+  "flight_model": "null",
+  "generator": "tools/build_tie_packages.py",
+  "package": "sa_tie_boarding",
+  "schema": "bombable.tie-package-build/v1",
+  "sources": {
+    "boarding_craft/export/cockpit.ac": "e5ba2398355eef1cff9da1ee0e01b75e70e6fc86008a9e182af6ab6bc7c393c8",
+    "boarding_craft/export/collision.glb": "de3a60dac2c01ec5770968b727062ac4c798b3a9c39dda4dac8461a78e3e8d34",
+    "boarding_craft/export/game_lod0.ac": "829a421b4e25396dbc50d8b66968878eb498edae4fdab98ae3afcc12e8e3806c",
+    "boarding_craft/export/game_lod1.ac": "366b0c1f15acd471eec7c690589deeb3a7f81c0c9dde9de4d982516b60f50ee7",
+    "boarding_craft/export/game_lod2.ac": "f361a46051c8de6b1934e0fdb7a6ea7b77fdc38dfc479360c2666e5850b8c3fa",
+    "boarding_craft/export/integration.json": "6819c1226de1927aad550bd663bba1e2ea7e625de3eb0eaafd17be59574dc40a",
+    "boarding_craft/export/textures/boarding_craft_solar_grid.png": "05d495feb55d6b094465203cad922fcee41499279fb9d35120ade8455fcacc08",
+    "boarding_craft/flight_profile.json": "e4b48833ebfca9ec433e74c2020eea79c5d0646618841619766ac4e309f23ede"
+  }
+}

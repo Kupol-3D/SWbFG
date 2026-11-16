@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "ship_id": "boarding_craft",
+  "status": "GAMEPLAY_ESTIMATE_NOT_CANON_OR_REAL_AERODYNAMICS",
+  "frame": {
+    "x": "right",
+    "y": "forward",
+    "z": "up",
+    "units": "SI; angles explicitly deg"
+  },
+  "scale_reference_length_m": 7.6,
+  "mass_gameplay_kg": 18000,
+  "mass_status": "invented initial tuning value; uncertainty at least +/-50%; not measured from STL",
+  "assisted_flight": {
+    "speed_limit_m_s": 236.111111,
+    "forward_accel_m_s2": 22,
+    "brake_accel_m_s2": 27.5,
+    "lateral_accel_m_s2": 6.6,
+    "vertical_accel_m_s2": 6.6,
+    "max_body_rates_deg_s": {
+      "pitch_about_x": 45,
+      "yaw_about_z": 35,
+      "roll_about_y": 65
+    },
+    "rate_response_time_s": 0.8,
+    "velocity_assist_time_s": 2.5,
+    "gravity_compensation": true
+  },
+  "atmospheric_speed_source": "LORE_SECONDARY_SOURCE; used as game cap",
+  "space_mode": "same initial game cap; not a physical speed-of-space limit",
+  "balance_notes": "Tune in game. Do not convert MGLT to SI or import thousands-of-g lore values into this controller."
+}

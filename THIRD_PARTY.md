@@ -25,5 +25,17 @@ FGMS загружается по закреплённой ревизии при 
 `gateway/requirements*.txt`, а не копируются в Git вместе с virtualenv.
 Источник и pin перечислены в `docs/SOURCES.json`.
 
+## TIE source models (TASK2+ asset preparation, internal/local)
+
+Исходные STL/архивы для трёх TIE-моделей использованы для локальной подготовки ассетов и генерации статических пакетов; **не публиковались** этим репозиторием. Перед любой публикацией требуется повторная проверка лицензий/условий и прав на IP.
+
+| Ship | Author | Thingiverse URL | Source SHA-256 (STL) | Licence (as stated) |
+|---|---|---|---|---|
+| TIE Royal Guard (Emperor's Royal Guard TIE Interceptor) | KonbayanSW | https://www.thingiverse.com/thing:4930428 | `353eca3b0e663f1d5459e42d12815ab9d3e8a57d7e49bd057f02d2d84260db13` | Creative Commons — Attribution (CC BY), **exact version unverified** |
+| TIE Experimental M1 / Bizarro | KonbayanSW | https://www.thingiverse.com/thing:4884295 | `7c423cc3bcce5bc4aa9549f9f7500414e9f24c83d014277c5520fd9347862788` | Creative Commons — Attribution (CC BY), **exact version unverified** |
+| TIE Boarding Craft | KonbayanSW | https://www.thingiverse.com/thing:4909409 | `18f934f7e8eaac0abff20a846baeb2305accbcc12c62224fd5ca54905db520c7` | Creative Commons — Attribution (CC BY), **exact version unverified**; remix source noted in pack docs — **chain/terms outstanding** |
+
+См. также `work/TIE_Game_Asset_Pack_v1/docs/ATTRIBUTION.md`, `docs/SOURCES.md`, `FILES_SHA256.json` и `LICENSE_ATTRIBUTION.md` в сгенерированных `Aircraft/sa_tie_*`.
+
 FlightGear/FGData устанавливаются отдельно. Их отсутствие в этом репозитории
 не отменяет лицензионных обязательств при создании общего дистрибутива.

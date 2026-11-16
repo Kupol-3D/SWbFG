@@ -64,7 +64,13 @@ def read_ac(path):
             expect(field)
             mat[field] = tuple(number() for _ in range(count))
         materials.append(mat)
-        token = next(tokens)
+        nxt = next(tokens)
+        if nxt == "texture":
+            mat["texture"] = next(tokens)
+            token = next(tokens)
+        else:
+            mat["texture"] = None
+            token = nxt
     objects = {}
 
     def obj(start, parent=(0,0,0), ancestry=()):
@@ -77,14 +83,23 @@ def read_ac(path):
         name = next(tokens)
         if name in objects:
             raise ValueError("Duplicate object name: " + name)
-        expect("loc")
-        origin = tuple(a+b for a, b in zip(parent, point()))
+        key = next(tokens)
+        if key == "loc":
+            origin = tuple(a+b for a, b in zip(parent, point()))
+            key = next(tokens)
+        else:
+            origin = parent
         node = {"origin": origin, "vertices": [], "faces": [], "ancestry": ancestry}
         objects[name] = node
-        key = next(tokens)
         if kind == "poly":
+            if key == "texture":
+                next(tokens)
+                key = next(tokens)
             if key == "crease":
                 number()
+                key = next(tokens)
+            if key == "texture":
+                next(tokens)
                 key = next(tokens)
             if key != "numvert":
                 raise ValueError("Missing vertices")
@@ -112,7 +127,7 @@ def read_ac(path):
                     number(), number()  # UVs
                 a, b, c = [node["vertices"][i] for i in indices]
                 normal = cross(sub(b,a), sub(c,a))
-                if dot(normal,normal) < 1e-16:
+                if dot(normal,normal) == 0:
                     raise ValueError("Degenerate triangle in " + name)
                 node["faces"].append((indices, mat, flags))
             key = next(tokens)
