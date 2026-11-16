@@ -1,0 +1,1522 @@
+{
+  "axes": {
+    "ac_axes": "AC3Db as stored: +x aft, +y up, +z left",
+    "carrier_layout_axes": "X right, Y forward, Z up",
+    "carrier_layout_to_ac": "AC = (-Y, Z, -X): ac_x=-layout_y (aft), ac_y=layout_z (up), ac_z=-layout_x (left); layout is X right, Y forward, Z up",
+    "design_axes": "f forward (= -x), l left (= +z), u up (= +y)",
+    "fg_axes": "FG model frame: x aft(+), y right(+), z up(+); AC3D->FG: x->x, y->z, z->-y (wiki Howto:3D Aircraft Models)",
+    "model_file_axes": "AC3Db as stored: +x aft, +y up, +z left; model front = -x",
+    "placement_heading": "manifest heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG (counter-clockwise from north per Docs/README.scenery); runtime sign NOT verified"
+  },
+  "budget": {
+    "active_per_model": {
+      "reb_hangar": 60,
+      "reb_masts": 108,
+      "reb_platform": 160,
+      "reb_tanks": 104,
+      "reb_tower": 60
+    },
+    "active_total": 492,
+    "carrier": {
+      "declared": {
+        "hangar": 0,
+        "lod0": 371341,
+        "lod1": 79857,
+        "lod2": 47825
+      },
+      "declared_vs_parsed_mismatches": {},
+      "parsed": {
+        "hangar": 0,
+        "lod0": 371341,
+        "lod1": 79857,
+        "lod2": 47825
+      },
+      "runtime_lod0_plus_hangar": 371341
+    },
+    "legacy_empire_retained_unused": {
+      "emp_carrier": 96,
+      "emp_deck": 144,
+      "emp_frame": 84,
+      "emp_rack": 96
+    },
+    "legacy_triangle_limit": 25000,
+    "note": "Recomputed from the .ac files emitted in this overlay. The source manifest's budget (triangles_total=912, triangle_limit=25000) describes the original greybox only (preserved at source/manifest.json) and is not a claim about this overlay.",
+    "overlay_runtime_total": 371833,
+    "source_manifest_budget": {
+      "note": "The original greybox budget lives only there; its totals are not reused as overlay claims.",
+      "path": "source/manifest.json"
+    },
+    "within_legacy_limit": false
+  },
+  "builder_sha256": "568d3dbdf1eea16ae47dd3da77e47164d874db1cc9bee2d6ce478d8a11239510",
+  "carrier_integration": {
+    "agl_datum": "design_agl_above_terrain_at_empire_anchor",
+    "agl_m": 450.0,
+    "anchor": {
+      "agl_datum": "design_agl_above_terrain_at_empire_anchor",
+      "agl_m": 450.0,
+      "faction": "empire",
+      "lat": 37.415,
+      "lon": -122.455,
+      "msl_m": null,
+      "note": "450.000 m is an explicit design AGL parameter from --agl-m; terrain MSL was not measured and no MSL elevation is claimed.",
+      "source": "source/manifest.json region.anchors.empire"
+    },
+    "asset_package": "Aircraft/sa_venator",
+    "collision": {
+      "note": "No collision shape or collision backend is claimed.",
+      "status": "not_integrated"
+    },
+    "declared_triangles": {
+      "hangar": 0,
+      "lod0": 371341,
+      "lod1": 79857,
+      "lod2": 47825
+    },
+    "external_pack": {
+      "ignored_top_level_entries": [],
+      "included_in_repository_delivery": true,
+      "license_status": "unverified",
+      "license_status_source": "source_urls_recorded_terms_pending",
+      "note": "Canonical runtime derivatives are included in Aircraft/sa_venator. This scene stores a reference only; original authoring inputs remain external. Terms are unverified; see Aircraft/sa_venator/LICENSE_ATTRIBUTION.md."
+    },
+    "files": {
+      "Aircraft/sa_venator/LICENSE_ATTRIBUTION.md": "9e86d6c86ef6ce3bc7a5cbe7f3478c7b31ed72fd4d9e7bb794863a36120ba39e",
+      "Aircraft/sa_venator/Models/carrier.xml": "8da543a02751e38b53f0aaeed5b66a88251000e2709e3e004fc405af2128174e",
+      "Aircraft/sa_venator/Models/carrier_lod0.ac": "4ab50939e2253626e77b54e57130988631e429051406c9a2a00eedacf5682ef8",
+      "Aircraft/sa_venator/Models/carrier_lod1.ac": "7a0b085a06649ff1afa8fa5b0bd4c999609c72dc470e422c241ce44246ccc769",
+      "Aircraft/sa_venator/Models/carrier_lod2.ac": "8bb77e294b4fab80020aae99e016e5772b402a30c3292b06927ba85fe4eda0bc",
+      "Aircraft/sa_venator/Models/layout.json": "6f588b372a18471a2f06a4a9cd296edcbdd714d4e782e3eb231de28819bbf9e9",
+      "Aircraft/sa_venator/README.md": "7969909735e833e745f69f3ca5df29d6164142e797d01e872c15f25d8c34a8ca",
+      "Aircraft/sa_venator/sa_venator-set.xml": "31df11d643ab84b637349bd75b0259bc16418b3acb61e78636c8dda5cb3d22d3"
+    },
+    "geometry_mode": "unified",
+    "layout": "Aircraft/sa_venator/Models/layout.json",
+    "layout_axes": "X right, Y forward, Z up",
+    "layout_bounds_m": [
+      [
+        -726.7800903320312,
+        726.7800903320312
+      ],
+      [
+        -1500.0,
+        1499.999755859375
+      ],
+      [
+        -263.5788879394531,
+        434.2679748535156
+      ]
+    ],
+    "layout_sha256": "6f588b372a18471a2f06a4a9cd296edcbdd714d4e782e3eb231de28819bbf9e9",
+    "models": {
+      "lod0": {
+        "file": "Aircraft/sa_venator/Models/carrier_lod0.ac",
+        "triangles": 371341
+      },
+      "lod1": {
+        "file": "Aircraft/sa_venator/Models/carrier_lod1.ac",
+        "triangles": 79857
+      },
+      "lod2": {
+        "file": "Aircraft/sa_venator/Models/carrier_lod2.ac",
+        "triangles": 47825
+      }
+    },
+    "motion_status": "pending-motion-backend",
+    "network": {
+      "note": "No multiplayer/network spawn integration is claimed.",
+      "status": "not_integrated"
+    },
+    "parsed_triangles": {
+      "hangar": 0,
+      "lod0": 371341,
+      "lod1": 79857,
+      "lod2": 47825
+    },
+    "path_base": "repository-root",
+    "placement_mode": "static-preview",
+    "runtime_verified": false,
+    "schema": "bombable.carrier-layout/v1",
+    "spawn_slots": [
+      {
+        "heading_deg": 90.0,
+        "id": "Empire_Spawn_01",
+        "position_ac_m": [
+          321.0,
+          -97.0,
+          -138.87960052490234
+        ],
+        "position_m": [
+          138.87960052490234,
+          -321.0,
+          -97.0
+        ],
+        "ship_ids": [
+          "sa_tie_royal_guard",
+          "sa_tie_m1",
+          "sa_tie_boarding"
+        ]
+      },
+      {
+        "heading_deg": 90.0,
+        "id": "Empire_Spawn_02",
+        "position_ac_m": [
+          303.0,
+          -97.0,
+          -138.87960052490234
+        ],
+        "position_m": [
+          138.87960052490234,
+          -303.0,
+          -97.0
+        ],
+        "ship_ids": [
+          "sa_tie_royal_guard",
+          "sa_tie_m1",
+          "sa_tie_boarding"
+        ]
+      },
+      {
+        "heading_deg": 90.0,
+        "id": "Empire_Spawn_03",
+        "position_ac_m": [
+          285.0,
+          -97.0,
+          -138.87960052490234
+        ],
+        "position_m": [
+          138.87960052490234,
+          -285.0,
+          -97.0
+        ],
+        "ship_ids": [
+          "sa_tie_royal_guard",
+          "sa_tie_m1",
+          "sa_tie_boarding"
+        ]
+      },
+      {
+        "heading_deg": 90.0,
+        "id": "Empire_Spawn_04",
+        "position_ac_m": [
+          267.0,
+          -97.0,
+          -138.87960052490234
+        ],
+        "position_m": [
+          138.87960052490234,
+          -267.0,
+          -97.0
+        ],
+        "ship_ids": [
+          "sa_tie_royal_guard",
+          "sa_tie_m1",
+          "sa_tie_boarding"
+        ]
+      },
+      {
+        "heading_deg": 90.0,
+        "id": "Empire_Spawn_05",
+        "position_ac_m": [
+          249.0,
+          -97.0,
+          -138.87960052490234
+        ],
+        "position_m": [
+          138.87960052490234,
+          -249.0,
+          -97.0
+        ],
+        "ship_ids": [
+          "sa_tie_royal_guard",
+          "sa_tie_m1",
+          "sa_tie_boarding"
+        ]
+      }
+    ],
+    "stg": {
+      "heading_deg": 250.0,
+      "heading_source": "STG heading of the original Empire emp_carrier placement",
+      "line": "OBJECT_STATIC_AGL Models/venator/carrier.xml -122.455000 37.415000 450.0 110.00",
+      "path": "Objects/w130n30/w123n37/942042.stg",
+      "stg_heading_deg": 110.0
+    },
+    "transforms": {
+      "ac": [
+        "-Y",
+        "Z",
+        "-X"
+      ],
+      "ac_axes": "AC3Db stored: +x aft, +y up, +z left",
+      "formula": "ac_x=-layout_y; ac_y=layout_z; ac_z=-layout_x",
+      "layout_axes": "X right, Y forward, Z up",
+      "layout_to_ac": {
+        "x": "-Y",
+        "y": "Z",
+        "z": "-X"
+      },
+      "note": "Spawn positions are local model coordinates. No global FlightGear spawn transform or launch command is provided."
+    },
+    "triangle_mismatches": {}
+  },
+  "elevation_definition": {
+    "active_agl_offset_m": 0.0,
+    "active_msl_elevation_m": null,
+    "active_offset_kinds": [
+      "OBJECT_STATIC_AGL"
+    ],
+    "active_offset_summary": "uniform_agl",
+    "carrier_agl_datum": "design_agl_above_terrain_at_empire_anchor",
+    "carrier_agl_m": 450.0,
+    "msl_claims": "none; terrain MSL at the anchor was not measured",
+    "note": "Non-carrier values are taken from the source STG lines, not from the source manifest's prose and not invented. A single uniform AGL (or MSL) value is reported only when every active placement agrees; otherwise the summary is null and the per-placement records are authoritative. The carrier uses the explicit --agl-m design value; it is not a measured MSL elevation.",
+    "per_placement": {
+      "reb_hangar": {
+        "datum": "agl_offset_m",
+        "kind": "OBJECT_STATIC_AGL",
+        "offset_m": 0.0
+      },
+      "reb_masts": {
+        "datum": "agl_offset_m",
+        "kind": "OBJECT_STATIC_AGL",
+        "offset_m": 0.0
+      },
+      "reb_platform": {
+        "datum": "agl_offset_m",
+        "kind": "OBJECT_STATIC_AGL",
+        "offset_m": 0.0
+      },
+      "reb_tanks": {
+        "datum": "agl_offset_m",
+        "kind": "OBJECT_STATIC_AGL",
+        "offset_m": 0.0
+      },
+      "reb_tower": {
+        "datum": "agl_offset_m",
+        "kind": "OBJECT_STATIC_AGL",
+        "offset_m": 0.0
+      }
+    },
+    "terrain_height_band_m": {
+      "max": 70.0,
+      "min": 0.0,
+      "source": "coastal-terrace design band; no FG install and no elevation service reachable in this build environment",
+      "verified": false
+    }
+  },
+  "fg_target_version": "2024.1.7",
+  "generated_by": "tools/build_carrier_arena.py",
+  "keepouts": [
+    {
+      "center": {
+        "lat": 37.43,
+        "lon": -122.43
+      },
+      "faction": "rebels",
+      "note": "other-faction exclusion zone (design value)",
+      "radius_m": 160.0
+    },
+    {
+      "center": {
+        "lat": 37.415,
+        "lon": -122.455
+      },
+      "faction": "empire",
+      "note": "Horizontal design exclusion zone around the Empire anchor. The carrier is a 450.000 m AGL overlay; this is not a 3D volume and is not runtime-verified.",
+      "radius_m": 320.0,
+      "status": "design_zone_only"
+    }
+  ],
+  "launch": {
+    "commands": [
+      {
+        "argv": [
+          "fgfs",
+          "--launcher=0",
+          "--no-default-config=1",
+          "--fg-aircraft=Aircraft",
+          "--fg-scenery=scenery/space_arena_carrier",
+          "--aircraft=ufo",
+          "--in-air",
+          "--lon=-122.46517",
+          "--lat=37.42578",
+          "--altitude=1800",
+          "--heading=143.13",
+          "--pitch=0",
+          "--roll=0",
+          "--vc=0",
+          "--timeofday=noon",
+          "--enable-terrasync"
+        ],
+        "purpose": "model inspection, not gameplay or hangar spawn"
+      }
+    ],
+    "note": "The scene references Aircraft/sa_venator; pass --fg-aircraft=Aircraft from repository root. Static preview placement does not implement AI/FDM or physical/network hangar spawn.",
+    "working_directory": "repository root"
+  },
+  "models": {
+    "reb_hangar": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/reb_hangar.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -11.275,
+          11.125
+        ],
+        "l": [
+          -6.0,
+          6.0
+        ],
+        "u": [
+          0.0,
+          6.0
+        ]
+      },
+      "overlay_status": "active",
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 60,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/reb_hangar.xml"
+    },
+    "reb_masts": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/reb_masts.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -4.2,
+          8.2
+        ],
+        "l": [
+          -6.25,
+          8.25
+        ],
+        "u": [
+          0.0,
+          10.55
+        ]
+      },
+      "overlay_status": "active",
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 108,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/reb_masts.xml"
+    },
+    "reb_platform": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/reb_platform.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -10.0,
+          10.0
+        ],
+        "l": [
+          -10.0,
+          10.0
+        ],
+        "u": [
+          0.0,
+          6.3
+        ]
+      },
+      "overlay_status": "active",
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 160,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/reb_platform.xml"
+    },
+    "reb_tanks": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/reb_tanks.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -6.1,
+          6.1
+        ],
+        "l": [
+          -2.5,
+          2.5
+        ],
+        "u": [
+          0.0,
+          4.4
+        ]
+      },
+      "overlay_status": "active",
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 104,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/reb_tanks.xml"
+    },
+    "reb_tower": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/reb_tower.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -2.5,
+          2.5
+        ],
+        "l": [
+          -2.5,
+          2.5
+        ],
+        "u": [
+          0.0,
+          12.6
+        ]
+      },
+      "overlay_status": "active",
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 60,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/reb_tower.xml"
+    }
+  },
+  "obsolete": {
+    "note": "Legacy Empire spawn/support claims are kept as explicit obsolete records and are not active overlay claims.",
+    "poses": [
+      {
+        "alt": {
+          "datum": "design_agl_above_anchor_m",
+          "meaning": "same datum as pose_rebels_primary",
+          "value_m": 6.5
+        },
+        "experimental": true,
+        "faction": "empire",
+        "heading_deg": 250.0,
+        "id": "pose_empire_primary",
+        "kind": "ground_deck",
+        "lat": 37.415,
+        "lon": -122.455,
+        "note": "future sa_tie spawn over the empire pad, carrier bow ahead at 250 deg; deck support NOT verified",
+        "on_placement": "emp_deck",
+        "primary": false,
+        "reason": "Old Empire ground/deck spawn pose; its placement is retired and the carrier is not runtime-verified.",
+        "replaced_by": "carrier_integration.spawn_slots (local metadata only; no public spawn command)",
+        "status": "obsolete"
+      }
+    ],
+    "routes": [
+      {
+        "faction": "empire",
+        "floor_above_deck_m": 15.0,
+        "from_pose": "pose_empire_primary",
+        "half_width_m": 75.0,
+        "heading_deg": 250.0,
+        "id": "route_empire_exit",
+        "length_m": 3000.0,
+        "note": "parallel exit west-southwest ~1.7 km south of the rebel route; static separation of the two corridors is checked by tools/test_space_arena.py",
+        "origin": [
+          -122.455,
+          37.415
+        ],
+        "reason": "Depends on an obsolete Empire spawn pose.",
+        "status": "obsolete"
+      }
+    ],
+    "stack_pairs": [
+      {
+        "lower": "emp_frame",
+        "reason": "Both greybox props are retired.",
+        "status": "obsolete",
+        "upper": "emp_carrier"
+      }
+    ],
+    "surfaces": [
+      {
+        "collision": "unverified",
+        "height_above_anchor_m": 5.0,
+        "note": "same caveat as reb_platform",
+        "placement_id": "emp_deck",
+        "reason": "Placement was removed from the overlay STG.",
+        "status": "obsolete",
+        "support": "unverified",
+        "surface": "deck_top"
+      },
+      {
+        "collision": "unverified",
+        "placement_id": "emp_carrier",
+        "reason": "Placement was removed from the overlay STG.",
+        "status": "obsolete",
+        "support": "decorative_only",
+        "surface": "hull_and_pylons"
+      }
+    ]
+  },
+  "package": "space_arena_carrier repository delivery",
+  "placements": [
+    {
+      "deck_top_above_anchor_m": 6.0,
+      "elevation_semantics": "Source STG entry is OBJECT_STATIC_AGL: the offset field 0.000000 m is a height above ground level at the anchor. This overlay copies the source STG line unchanged; runtime semantics were not verified.",
+      "faction": "rebels",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "reb_platform",
+      "lat": 37.43,
+      "local_size_m": {
+        "f": [
+          -10.0,
+          10.0
+        ],
+        "l": [
+          -10.0,
+          10.0
+        ],
+        "u": [
+          0.0,
+          6.3
+        ]
+      },
+      "lon": -122.43,
+      "model": "reb_platform",
+      "note": "rebels ground pad; deck top +6.0 m design AGL above the anchor; experimental support surface",
+      "offset_east_m": 0.0,
+      "offset_north_m": 0.0,
+      "overlay_status": "preserved_from_source",
+      "role": "ground_pad",
+      "source_stg": {
+        "heading_deg": 110.0,
+        "kind": "OBJECT_STATIC_AGL",
+        "lat": 37.43,
+        "line_number": 8,
+        "lon": -122.43,
+        "offset_datum": "agl_offset_m",
+        "offset_m": 0.0
+      },
+      "source_stg_entries": [
+        {
+          "heading_deg": 110.0,
+          "kind": "OBJECT_STATIC_AGL",
+          "lat": 37.43,
+          "line_number": 8,
+          "lon": -122.43,
+          "offset_datum": "agl_offset_m",
+          "offset_m": 0.0
+        }
+      ],
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          -12.817,
+          12.817
+        ],
+        "north_m": [
+          -12.817,
+          12.817
+        ],
+        "up_m": [
+          0.0,
+          6.3
+        ]
+      }
+    },
+    {
+      "deck_top_above_anchor_m": null,
+      "elevation_semantics": "Source STG entry is OBJECT_STATIC_AGL: the offset field 0.000000 m is a height above ground level at the anchor. This overlay copies the source STG line unchanged; runtime semantics were not verified.",
+      "faction": "rebels",
+      "heading_deg": 70.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "reb_hangar",
+      "lat": 37.43,
+      "local_size_m": {
+        "f": [
+          -11.275,
+          11.125
+        ],
+        "l": [
+          -6.0,
+          6.0
+        ],
+        "u": [
+          0.0,
+          6.0
+        ]
+      },
+      "lon": -122.429321,
+      "model": "reb_hangar",
+      "note": "low sand/white hangar; door face points at the pad",
+      "offset_east_m": 60.0,
+      "offset_north_m": 0.0,
+      "overlay_status": "preserved_from_source",
+      "role": "decor_structure",
+      "source_stg": {
+        "heading_deg": 290.0,
+        "kind": "OBJECT_STATIC_AGL",
+        "lat": 37.43,
+        "line_number": 9,
+        "lon": -122.429321,
+        "offset_datum": "agl_offset_m",
+        "offset_m": 0.0
+      },
+      "source_stg_entries": [
+        {
+          "heading_deg": 290.0,
+          "kind": "OBJECT_STATIC_AGL",
+          "lat": 37.43,
+          "line_number": 9,
+          "lon": -122.429321,
+          "offset_datum": "agl_offset_m",
+          "offset_m": 0.0
+        }
+      ],
+      "stg_heading_deg": 290.0,
+      "world_enu_box_m": {
+        "east_m": [
+          47.353,
+          72.506
+        ],
+        "north_m": [
+          -9.494,
+          9.443
+        ],
+        "up_m": [
+          0.0,
+          6.0
+        ]
+      }
+    },
+    {
+      "deck_top_above_anchor_m": null,
+      "elevation_semantics": "Source STG entry is OBJECT_STATIC_AGL: the offset field 0.000000 m is a height above ground level at the anchor. This overlay copies the source STG line unchanged; runtime semantics were not verified.",
+      "faction": "rebels",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "reb_tower",
+      "lat": 37.429596,
+      "local_size_m": {
+        "f": [
+          -2.5,
+          2.5
+        ],
+        "l": [
+          -2.5,
+          2.5
+        ],
+        "u": [
+          0.0,
+          12.6
+        ]
+      },
+      "lon": -122.429717,
+      "model": "reb_tower",
+      "note": "control tower silhouette",
+      "offset_east_m": 25.0,
+      "offset_north_m": -45.0,
+      "overlay_status": "preserved_from_source",
+      "role": "decor_structure",
+      "source_stg": {
+        "heading_deg": 110.0,
+        "kind": "OBJECT_STATIC_AGL",
+        "lat": 37.429596,
+        "line_number": 10,
+        "lon": -122.429717,
+        "offset_datum": "agl_offset_m",
+        "offset_m": 0.0
+      },
+      "source_stg_entries": [
+        {
+          "heading_deg": 110.0,
+          "kind": "OBJECT_STATIC_AGL",
+          "lat": 37.429596,
+          "line_number": 10,
+          "lon": -122.429717,
+          "offset_datum": "agl_offset_m",
+          "offset_m": 0.0
+        }
+      ],
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          21.796,
+          28.204
+        ],
+        "north_m": [
+          -48.204,
+          -41.796
+        ],
+        "up_m": [
+          0.0,
+          12.6
+        ]
+      }
+    },
+    {
+      "deck_top_above_anchor_m": null,
+      "elevation_semantics": "Source STG entry is OBJECT_STATIC_AGL: the offset field 0.000000 m is a height above ground level at the anchor. This overlay copies the source STG line unchanged; runtime semantics were not verified.",
+      "faction": "rebels",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "reb_tanks",
+      "lat": 37.430359,
+      "local_size_m": {
+        "f": [
+          -6.1,
+          6.1
+        ],
+        "l": [
+          -2.5,
+          2.5
+        ],
+        "u": [
+          0.0,
+          4.4
+        ]
+      },
+      "lon": -122.429796,
+      "model": "reb_tanks",
+      "note": "fuel tank group",
+      "offset_east_m": 18.0,
+      "offset_north_m": 40.0,
+      "overlay_status": "preserved_from_source",
+      "role": "decor",
+      "source_stg": {
+        "heading_deg": 110.0,
+        "kind": "OBJECT_STATIC_AGL",
+        "lat": 37.430359,
+        "line_number": 11,
+        "lon": -122.429796,
+        "offset_datum": "agl_offset_m",
+        "offset_m": 0.0
+      },
+      "source_stg_entries": [
+        {
+          "heading_deg": 110.0,
+          "kind": "OBJECT_STATIC_AGL",
+          "lat": 37.430359,
+          "line_number": 11,
+          "lon": -122.429796,
+          "offset_datum": "agl_offset_m",
+          "offset_m": 0.0
+        }
+      ],
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          11.413,
+          24.587
+        ],
+        "north_m": [
+          35.564,
+          44.436
+        ],
+        "up_m": [
+          0.0,
+          4.4
+        ]
+      }
+    },
+    {
+      "deck_top_above_anchor_m": null,
+      "elevation_semantics": "Source STG entry is OBJECT_STATIC_AGL: the offset field 0.000000 m is a height above ground level at the anchor. This overlay copies the source STG line unchanged; runtime semantics were not verified.",
+      "faction": "rebels",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "reb_masts",
+      "lat": 37.429371,
+      "local_size_m": {
+        "f": [
+          -4.2,
+          8.2
+        ],
+        "l": [
+          -6.25,
+          8.25
+        ],
+        "u": [
+          0.0,
+          10.55
+        ]
+      },
+      "lon": -122.429548,
+      "model": "reb_masts",
+      "note": "light masts, behind the pad (outside the exit corridor)",
+      "offset_east_m": 40.0,
+      "offset_north_m": -70.0,
+      "overlay_status": "preserved_from_source",
+      "role": "decor",
+      "source_stg": {
+        "heading_deg": 110.0,
+        "kind": "OBJECT_STATIC_AGL",
+        "lat": 37.429371,
+        "line_number": 12,
+        "lon": -122.429548,
+        "offset_datum": "agl_offset_m",
+        "offset_m": 0.0
+      },
+      "source_stg_entries": [
+        {
+          "heading_deg": 110.0,
+          "kind": "OBJECT_STATIC_AGL",
+          "lat": 37.429371,
+          "line_number": 12,
+          "lon": -122.429548,
+          "offset_datum": "agl_offset_m",
+          "offset_m": 0.0
+        }
+      ],
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          30.157,
+          46.768
+        ],
+        "north_m": [
+          -80.557,
+          -62.69
+        ],
+        "up_m": [
+          0.0,
+          10.55
+        ]
+      }
+    }
+  ],
+  "poses": [
+    {
+      "alt": {
+        "datum": "design_agl_above_anchor_m",
+        "meaning": "meters above the design terrain plane at the rebel anchor (deck top +6.0 m + CG allowance); FG spawn altitude in MSL = unknown terrain height + this",
+        "value_m": 7.5
+      },
+      "experimental": true,
+      "faction": "rebels",
+      "heading_deg": 250.0,
+      "id": "pose_rebels_primary",
+      "kind": "ground_deck",
+      "lat": 37.43,
+      "lon": -122.43,
+      "note": "future sa_xwing spawn over the rebel pad; deck support NOT verified - until a physical FG test use the fallback poses",
+      "on_placement": "reb_platform",
+      "primary": true
+    },
+    {
+      "airport": "KSFO",
+      "experimental": false,
+      "faction": null,
+      "heading_deg": null,
+      "id": "fb_ksfo_parking",
+      "kind": "airport_parking",
+      "note": "fallback 1: stock KSFO ramp start; identical to the unchanged tools/launch.py default; works with or without the arena",
+      "parking_id": null,
+      "primary": false
+    },
+    {
+      "airport": "KSFO",
+      "experimental": false,
+      "faction": null,
+      "heading_deg": null,
+      "id": "fb_ksfo_rwy28r",
+      "kind": "airport_runway",
+      "note": "fallback 2: KSFO runway 28R (launcher default runway); the runway heading comes from FGData, not restated here",
+      "primary": false,
+      "runway": "28R"
+    },
+    {
+      "alt": {
+        "datum": "msl_feet",
+        "value_ft": 2500
+      },
+      "experimental": false,
+      "faction": null,
+      "heading_deg": 70.0,
+      "id": "fb_airstart_arena",
+      "kind": "aircraft_position",
+      "lat": 37.42,
+      "lon": -122.52,
+      "note": "fallback 3: external air-start over the bay for the c172p visual/scale check, 2500 ft MSL (FG --altitude datum); keeps terrain clearance while FG terrain is below ~2000 ft AGL (terrain NOT verified here); fly east toward the bases, then land back at KSFO",
+      "primary": false,
+      "speed_kt_ias": 90
+    }
+  ],
+  "provenance": {
+    "artifact_sha256": {
+      "LICENSE_ATTRIBUTION.md": "8422442f1426ecea47e350cabf78bc32015171e1753ecf4e84d80ba5cf860356",
+      "Objects/w130n30/w123n37/942042.stg": "4d918541bfbe1c2d4e57a4893e74e70d872769b1e61f2d752e386db55f0f0cc5",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_carrier.ac": "b8072735d5207a992c2fdf94d27e51604c7ff02eb3917ff9ebd6665ea21699ee",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_carrier.xml": "25638092e70fd5dc26e394d349b2ccdf468c286f34073a2589da6f54bc8071b1",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_deck.ac": "c8628da45533ae9bac1d2910eac70b0d9ed7bf19224b2f76fd96978ce36044d1",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_deck.xml": "8d259706cff0e0925ce305da2c83918052aff7160cf6b8e274025472b63466b7",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_frame.ac": "86cf9cac9275d1789badae61097cbd26a831f706f758d21efb8c68b3aec06a81",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_frame.xml": "782087338a38044121484d1cea047c2b38550eede5dbbc87fd1c8e94d60716e1",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_rack.ac": "c0ad66d3ddc95310e0cc2c939bb4c6a7e4f613d2026cf358ab3953b00416dc74",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_rack.xml": "b9f5e183e67b1334815364e0a4753c57541684e050a3bf3d909f937fe7203901",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_hangar.ac": "bee4187bebeee44d9dff5303176f74c0510bf76f99c3014ee379395072b60610",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_hangar.xml": "6c2a102b4e689eeadf345fa6c2ad459b093ffd25f06fa6a9660c609a53afa44d",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_masts.ac": "75996851cdc19023610da0a661dba12a12011e6d0aa81857f7f4390ac84e1455",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_masts.xml": "fc3aa10d60898ba842684c646d72d8a000da5abd8839970893cea79a412536a5",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_platform.ac": "272943c299835424f52264757620b86d54fec3688d69757a0b0e520d209bb9b6",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_platform.xml": "9d4010d0d66eab5307d8ee6a4caca844df71f528493fb73f780b70400dc8bd71",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_tanks.ac": "b04ef5be2fce3547a3e62bd8445b8a0b7918ce4bc3ce148a10d44d3868d2e503",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_tanks.xml": "24c85a44c39abf070b0df3a20c932e7ca6935d23843336b2f465285ac7d02f17",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_tower.ac": "48135764fd7adccb668a8fa7ab796b8d2b63a852d51be33913739da3ea465663",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_tower.xml": "e9e4be7fd55ff2ad51ac2408c3c7d4ef07a55e1af4b9465d2efcc8b202911c0a",
+      "Objects/w130n30/w123n37/Models/venator/carrier.xml": "d7dbe1d15480943c34adf224bc6fa08dac52338b36524aac400255acc4772007",
+      "README.md": "48177a85431fde0dcb0012fadc424399022a0355165ed1bbc0c310db09c4d3e3",
+      "source/942042.stg.original": "5b779c743e6d8087a92b0f1b00ec40e93b0602e4f49e379773001636a599f0e1",
+      "source/README.md": "ec6ea816c1d79a5a01b67342c323aef3f10318a9378a2b1077035e0cb7ab767d",
+      "source/VALIDATION.md": "4040771eed021d939c68a8b0bedf381653ebfed3a2a3d161dbc1036f45d2e5a9",
+      "source/manifest.json": "d03eea235a07764e0a5774ac908673b930e7144677d8a5ba15579b5b8f3c37d6",
+      "source/src/generate_package.py": "543be27557f5ef3acb35289be5010e6f4d8edeec2589e47bd5ffe3be84f9c588"
+    },
+    "builder": "tools/build_carrier_arena.py",
+    "builder_sha256": "568d3dbdf1eea16ae47dd3da77e47164d874db1cc9bee2d6ce478d8a11239510",
+    "license": "Builder GPL-2.0-or-later; external carrier assets license_status=unverified.",
+    "note": "Hashes cover this scene only except manifest.json. repository_dependencies pins the canonical Aircraft asset package. source/manifest.json stays byte-for-byte unchanged."
+  },
+  "region": {
+    "anchors": {
+      "empire": {
+        "lat": 37.415,
+        "lon": -122.455
+      },
+      "rebels": {
+        "lat": 37.43,
+        "lon": -122.43
+      }
+    },
+    "district": "Half Moon Bay coastal plain, one tile district ~20 km south of KSFO, entirely inside the default scenery tile w123n37; no stock airport inside the site box",
+    "overlay_note": "Tile and anchors are inherited from the source Rebel/Empire arena; the carrier line is written into the same STG tile.",
+    "reference_points_not_from_fgdata": {
+      "KHAF_arp": {
+        "lat": 37.5119,
+        "lon": -122.5018
+      },
+      "KSFO_arp": {
+        "lat": 37.6188,
+        "lon": -122.375
+      },
+      "note": "approximate ARPs from general knowledge; used only for conservative separation reasoning"
+    },
+    "site_bbox_deg": {
+      "lat_max": 37.44,
+      "lat_min": 37.405,
+      "lon_max": -122.415,
+      "lon_min": -122.47
+    },
+    "tile": {
+      "bucket": "w130n30",
+      "bucket_note": "for negative longitudes SimGear floors lon/10 downward, so tile w123n37 lives in bucket w130n30 (FGData release/2024.1 Docs/README.scenery shows the same bucket for KSFO)",
+      "lat_range_deg": [
+        37.0,
+        38.0
+      ],
+      "lon_range_deg": [
+        -123.0,
+        -122.0
+      ],
+      "tile_1x1": "w123n37"
+    }
+  },
+  "repository_delivery": {
+    "asset_package": "Aircraft/sa_venator",
+    "asset_policy": "docs/RELEASE_ASSET_POLICY.md",
+    "asset_storage": "Aircraft package only; no duplicate carrier meshes in scenery",
+    "authoring_pack_required_to_run": false,
+    "base_arena": "scenery/space_arena",
+    "generator_required_to_run": false,
+    "license_attribution": "LICENSE_ATTRIBUTION.md",
+    "note": "Prepared files in the working tree; the repository owner handles staging and commits.",
+    "path": "scenery/space_arena_carrier",
+    "runtime_assets_included": true
+  },
+  "repository_dependencies": {
+    "Aircraft/sa_venator/Sources/BUILD_MANIFEST.json": "423cc617fd06cc1ed237a481b622ef94f18fca22ec68802c89d08d5926607a42"
+  },
+  "retired_empire_models": {
+    "emp_carrier": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/emp_carrier.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -25.0,
+          13.5
+        ],
+        "l": [
+          -6.6,
+          6.6
+        ],
+        "u": [
+          0.0,
+          16.1
+        ]
+      },
+      "note": "Original Empire greybox model file copied unchanged; no STG placement references it in this overlay.",
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "status": "retained_unreferenced",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 96,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/emp_carrier.xml"
+    },
+    "emp_deck": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/emp_deck.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -13.0,
+          13.0
+        ],
+        "l": [
+          -13.0,
+          13.0
+        ],
+        "u": [
+          0.0,
+          5.35
+        ]
+      },
+      "note": "Original Empire greybox model file copied unchanged; no STG placement references it in this overlay.",
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "status": "retained_unreferenced",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 144,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/emp_deck.xml"
+    },
+    "emp_frame": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/emp_frame.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -8.0,
+          15.0
+        ],
+        "l": [
+          -17.5,
+          17.5
+        ],
+        "u": [
+          0.0,
+          33.0
+        ]
+      },
+      "note": "Original Empire greybox model file copied unchanged; no STG placement references it in this overlay.",
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "status": "retained_unreferenced",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 84,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/emp_frame.xml"
+    },
+    "emp_rack": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/emp_rack.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -0.9,
+          0.9
+        ],
+        "l": [
+          -6.5,
+          6.5
+        ],
+        "u": [
+          0.0,
+          8.6
+        ]
+      },
+      "note": "Original Empire greybox model file copied unchanged; no STG placement references it in this overlay.",
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "status": "retained_unreferenced",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 96,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/emp_rack.xml"
+    }
+  },
+  "retired_empire_placements": [
+    {
+      "deck_top_above_anchor_m": 5.0,
+      "elevation_semantics": "Legacy source record only; this placement has no active STG entry in the overlay. The preserved source_stg_entries describe the greybox line and are not an overlay elevation claim.",
+      "faction": "empire",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "emp_deck",
+      "lat": 37.415,
+      "local_size_m": {
+        "f": [
+          -13.0,
+          13.0
+        ],
+        "l": [
+          -13.0,
+          13.0
+        ],
+        "u": [
+          0.0,
+          5.35
+        ]
+      },
+      "lon": -122.455,
+      "model": "emp_deck",
+      "note": "empire foredeck; deck top +5.0 m design AGL above the anchor; experimental support surface",
+      "offset_east_m": 0.0,
+      "offset_north_m": 0.0,
+      "reason": "Empire greybox placement removed from the STG; the external carrier overlay is the replacement.",
+      "role": "ground_pad",
+      "source_stg_entries": [
+        {
+          "heading_deg": 110.0,
+          "kind": "OBJECT_STATIC_AGL",
+          "lat": 37.415,
+          "line_number": 13,
+          "lon": -122.455,
+          "offset_datum": "agl_offset_m",
+          "offset_m": 0.0
+        }
+      ],
+      "status": "retired",
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          -16.662,
+          16.662
+        ],
+        "north_m": [
+          -16.662,
+          16.662
+        ],
+        "up_m": [
+          0.0,
+          5.35
+        ]
+      }
+    },
+    {
+      "deck_top_above_anchor_m": null,
+      "elevation_semantics": "Legacy source record only; this placement has no active STG entry in the overlay. The preserved source_stg_entries describe the greybox line and are not an overlay elevation claim.",
+      "faction": "empire",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "emp_frame",
+      "lat": 37.415,
+      "local_size_m": {
+        "f": [
+          -8.0,
+          15.0
+        ],
+        "l": [
+          -17.5,
+          17.5
+        ],
+        "u": [
+          0.0,
+          33.0
+        ]
+      },
+      "lon": -122.454208,
+      "model": "emp_frame",
+      "note": "static hangar frame east of the deck, opening faces west toward the deck; never moves (static model)",
+      "offset_east_m": 70.0,
+      "offset_north_m": 0.0,
+      "reason": "Empire greybox placement removed from the STG; the external carrier overlay is the replacement.",
+      "role": "decor_structure",
+      "source_stg_entries": [
+        {
+          "heading_deg": 110.0,
+          "kind": "OBJECT_STATIC_AGL",
+          "lat": 37.415,
+          "line_number": 14,
+          "lon": -122.454208,
+          "offset_datum": "agl_offset_m",
+          "offset_m": 0.0
+        }
+      ],
+      "status": "retired",
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          49.919,
+          83.503
+        ],
+        "north_m": [
+          -21.575,
+          19.181
+        ],
+        "up_m": [
+          0.0,
+          33.0
+        ]
+      }
+    },
+    {
+      "deck_top_above_anchor_m": null,
+      "elevation_semantics": "Legacy source record only; this placement has no active STG entry in the overlay. The preserved source_stg_entries describe the greybox line and are not an overlay elevation claim.",
+      "faction": "empire",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "emp_carrier",
+      "lat": 37.415,
+      "local_size_m": {
+        "f": [
+          -25.0,
+          13.5
+        ],
+        "l": [
+          -6.6,
+          6.6
+        ],
+        "u": [
+          0.0,
+          16.1
+        ]
+      },
+      "lon": -122.454208,
+      "model": "emp_carrier",
+      "note": "immobile carrier hull fragment standing inside the frame on its own ground pylons; bow points west at the deck; first TASK4 test keeps the carrier static/decorative",
+      "offset_east_m": 70.0,
+      "offset_north_m": 0.0,
+      "reason": "Empire greybox placement removed from the STG; the external carrier overlay is the replacement.",
+      "role": "decor_static_carrier",
+      "source_stg_entries": [
+        {
+          "heading_deg": 110.0,
+          "kind": "OBJECT_STATIC_AGL",
+          "lat": 37.415,
+          "line_number": 15,
+          "lon": -122.454208,
+          "offset_datum": "agl_offset_m",
+          "offset_m": 0.0
+        }
+      ],
+      "status": "retired",
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          55.057,
+          95.75
+        ],
+        "north_m": [
+          -10.819,
+          14.752
+        ],
+        "up_m": [
+          0.0,
+          16.1
+        ]
+      }
+    },
+    {
+      "deck_top_above_anchor_m": null,
+      "elevation_semantics": "Legacy source record only; this placement has no active STG entry in the overlay. The preserved source_stg_entries describe the greybox line and are not an overlay elevation claim.",
+      "faction": "empire",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "emp_rack_n",
+      "lat": 37.415494,
+      "local_size_m": {
+        "f": [
+          -0.9,
+          0.9
+        ],
+        "l": [
+          -6.5,
+          6.5
+        ],
+        "u": [
+          0.0,
+          8.6
+        ]
+      },
+      "lon": -122.454604,
+      "model": "emp_rack",
+      "note": "decorative pylon rack with hanging pods",
+      "offset_east_m": 35.0,
+      "offset_north_m": 55.0,
+      "reason": "Empire greybox placement removed from the STG; the external carrier overlay is the replacement.",
+      "role": "decor",
+      "source_stg_entries": [
+        {
+          "heading_deg": 110.0,
+          "kind": "OBJECT_STATIC_AGL",
+          "lat": 37.415494,
+          "line_number": 16,
+          "lon": -122.454604,
+          "offset_datum": "agl_offset_m",
+          "offset_m": 0.0
+        }
+      ],
+      "status": "retired",
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          31.931,
+          38.069
+        ],
+        "north_m": [
+          48.584,
+          61.416
+        ],
+        "up_m": [
+          0.0,
+          8.6
+        ]
+      }
+    },
+    {
+      "deck_top_above_anchor_m": null,
+      "elevation_semantics": "Legacy source record only; this placement has no active STG entry in the overlay. The preserved source_stg_entries describe the greybox line and are not an overlay elevation claim.",
+      "faction": "empire",
+      "heading_deg": 70.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "emp_rack_s",
+      "lat": 37.414506,
+      "local_size_m": {
+        "f": [
+          -0.9,
+          0.9
+        ],
+        "l": [
+          -6.5,
+          6.5
+        ],
+        "u": [
+          0.0,
+          8.6
+        ]
+      },
+      "lon": -122.454604,
+      "model": "emp_rack",
+      "note": "decorative pylon rack with hanging pods",
+      "offset_east_m": 35.0,
+      "offset_north_m": -55.0,
+      "reason": "Empire greybox placement removed from the STG; the external carrier overlay is the replacement.",
+      "role": "decor",
+      "source_stg_entries": [
+        {
+          "heading_deg": 290.0,
+          "kind": "OBJECT_STATIC_AGL",
+          "lat": 37.414506,
+          "line_number": 17,
+          "lon": -122.454604,
+          "offset_datum": "agl_offset_m",
+          "offset_m": 0.0
+        }
+      ],
+      "status": "retired",
+      "stg_heading_deg": 290.0,
+      "world_enu_box_m": {
+        "east_m": [
+          31.931,
+          38.069
+        ],
+        "north_m": [
+          -61.416,
+          -48.584
+        ],
+        "up_m": [
+          0.0,
+          8.6
+        ]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "faction": "rebels",
+      "floor_above_deck_m": 15.0,
+      "from_pose": "pose_rebels_primary",
+      "half_width_m": 75.0,
+      "heading_deg": 250.0,
+      "id": "route_rebels_exit",
+      "length_m": 3000.0,
+      "note": "straight exit west-southwest over the open coastal plain to the Pacific; clear of the empire base and of KSFO",
+      "origin": [
+        -122.43,
+        37.43
+      ]
+    }
+  ],
+  "runtime_verified": false,
+  "schema": "bombable.space_arena.overlay.manifest",
+  "schema_version": 1,
+  "source": {
+    "arena_package": "scenery/space_arena",
+    "legacy_files": {
+      "README.md": "source/README.md",
+      "VALIDATION.md": "source/VALIDATION.md",
+      "manifest.json": "source/manifest.json",
+      "src": "source/src",
+      "stg": "source/942042.stg.original"
+    },
+    "manifest": "source/manifest.json",
+    "manifest_sha256": "d03eea235a07764e0a5774ac908673b930e7144677d8a5ba15579b5b8f3c37d6",
+    "note": "source/manifest.json is the untouched original greybox manifest. Its artifact_sha256 and budget describe that source package only and are not claims about this overlay.",
+    "original_stg_sha256": "5b779c743e6d8087a92b0f1b00ec40e93b0602e4f49e379773001636a599f0e1",
+    "schema": "bombable.space_arena.manifest",
+    "schema_version": 1
+  },
+  "stack_pairs": [],
+  "status_banner": "READY RUNTIME ASSET FILES; visual loading observed on FG 2024.1.4; full runtime/physics/network acceptance and distribution terms pending.",
+  "stg": {
+    "carrier": {
+      "agl_m": 450.0,
+      "line": "OBJECT_STATIC_AGL Models/venator/carrier.xml -122.455000 37.415000 450.0 110.00",
+      "path": "Objects/w130n30/w123n37/Models/venator/carrier.xml",
+      "stg_heading_deg": 110.0
+    },
+    "carrier_entry_kind": "OBJECT_STATIC_AGL",
+    "entry_fields": "OBJECT_STATIC_AGL|OBJECT_STATIC <model.xml> <lon> <lat> <offset_or_elevation_m> <heading_deg>",
+    "entry_kinds": [
+      "OBJECT_STATIC_AGL"
+    ],
+    "heading_note": "Written heading is counter-clockwise degrees from north per Docs/README.scenery; runtime sign is not verified.",
+    "note": "Non-carrier lines are copied verbatim from the source STG, so their keyword and datum are preserved (OBJECT_STATIC_AGL = above ground; OBJECT_STATIC = above sea level by STG convention). The carrier line uses the design --agl-m value. There is no single global AGL offset for this overlay.",
+    "path": "Objects/w130n30/w123n37/942042.stg",
+    "path_base": "Model paths are relative to the tile directory containing the STG."
+  },
+  "surfaces": [
+    {
+      "collision": "unverified",
+      "height_above_anchor_m": 6.0,
+      "note": "FG gives static scenery models no landing support by default; no scenery material override is configured; do NOT treat this as a supported surface until a physical FG test",
+      "placement_id": "reb_platform",
+      "status": "experimental_deck",
+      "support": "unverified",
+      "surface": "deck_top"
+    },
+    {
+      "collision": "depends_on_fg",
+      "height_above_anchor_m": 0.0,
+      "note": "the natural terrain under the pads is the surface to verify first in FG before any deck test",
+      "placement_id": null,
+      "status": "outside_this_package",
+      "support": "depends_on_fg_terrain_mesh",
+      "surface": "stock_terrain_at_anchors"
+    },
+    {
+      "collision": "unverified",
+      "height_above_anchor_m": 0.0,
+      "placement_id": null,
+      "status": "outside_this_package",
+      "support": "not_supporting_for_wheels",
+      "surface": "bay_water_west"
+    }
+  ],
+  "task": "CARRIER-ARENA-OVERLAY",
+  "units": "meters for all lengths; WGS84 decimal degrees for lon/lat (west/south negative); degrees for angles; knots for airspeeds",
+  "verification": {
+    "aircraft_reference_runtime": {
+      "fg_version": "2024.1.4",
+      "observed": true,
+      "scope": "Scenery binder resolved Aircraft/sa_venator through FG_AIRCRAFT and displayed hull/hangar. No game spawn or AI/FDM acceptance."
+    },
+    "carrier_runtime": "NOT VERIFIED - runtime_verified=false",
+    "collision": "NOT INTEGRATED / NOT VERIFIED",
+    "fg_runtime_load": {
+      "observed": true,
+      "scope": "Hull and recessed side hangar visually observed. This is not full target-version, LOD switching, FPS, collision or multiplayer acceptance.",
+      "target_version": "2024.1.7",
+      "version": "2024.1.4"
+    },
+    "license": "External carrier pack license_status=unverified; do not redistribute until clarified.",
+    "network": "NOT INTEGRATED / NOT VERIFIED",
+    "spawn": "No public spawn or launch command. Carrier spawn slots are local metadata only.",
+    "static_delivery": "python3 -m unittest tools.test_carrier_delivery",
+    "static_overlay": "python3 -m unittest tools/test_build_carrier_arena.py"
+  }
+}

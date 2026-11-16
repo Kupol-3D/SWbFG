@@ -1,0 +1,56 @@
+{
+  "asset_id": "venator",
+  "bounds_m": [
+    [
+      -726.7800903320312,
+      726.7800903320312
+    ],
+    [
+      -1500.0,
+      1499.999755859375
+    ],
+    [
+      -263.5788879394531,
+      434.2679748535156
+    ]
+  ],
+  "collision_status": "pending-collision-backend",
+  "files": {
+    "LICENSE_ATTRIBUTION.md": "9e86d6c86ef6ce3bc7a5cbe7f3478c7b31ed72fd4d9e7bb794863a36120ba39e",
+    "Models/carrier.xml": "8da543a02751e38b53f0aaeed5b66a88251000e2709e3e004fc405af2128174e",
+    "Models/carrier_lod0.ac": "4ab50939e2253626e77b54e57130988631e429051406c9a2a00eedacf5682ef8",
+    "Models/carrier_lod1.ac": "7a0b085a06649ff1afa8fa5b0bd4c999609c72dc470e422c241ce44246ccc769",
+    "Models/carrier_lod2.ac": "8bb77e294b4fab80020aae99e016e5772b402a30c3292b06927ba85fe4eda0bc",
+    "Models/layout.json": "6f588b372a18471a2f06a4a9cd296edcbdd714d4e782e3eb231de28819bbf9e9",
+    "README.md": "7969909735e833e745f69f3ca5df29d6164142e797d01e872c15f25d8c34a8ca",
+    "sa_venator-set.xml": "31df11d643ab84b637349bd75b0259bc16418b3acb61e78636c8dda5cb3d22d3"
+  },
+  "flight_model": "null",
+  "geometry_mode": "unified",
+  "layout_path": "Models/layout.json",
+  "model_path": "Models/carrier.xml",
+  "motion_status": "pending-motion-backend",
+  "observed_model_load_version": "2024.1.4",
+  "package": "sa_venator",
+  "preparation": "Prepared runtime meshes supplied with repository. Original authoring archives are not required at runtime.",
+  "provenance": {
+    "hangar_url": "https://www.cgtrader.com/free-3d-models/space/other/star-wars-destroyer-hangar-f02d7bee-f7f0-4599-b87e-3dc7c4be3f46",
+    "hull_author": "dermalt",
+    "hull_url": "https://www.cgtrader.com/items/2582308/download-page",
+    "license_status": "source_urls_recorded_terms_pending"
+  },
+  "runtime_verified": false,
+  "scene_reference_load": {
+    "fg_version": "2024.1.4",
+    "observed": true,
+    "scope": "Canonical Aircraft model loaded through scenery binder and FG_AIRCRAFT; not a motion/FDM/camera acceptance."
+  },
+  "schema": "bombable.carrier-aircraft-build/v1",
+  "target_fg_version": "2024.1.7",
+  "triangles": {
+    "hangar": 0,
+    "lod0": 371341,
+    "lod1": 79857,
+    "lod2": 47825
+  }
+}

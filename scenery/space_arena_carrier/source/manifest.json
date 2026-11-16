@@ -1,0 +1,973 @@
+{
+  "axes": {
+    "design_axes": "f forward (= -x), l left (= +z), u up (= +y)",
+    "fg_axes": "FG model frame: x aft(+), y right(+), z up(+); AC3D->FG: x->x, y->z, z->-y (wiki Howto:3D Aircraft Models)",
+    "model_file_axes": "AC3Db as stored: +x aft, +y up, +z left; model front = -x",
+    "placement_heading": "manifest heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG (counter-clockwise from north per Docs/README.scenery); runtime sign NOT verified"
+  },
+  "budget": {
+    "note": "arena-only working budget (no cockpit); large margin kept below the limit",
+    "per_model": {
+      "emp_carrier": 96,
+      "emp_deck": 144,
+      "emp_frame": 84,
+      "emp_rack": 96,
+      "reb_hangar": 60,
+      "reb_masts": 108,
+      "reb_platform": 160,
+      "reb_tanks": 104,
+      "reb_tower": 60
+    },
+    "triangle_limit": 25000,
+    "triangles_total": 912
+  },
+  "elevation_definition": {
+    "agl_offset_m": 0.0,
+    "pose_datums": "every pose altitude carries an explicit datum: design_agl_above_anchor_m (meters) or msl_feet (FG --altitude); AGL and MSL are never mixed",
+    "stg_elevation_field": "STG entries are OBJECT_STATIC_AGL: the offset field carries meters ABOVE GROUND LEVEL at the anchor and is written 0.0 for every placement, so each model origin sits on the terrain/water surface. 0.0 here is an AGL offset choice, NOT an MSL elevation: terrain MSL at the anchors was never measured in this environment; after a FG/UFO measurement the package can switch to exact-MSL OBJECT_STATIC entries",
+    "terrain_height_band_m": {
+      "max": 70.0,
+      "min": 0.0,
+      "source": "coastal-terrace design band; no FG install and no elevation service reachable in this build environment",
+      "verified": false
+    }
+  },
+  "fg_target_version": "2024.1.7",
+  "keepouts": [
+    {
+      "center": {
+        "lat": 37.43,
+        "lon": -122.43
+      },
+      "faction": "rebels",
+      "note": "other-faction exclusion zone (design value)",
+      "radius_m": 160.0
+    },
+    {
+      "center": {
+        "lat": 37.415,
+        "lon": -122.455
+      },
+      "faction": "empire",
+      "note": "larger zone: the hangar frame + carrier group",
+      "radius_m": 320.0
+    }
+  ],
+  "launch": {
+    "default_unchanged": "python3 tools/launch.py",
+    "note": "list the arena directory before the stock Scenery directory; FG loads terrain from the first path that has it and merges object tiles visited on the way (README.scenery); semantics NOT re-verified on 2024.1.7 here",
+    "with_arena_scenery": "fgfs --aircraft=c172p --airport=KSFO --runway=28R --fg-scenery=<repo>/scenery/space_arena --fg-scenery=<FGDATA>/data/Scenery"
+  },
+  "models": {
+    "emp_carrier": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/emp_carrier.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -25.0,
+          13.5
+        ],
+        "l": [
+          -6.6,
+          6.6
+        ],
+        "u": [
+          0.0,
+          16.1
+        ]
+      },
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 96,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/emp_carrier.xml"
+    },
+    "emp_deck": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/emp_deck.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -13.0,
+          13.0
+        ],
+        "l": [
+          -13.0,
+          13.0
+        ],
+        "u": [
+          0.0,
+          5.35
+        ]
+      },
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 144,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/emp_deck.xml"
+    },
+    "emp_frame": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/emp_frame.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -8.0,
+          15.0
+        ],
+        "l": [
+          -17.5,
+          17.5
+        ],
+        "u": [
+          0.0,
+          33.0
+        ]
+      },
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 84,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/emp_frame.xml"
+    },
+    "emp_rack": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/emp_rack.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -0.9,
+          0.9
+        ],
+        "l": [
+          -6.5,
+          6.5
+        ],
+        "u": [
+          0.0,
+          8.6
+        ]
+      },
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 96,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/emp_rack.xml"
+    },
+    "reb_hangar": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/reb_hangar.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -11.275,
+          11.125
+        ],
+        "l": [
+          -6.0,
+          6.0
+        ],
+        "u": [
+          0.0,
+          6.0
+        ]
+      },
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 60,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/reb_hangar.xml"
+    },
+    "reb_masts": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/reb_masts.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -4.2,
+          8.2
+        ],
+        "l": [
+          -6.25,
+          8.25
+        ],
+        "u": [
+          0.0,
+          10.55
+        ]
+      },
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 108,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/reb_masts.xml"
+    },
+    "reb_platform": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/reb_platform.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -10.0,
+          10.0
+        ],
+        "l": [
+          -10.0,
+          10.0
+        ],
+        "u": [
+          0.0,
+          6.3
+        ]
+      },
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 160,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/reb_platform.xml"
+    },
+    "reb_tanks": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/reb_tanks.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -6.1,
+          6.1
+        ],
+        "l": [
+          -2.5,
+          2.5
+        ],
+        "u": [
+          0.0,
+          4.4
+        ]
+      },
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 104,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/reb_tanks.xml"
+    },
+    "reb_tower": {
+      "ac": "Objects/w130n30/w123n37/Models/space_arena/reb_tower.ac",
+      "author": "TASK4 subagent (Bombable team)",
+      "license": "GPL-2.0-or-later",
+      "local_aabb_m": {
+        "f": [
+          -2.5,
+          2.5
+        ],
+        "l": [
+          -2.5,
+          2.5
+        ],
+        "u": [
+          0.0,
+          12.6
+        ]
+      },
+      "provenance": "own geometry authored in src/generate_package.py; the .ac is its deterministic build artifact",
+      "textures": "none (solid AC3Db materials only)",
+      "triangles": 60,
+      "xml": "Objects/w130n30/w123n37/Models/space_arena/reb_tower.xml"
+    }
+  },
+  "package": "scenery/space_arena",
+  "placements": [
+    {
+      "agl_offset_m": 0.0,
+      "agl_semantics": "STG entry is OBJECT_STATIC_AGL: the offset field carries meters ABOVE GROUND LEVEL at the anchor and is written 0.0 for every placement, i.e. the model origin sits on the terrain/water surface. This is an AGL offset, NOT an MSL elevation: the terrain MSL at the anchors was never measured here (band 0.0..70.0 m design, UNVERIFIED); the FG runtime semantics of the field are also unverified",
+      "deck_top_above_anchor_m": 6.0,
+      "faction": "rebels",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "reb_platform",
+      "lat": 37.43,
+      "local_size_m": {
+        "f": [
+          -10.0,
+          10.0
+        ],
+        "l": [
+          -10.0,
+          10.0
+        ],
+        "u": [
+          0.0,
+          6.3
+        ]
+      },
+      "lon": -122.43,
+      "model": "reb_platform",
+      "note": "rebels ground pad; deck top +6.0 m design AGL above the anchor; experimental support surface",
+      "offset_east_m": 0.0,
+      "offset_north_m": 0.0,
+      "role": "ground_pad",
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          -12.817,
+          12.817
+        ],
+        "north_m": [
+          -12.817,
+          12.817
+        ],
+        "up_m": [
+          0.0,
+          6.3
+        ]
+      }
+    },
+    {
+      "agl_offset_m": 0.0,
+      "agl_semantics": "STG entry is OBJECT_STATIC_AGL: the offset field carries meters ABOVE GROUND LEVEL at the anchor and is written 0.0 for every placement, i.e. the model origin sits on the terrain/water surface. This is an AGL offset, NOT an MSL elevation: the terrain MSL at the anchors was never measured here (band 0.0..70.0 m design, UNVERIFIED); the FG runtime semantics of the field are also unverified",
+      "deck_top_above_anchor_m": null,
+      "faction": "rebels",
+      "heading_deg": 70.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "reb_hangar",
+      "lat": 37.43,
+      "local_size_m": {
+        "f": [
+          -11.275,
+          11.125
+        ],
+        "l": [
+          -6.0,
+          6.0
+        ],
+        "u": [
+          0.0,
+          6.0
+        ]
+      },
+      "lon": -122.429321,
+      "model": "reb_hangar",
+      "note": "low sand/white hangar; door face points at the pad",
+      "offset_east_m": 60.0,
+      "offset_north_m": 0.0,
+      "role": "decor_structure",
+      "stg_heading_deg": 290.0,
+      "world_enu_box_m": {
+        "east_m": [
+          47.353,
+          72.506
+        ],
+        "north_m": [
+          -9.494,
+          9.443
+        ],
+        "up_m": [
+          0.0,
+          6.0
+        ]
+      }
+    },
+    {
+      "agl_offset_m": 0.0,
+      "agl_semantics": "STG entry is OBJECT_STATIC_AGL: the offset field carries meters ABOVE GROUND LEVEL at the anchor and is written 0.0 for every placement, i.e. the model origin sits on the terrain/water surface. This is an AGL offset, NOT an MSL elevation: the terrain MSL at the anchors was never measured here (band 0.0..70.0 m design, UNVERIFIED); the FG runtime semantics of the field are also unverified",
+      "deck_top_above_anchor_m": null,
+      "faction": "rebels",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "reb_tower",
+      "lat": 37.429596,
+      "local_size_m": {
+        "f": [
+          -2.5,
+          2.5
+        ],
+        "l": [
+          -2.5,
+          2.5
+        ],
+        "u": [
+          0.0,
+          12.6
+        ]
+      },
+      "lon": -122.429717,
+      "model": "reb_tower",
+      "note": "control tower silhouette",
+      "offset_east_m": 25.0,
+      "offset_north_m": -45.0,
+      "role": "decor_structure",
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          21.796,
+          28.204
+        ],
+        "north_m": [
+          -48.204,
+          -41.796
+        ],
+        "up_m": [
+          0.0,
+          12.6
+        ]
+      }
+    },
+    {
+      "agl_offset_m": 0.0,
+      "agl_semantics": "STG entry is OBJECT_STATIC_AGL: the offset field carries meters ABOVE GROUND LEVEL at the anchor and is written 0.0 for every placement, i.e. the model origin sits on the terrain/water surface. This is an AGL offset, NOT an MSL elevation: the terrain MSL at the anchors was never measured here (band 0.0..70.0 m design, UNVERIFIED); the FG runtime semantics of the field are also unverified",
+      "deck_top_above_anchor_m": null,
+      "faction": "rebels",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "reb_tanks",
+      "lat": 37.430359,
+      "local_size_m": {
+        "f": [
+          -6.1,
+          6.1
+        ],
+        "l": [
+          -2.5,
+          2.5
+        ],
+        "u": [
+          0.0,
+          4.4
+        ]
+      },
+      "lon": -122.429796,
+      "model": "reb_tanks",
+      "note": "fuel tank group",
+      "offset_east_m": 18.0,
+      "offset_north_m": 40.0,
+      "role": "decor",
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          11.413,
+          24.587
+        ],
+        "north_m": [
+          35.564,
+          44.436
+        ],
+        "up_m": [
+          0.0,
+          4.4
+        ]
+      }
+    },
+    {
+      "agl_offset_m": 0.0,
+      "agl_semantics": "STG entry is OBJECT_STATIC_AGL: the offset field carries meters ABOVE GROUND LEVEL at the anchor and is written 0.0 for every placement, i.e. the model origin sits on the terrain/water surface. This is an AGL offset, NOT an MSL elevation: the terrain MSL at the anchors was never measured here (band 0.0..70.0 m design, UNVERIFIED); the FG runtime semantics of the field are also unverified",
+      "deck_top_above_anchor_m": null,
+      "faction": "rebels",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "reb_masts",
+      "lat": 37.429371,
+      "local_size_m": {
+        "f": [
+          -4.2,
+          8.2
+        ],
+        "l": [
+          -6.25,
+          8.25
+        ],
+        "u": [
+          0.0,
+          10.55
+        ]
+      },
+      "lon": -122.429548,
+      "model": "reb_masts",
+      "note": "light masts, behind the pad (outside the exit corridor)",
+      "offset_east_m": 40.0,
+      "offset_north_m": -70.0,
+      "role": "decor",
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          30.157,
+          46.768
+        ],
+        "north_m": [
+          -80.557,
+          -62.69
+        ],
+        "up_m": [
+          0.0,
+          10.55
+        ]
+      }
+    },
+    {
+      "agl_offset_m": 0.0,
+      "agl_semantics": "STG entry is OBJECT_STATIC_AGL: the offset field carries meters ABOVE GROUND LEVEL at the anchor and is written 0.0 for every placement, i.e. the model origin sits on the terrain/water surface. This is an AGL offset, NOT an MSL elevation: the terrain MSL at the anchors was never measured here (band 0.0..70.0 m design, UNVERIFIED); the FG runtime semantics of the field are also unverified",
+      "deck_top_above_anchor_m": 5.0,
+      "faction": "empire",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "emp_deck",
+      "lat": 37.415,
+      "local_size_m": {
+        "f": [
+          -13.0,
+          13.0
+        ],
+        "l": [
+          -13.0,
+          13.0
+        ],
+        "u": [
+          0.0,
+          5.35
+        ]
+      },
+      "lon": -122.455,
+      "model": "emp_deck",
+      "note": "empire foredeck; deck top +5.0 m design AGL above the anchor; experimental support surface",
+      "offset_east_m": 0.0,
+      "offset_north_m": 0.0,
+      "role": "ground_pad",
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          -16.662,
+          16.662
+        ],
+        "north_m": [
+          -16.662,
+          16.662
+        ],
+        "up_m": [
+          0.0,
+          5.35
+        ]
+      }
+    },
+    {
+      "agl_offset_m": 0.0,
+      "agl_semantics": "STG entry is OBJECT_STATIC_AGL: the offset field carries meters ABOVE GROUND LEVEL at the anchor and is written 0.0 for every placement, i.e. the model origin sits on the terrain/water surface. This is an AGL offset, NOT an MSL elevation: the terrain MSL at the anchors was never measured here (band 0.0..70.0 m design, UNVERIFIED); the FG runtime semantics of the field are also unverified",
+      "deck_top_above_anchor_m": null,
+      "faction": "empire",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "emp_frame",
+      "lat": 37.415,
+      "local_size_m": {
+        "f": [
+          -8.0,
+          15.0
+        ],
+        "l": [
+          -17.5,
+          17.5
+        ],
+        "u": [
+          0.0,
+          33.0
+        ]
+      },
+      "lon": -122.454208,
+      "model": "emp_frame",
+      "note": "static hangar frame east of the deck, opening faces west toward the deck; never moves (static model)",
+      "offset_east_m": 70.0,
+      "offset_north_m": 0.0,
+      "role": "decor_structure",
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          49.919,
+          83.503
+        ],
+        "north_m": [
+          -21.575,
+          19.181
+        ],
+        "up_m": [
+          0.0,
+          33.0
+        ]
+      }
+    },
+    {
+      "agl_offset_m": 0.0,
+      "agl_semantics": "STG entry is OBJECT_STATIC_AGL: the offset field carries meters ABOVE GROUND LEVEL at the anchor and is written 0.0 for every placement, i.e. the model origin sits on the terrain/water surface. This is an AGL offset, NOT an MSL elevation: the terrain MSL at the anchors was never measured here (band 0.0..70.0 m design, UNVERIFIED); the FG runtime semantics of the field are also unverified",
+      "deck_top_above_anchor_m": null,
+      "faction": "empire",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "emp_carrier",
+      "lat": 37.415,
+      "local_size_m": {
+        "f": [
+          -25.0,
+          13.5
+        ],
+        "l": [
+          -6.6,
+          6.6
+        ],
+        "u": [
+          0.0,
+          16.1
+        ]
+      },
+      "lon": -122.454208,
+      "model": "emp_carrier",
+      "note": "immobile carrier hull fragment standing inside the frame on its own ground pylons; bow points west at the deck; first TASK4 test keeps the carrier static/decorative",
+      "offset_east_m": 70.0,
+      "offset_north_m": 0.0,
+      "role": "decor_static_carrier",
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          55.057,
+          95.75
+        ],
+        "north_m": [
+          -10.819,
+          14.752
+        ],
+        "up_m": [
+          0.0,
+          16.1
+        ]
+      }
+    },
+    {
+      "agl_offset_m": 0.0,
+      "agl_semantics": "STG entry is OBJECT_STATIC_AGL: the offset field carries meters ABOVE GROUND LEVEL at the anchor and is written 0.0 for every placement, i.e. the model origin sits on the terrain/water surface. This is an AGL offset, NOT an MSL elevation: the terrain MSL at the anchors was never measured here (band 0.0..70.0 m design, UNVERIFIED); the FG runtime semantics of the field are also unverified",
+      "deck_top_above_anchor_m": null,
+      "faction": "empire",
+      "heading_deg": 250.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "emp_rack_n",
+      "lat": 37.415494,
+      "local_size_m": {
+        "f": [
+          -0.9,
+          0.9
+        ],
+        "l": [
+          -6.5,
+          6.5
+        ],
+        "u": [
+          0.0,
+          8.6
+        ]
+      },
+      "lon": -122.454604,
+      "model": "emp_rack",
+      "note": "decorative pylon rack with hanging pods",
+      "offset_east_m": 35.0,
+      "offset_north_m": 55.0,
+      "role": "decor",
+      "stg_heading_deg": 110.0,
+      "world_enu_box_m": {
+        "east_m": [
+          31.931,
+          38.069
+        ],
+        "north_m": [
+          48.584,
+          61.416
+        ],
+        "up_m": [
+          0.0,
+          8.6
+        ]
+      }
+    },
+    {
+      "agl_offset_m": 0.0,
+      "agl_semantics": "STG entry is OBJECT_STATIC_AGL: the offset field carries meters ABOVE GROUND LEVEL at the anchor and is written 0.0 for every placement, i.e. the model origin sits on the terrain/water surface. This is an AGL offset, NOT an MSL elevation: the terrain MSL at the anchors was never measured here (band 0.0..70.0 m design, UNVERIFIED); the FG runtime semantics of the field are also unverified",
+      "deck_top_above_anchor_m": null,
+      "faction": "empire",
+      "heading_deg": 70.0,
+      "heading_semantics": "heading_deg = intended true bearing clockwise from north; stg_heading_deg = value written to the STG, counter-clockwise from north per Docs/README.scenery; runtime sign NOT verified",
+      "id": "emp_rack_s",
+      "lat": 37.414506,
+      "local_size_m": {
+        "f": [
+          -0.9,
+          0.9
+        ],
+        "l": [
+          -6.5,
+          6.5
+        ],
+        "u": [
+          0.0,
+          8.6
+        ]
+      },
+      "lon": -122.454604,
+      "model": "emp_rack",
+      "note": "decorative pylon rack with hanging pods",
+      "offset_east_m": 35.0,
+      "offset_north_m": -55.0,
+      "role": "decor",
+      "stg_heading_deg": 290.0,
+      "world_enu_box_m": {
+        "east_m": [
+          31.931,
+          38.069
+        ],
+        "north_m": [
+          -61.416,
+          -48.584
+        ],
+        "up_m": [
+          0.0,
+          8.6
+        ]
+      }
+    }
+  ],
+  "poses": [
+    {
+      "alt": {
+        "datum": "design_agl_above_anchor_m",
+        "meaning": "meters above the design terrain plane at the rebel anchor (deck top +6.0 m + CG allowance); FG spawn altitude in MSL = unknown terrain height + this",
+        "value_m": 7.5
+      },
+      "experimental": true,
+      "faction": "rebels",
+      "heading_deg": 250.0,
+      "id": "pose_rebels_primary",
+      "kind": "ground_deck",
+      "lat": 37.43,
+      "lon": -122.43,
+      "note": "future sa_xwing spawn over the rebel pad; deck support NOT verified - until a physical FG test use the fallback poses",
+      "on_placement": "reb_platform",
+      "primary": true
+    },
+    {
+      "alt": {
+        "datum": "design_agl_above_anchor_m",
+        "meaning": "same datum as pose_rebels_primary",
+        "value_m": 6.5
+      },
+      "experimental": true,
+      "faction": "empire",
+      "heading_deg": 250.0,
+      "id": "pose_empire_primary",
+      "kind": "ground_deck",
+      "lat": 37.415,
+      "lon": -122.455,
+      "note": "future sa_tie spawn over the empire pad, carrier bow ahead at 250 deg; deck support NOT verified",
+      "on_placement": "emp_deck",
+      "primary": true
+    },
+    {
+      "airport": "KSFO",
+      "experimental": false,
+      "faction": null,
+      "heading_deg": null,
+      "id": "fb_ksfo_parking",
+      "kind": "airport_parking",
+      "note": "fallback 1: stock KSFO ramp start; identical to the unchanged tools/launch.py default; works with or without the arena",
+      "parking_id": null,
+      "primary": false
+    },
+    {
+      "airport": "KSFO",
+      "experimental": false,
+      "faction": null,
+      "heading_deg": null,
+      "id": "fb_ksfo_rwy28r",
+      "kind": "airport_runway",
+      "note": "fallback 2: KSFO runway 28R (launcher default runway); the runway heading comes from FGData, not restated here",
+      "primary": false,
+      "runway": "28R"
+    },
+    {
+      "alt": {
+        "datum": "msl_feet",
+        "value_ft": 2500
+      },
+      "experimental": false,
+      "faction": null,
+      "heading_deg": 70.0,
+      "id": "fb_airstart_arena",
+      "kind": "aircraft_position",
+      "lat": 37.42,
+      "lon": -122.52,
+      "note": "fallback 3: external air-start over the bay for the c172p visual/scale check, 2500 ft MSL (FG --altitude datum); keeps terrain clearance while FG terrain is below ~2000 ft AGL (terrain NOT verified here); fly east toward the bases, then land back at KSFO",
+      "primary": false,
+      "speed_kt_ias": 90
+    }
+  ],
+  "provenance": {
+    "artifact_sha256": {
+      "Objects/w130n30/w123n37/942042.stg": "5b779c743e6d8087a92b0f1b00ec40e93b0602e4f49e379773001636a599f0e1",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_carrier.ac": "b8072735d5207a992c2fdf94d27e51604c7ff02eb3917ff9ebd6665ea21699ee",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_carrier.xml": "25638092e70fd5dc26e394d349b2ccdf468c286f34073a2589da6f54bc8071b1",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_deck.ac": "c8628da45533ae9bac1d2910eac70b0d9ed7bf19224b2f76fd96978ce36044d1",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_deck.xml": "8d259706cff0e0925ce305da2c83918052aff7160cf6b8e274025472b63466b7",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_frame.ac": "86cf9cac9275d1789badae61097cbd26a831f706f758d21efb8c68b3aec06a81",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_frame.xml": "782087338a38044121484d1cea047c2b38550eede5dbbc87fd1c8e94d60716e1",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_rack.ac": "c0ad66d3ddc95310e0cc2c939bb4c6a7e4f613d2026cf358ab3953b00416dc74",
+      "Objects/w130n30/w123n37/Models/space_arena/emp_rack.xml": "b9f5e183e67b1334815364e0a4753c57541684e050a3bf3d909f937fe7203901",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_hangar.ac": "bee4187bebeee44d9dff5303176f74c0510bf76f99c3014ee379395072b60610",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_hangar.xml": "6c2a102b4e689eeadf345fa6c2ad459b093ffd25f06fa6a9660c609a53afa44d",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_masts.ac": "75996851cdc19023610da0a661dba12a12011e6d0aa81857f7f4390ac84e1455",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_masts.xml": "fc3aa10d60898ba842684c646d72d8a000da5abd8839970893cea79a412536a5",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_platform.ac": "272943c299835424f52264757620b86d54fec3688d69757a0b0e520d209bb9b6",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_platform.xml": "9d4010d0d66eab5307d8ee6a4caca844df71f528493fb73f780b70400dc8bd71",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_tanks.ac": "b04ef5be2fce3547a3e62bd8445b8a0b7918ce4bc3ce148a10d44d3868d2e503",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_tanks.xml": "24c85a44c39abf070b0df3a20c932e7ca6935d23843336b2f465285ac7d02f17",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_tower.ac": "48135764fd7adccb668a8fa7ab796b8d2b63a852d51be33913739da3ea465663",
+      "Objects/w130n30/w123n37/Models/space_arena/reb_tower.xml": "e9e4be7fd55ff2ad51ac2408c3c7d4ef07a55e1af4b9465d2efcc8b202911c0a"
+    },
+    "author": "TASK4 subagent (Bombable team)",
+    "external_assets": "none - no textures, no binaries, no extracted or third-party game content",
+    "generator_sha256": "543be27557f5ef3acb35289be5010e6f4d8edeec2589e47bd5ffe3be84f9c588",
+    "license": "GPL-2.0-or-later",
+    "original_geometry_source": "src/generate_package.py (the script is the authored original; .ac/.xml/.stg files are committed deterministic artifacts and are never hand-edited)"
+  },
+  "region": {
+    "anchors": {
+      "empire": {
+        "lat": 37.415,
+        "lon": -122.455
+      },
+      "rebels": {
+        "lat": 37.43,
+        "lon": -122.43
+      }
+    },
+    "district": "Half Moon Bay coastal plain, one tile district ~20 km south of KSFO, entirely inside the default scenery tile w123n37; no stock airport inside the site box",
+    "reference_points_not_from_fgdata": {
+      "KHAF_arp": {
+        "lat": 37.5119,
+        "lon": -122.5018
+      },
+      "KSFO_arp": {
+        "lat": 37.6188,
+        "lon": -122.375
+      },
+      "note": "approximate ARPs from general knowledge; used only for conservative separation reasoning"
+    },
+    "site_bbox_deg": {
+      "lat_max": 37.44,
+      "lat_min": 37.405,
+      "lon_max": -122.415,
+      "lon_min": -122.47
+    },
+    "tile": {
+      "bucket": "w130n30",
+      "bucket_note": "for negative longitudes SimGear floors lon/10 downward, so tile w123n37 lives in bucket w130n30 (FGData release/2024.1 Docs/README.scenery shows the same bucket for KSFO)",
+      "lat_range_deg": [
+        37.0,
+        38.0
+      ],
+      "lon_range_deg": [
+        -123.0,
+        -122.0
+      ],
+      "tile_1x1": "w123n37"
+    }
+  },
+  "routes": [
+    {
+      "faction": "rebels",
+      "floor_above_deck_m": 15.0,
+      "from_pose": "pose_rebels_primary",
+      "half_width_m": 75.0,
+      "heading_deg": 250.0,
+      "id": "route_rebels_exit",
+      "length_m": 3000.0,
+      "note": "straight exit west-southwest over the open coastal plain to the Pacific; clear of the empire base and of KSFO",
+      "origin": [
+        -122.43,
+        37.43
+      ]
+    },
+    {
+      "faction": "empire",
+      "floor_above_deck_m": 15.0,
+      "from_pose": "pose_empire_primary",
+      "half_width_m": 75.0,
+      "heading_deg": 250.0,
+      "id": "route_empire_exit",
+      "length_m": 3000.0,
+      "note": "parallel exit west-southwest ~1.7 km south of the rebel route; static separation of the two corridors is checked by tools/test_space_arena.py",
+      "origin": [
+        -122.455,
+        37.415
+      ]
+    }
+  ],
+  "schema": "bombable.space_arena.manifest",
+  "schema_version": 1,
+  "screenshots": "scenery/space_arena/screenshots/ (directory is created by the first host-side FG acceptance run; no images are committed because nothing has been rendered yet)",
+  "stack_pairs": [
+    {
+      "lower": "emp_frame",
+      "reason": "the static carrier fragment stands inside the static hangar frame envelope on its own ground pylons; the AABB nesting is intentional and the meshes keep clearance (bow points west out of the open front); both are decoration, support/collision was never tested against FG",
+      "upper": "emp_carrier"
+    }
+  ],
+  "status_banner": "GREYBOX FIRST INCREMENT - NOT runtime-verified; FlightGear 2024.1.7 is absent on this host. See README.md and VALIDATION.md.",
+  "stg": {
+    "agl_note": "the offset is meters above ground level at the anchor, written 0.0 because terrain MSL at the anchors is unmeasured; NOT runtime-verified",
+    "agl_offset_m": 0.0,
+    "entry_fields": "OBJECT_STATIC_AGL <model.xml> <lon> <lat> <agl_offset_m> <heading_deg>",
+    "entry_kind": "OBJECT_STATIC_AGL",
+    "heading_note": "written heading is counter-clockwise degrees from north per Docs/README.scenery",
+    "path": "Objects/w130n30/w123n37/942042.stg",
+    "path_base": "model paths are relative to the tile directory containing the STG (per $FG_ROOT/Docs/README.scenery)"
+  },
+  "surfaces": [
+    {
+      "collision": "unverified",
+      "height_above_anchor_m": 6.0,
+      "note": "FG gives static scenery models no landing support by default; no scenery material override is configured; do NOT treat this as a supported surface until a physical FG test",
+      "placement_id": "reb_platform",
+      "status": "experimental_deck",
+      "support": "unverified",
+      "surface": "deck_top"
+    },
+    {
+      "collision": "unverified",
+      "height_above_anchor_m": 5.0,
+      "note": "same caveat as reb_platform",
+      "placement_id": "emp_deck",
+      "status": "experimental_deck",
+      "support": "unverified",
+      "surface": "deck_top"
+    },
+    {
+      "collision": "unverified",
+      "placement_id": "emp_carrier",
+      "status": "decoration_not_a_surface",
+      "support": "decorative_only",
+      "surface": "hull_and_pylons"
+    },
+    {
+      "collision": "depends_on_fg",
+      "height_above_anchor_m": 0.0,
+      "note": "the natural terrain under the pads is the surface to verify first in FG before any deck test",
+      "placement_id": null,
+      "status": "outside_this_package",
+      "support": "depends_on_fg_terrain_mesh",
+      "surface": "stock_terrain_at_anchors"
+    },
+    {
+      "collision": "unverified",
+      "height_above_anchor_m": 0.0,
+      "placement_id": null,
+      "status": "outside_this_package",
+      "support": "not_supporting_for_wheels",
+      "surface": "bay_water_west"
+    }
+  ],
+  "task": "TASK4",
+  "units": "meters for all lengths; WGS84 decimal degrees for lon/lat (west/south negative); degrees for angles; knots for airspeeds",
+  "verification": {
+    "collision": "NOT VERIFIED - no physical test was possible",
+    "collisions_globally_disabled": false,
+    "fg_runtime_load": "NOT VERIFIED - FlightGear 2024.1.7 is not installed on this host",
+    "launcher_compatibility": "the stock tools/launch.py defaults (c172p, KSFO, 28R) are untouched; the arena is an ADDITIONAL --fg-scenery path only (design compatibility, not runtime-proven)",
+    "static_package": "python3 -m unittest tools/test_space_arena.py (JSON/XML/AC3Db structure, ids, WGS84 and elevation/heading conventions, bucket, triangle budget, clearance invariants, sha256 + determinism)",
+    "support_surfaces": "NOT VERIFIED - both decks are marked experimental",
+    "visual": "NOT VERIFIED - nothing was ever rendered; no screenshots exist"
+  }
+}

@@ -1,0 +1,20 @@
+# space_arena carrier overlay placements.
+# Non-carrier entries are copied verbatim from the source arena;
+# their keyword, offset field and datum are unchanged.
+# OBJECT_STATIC_AGL = offset above ground level; OBJECT_STATIC =
+# elevation above sea level (STG conventions, runtime NOT verified).
+# The four Empire greybox props are intentionally removed; the
+# Venator carrier pack replaces them at the Empire anchor.
+# The carrier entry uses 450.0 m design AGL: this is NOT a measured
+# MSL elevation.
+# heading = counter-clockwise degrees from north
+# (Docs/README.scenery); runtime semantics are NOT verified.
+OBJECT_STATIC_AGL Models/space_arena/reb_platform.xml -122.430000 37.430000 0.0 110.00
+OBJECT_STATIC_AGL Models/space_arena/reb_hangar.xml -122.429321 37.430000 0.0 290.00
+OBJECT_STATIC_AGL Models/space_arena/reb_tower.xml -122.429717 37.429596 0.0 110.00
+OBJECT_STATIC_AGL Models/space_arena/reb_tanks.xml -122.429796 37.430359 0.0 110.00
+OBJECT_STATIC_AGL Models/space_arena/reb_masts.xml -122.429548 37.429371 0.0 110.00
+
+# --- external Venator carrier overlay (tools/build_carrier_arena.py) ---
+# source pack licence status: unverified; local build only.
+OBJECT_STATIC_AGL Models/venator/carrier.xml -122.455000 37.415000 450.0 110.00

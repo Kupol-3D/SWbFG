@@ -1,0 +1,460 @@
+{
+  "schema": "bombable.carrier-layout/v1",
+  "axes": "X right, Y forward, Z up",
+  "spawn_slots": [
+    {
+      "id": "Empire_Spawn_01",
+      "position_m": [
+        138.87960052490234,
+        -321,
+        -97.0
+      ],
+      "heading_deg": 90,
+      "ship_ids": [
+        "sa_tie_royal_guard",
+        "sa_tie_m1",
+        "sa_tie_boarding"
+      ]
+    },
+    {
+      "id": "Empire_Spawn_02",
+      "position_m": [
+        138.87960052490234,
+        -303,
+        -97.0
+      ],
+      "heading_deg": 90,
+      "ship_ids": [
+        "sa_tie_royal_guard",
+        "sa_tie_m1",
+        "sa_tie_boarding"
+      ]
+    },
+    {
+      "id": "Empire_Spawn_03",
+      "position_m": [
+        138.87960052490234,
+        -285,
+        -97.0
+      ],
+      "heading_deg": 90,
+      "ship_ids": [
+        "sa_tie_royal_guard",
+        "sa_tie_m1",
+        "sa_tie_boarding"
+      ]
+    },
+    {
+      "id": "Empire_Spawn_04",
+      "position_m": [
+        138.87960052490234,
+        -267,
+        -97.0
+      ],
+      "heading_deg": 90,
+      "ship_ids": [
+        "sa_tie_royal_guard",
+        "sa_tie_m1",
+        "sa_tie_boarding"
+      ]
+    },
+    {
+      "id": "Empire_Spawn_05",
+      "position_m": [
+        138.87960052490234,
+        -249,
+        -97.0
+      ],
+      "heading_deg": 90,
+      "ship_ids": [
+        "sa_tie_royal_guard",
+        "sa_tie_m1",
+        "sa_tie_boarding"
+      ]
+    }
+  ],
+  "runtime_verified": false,
+  "collision_status": "pending_collision_backend",
+  "provenance": {
+    "license_status": "source_urls_recorded_terms_pending",
+    "hull_url": "https://www.cgtrader.com/items/2582308/download-page",
+    "hangar_url": "https://www.cgtrader.com/free-3d-models/space/other/star-wars-destroyer-hangar-f02d7bee-f7f0-4599-b87e-3dc7c4be3f46",
+    "hull_author": "dermalt"
+  },
+  "bounds_m": [
+    [
+      -726.7800903320312,
+      726.7800903320312
+    ],
+    [
+      -1500.0,
+      1499.999755859375
+    ],
+    [
+      -263.5788879394531,
+      434.2679748535156
+    ]
+  ],
+  "triangles": {
+    "lod0": 371341,
+    "lod1": 79857,
+    "lod2": 47825,
+    "hangar": 0
+  },
+  "clearance_validation": {
+    "method": "Triangle-AABB SAT, entire swept conservative 14x14x9m envelope",
+    "scope": "Static LOD0 clearance only, no physics/support/network verification",
+    "slots": [
+      {
+        "id": "Empire_Spawn_01",
+        "position_m": [
+          138.87960052490234,
+          -321,
+          -97.0
+        ],
+        "heading_deg": 90,
+        "swept_bounds_m": [
+          [
+            131.87960052490234,
+            -328,
+            -101.5
+          ],
+          [
+            1000,
+            -314,
+            -92.5
+          ]
+        ],
+        "intersections": 0,
+        "hit_materials": []
+      },
+      {
+        "id": "Empire_Spawn_02",
+        "position_m": [
+          138.87960052490234,
+          -303,
+          -97.0
+        ],
+        "heading_deg": 90,
+        "swept_bounds_m": [
+          [
+            131.87960052490234,
+            -310,
+            -101.5
+          ],
+          [
+            1000,
+            -296,
+            -92.5
+          ]
+        ],
+        "intersections": 0,
+        "hit_materials": []
+      },
+      {
+        "id": "Empire_Spawn_03",
+        "position_m": [
+          138.87960052490234,
+          -285,
+          -97.0
+        ],
+        "heading_deg": 90,
+        "swept_bounds_m": [
+          [
+            131.87960052490234,
+            -292,
+            -101.5
+          ],
+          [
+            1000,
+            -278,
+            -92.5
+          ]
+        ],
+        "intersections": 0,
+        "hit_materials": []
+      },
+      {
+        "id": "Empire_Spawn_04",
+        "position_m": [
+          138.87960052490234,
+          -267,
+          -97.0
+        ],
+        "heading_deg": 90,
+        "swept_bounds_m": [
+          [
+            131.87960052490234,
+            -274,
+            -101.5
+          ],
+          [
+            1000,
+            -260,
+            -92.5
+          ]
+        ],
+        "intersections": 0,
+        "hit_materials": []
+      },
+      {
+        "id": "Empire_Spawn_05",
+        "position_m": [
+          138.87960052490234,
+          -249,
+          -97.0
+        ],
+        "heading_deg": 90,
+        "swept_bounds_m": [
+          [
+            131.87960052490234,
+            -256,
+            -101.5
+          ],
+          [
+            1000,
+            -242,
+            -92.5
+          ]
+        ],
+        "intersections": 0,
+        "hit_materials": []
+      }
+    ],
+    "runtime_verified": false
+  },
+  "geometry_mode": "unified",
+  "hull_growth": 2.638522427440633,
+  "length_m": 2999.999755859375,
+  "unified_geometry": {
+    "schema": "bombable.carrier-layout/v1",
+    "geometry_mode": "unified",
+    "axes": "X right, Y forward, Z up",
+    "design_length_m": 3000,
+    "triangles_lod0": 371369,
+    "gate_plane_x": 260.0,
+    "floor_z": -105.0,
+    "ceiling_z": -63.8,
+    "compartment_y": [
+      -369.0,
+      -201.0
+    ],
+    "spawn_slots": [
+      {
+        "id": "Empire_Spawn_01",
+        "position_m": [
+          138.87960052490234,
+          -321,
+          -97.0
+        ],
+        "heading_deg": 90,
+        "ship_ids": [
+          "sa_tie_royal_guard",
+          "sa_tie_m1",
+          "sa_tie_boarding"
+        ]
+      },
+      {
+        "id": "Empire_Spawn_02",
+        "position_m": [
+          138.87960052490234,
+          -303,
+          -97.0
+        ],
+        "heading_deg": 90,
+        "ship_ids": [
+          "sa_tie_royal_guard",
+          "sa_tie_m1",
+          "sa_tie_boarding"
+        ]
+      },
+      {
+        "id": "Empire_Spawn_03",
+        "position_m": [
+          138.87960052490234,
+          -285,
+          -97.0
+        ],
+        "heading_deg": 90,
+        "ship_ids": [
+          "sa_tie_royal_guard",
+          "sa_tie_m1",
+          "sa_tie_boarding"
+        ]
+      },
+      {
+        "id": "Empire_Spawn_04",
+        "position_m": [
+          138.87960052490234,
+          -267,
+          -97.0
+        ],
+        "heading_deg": 90,
+        "ship_ids": [
+          "sa_tie_royal_guard",
+          "sa_tie_m1",
+          "sa_tie_boarding"
+        ]
+      },
+      {
+        "id": "Empire_Spawn_05",
+        "position_m": [
+          138.87960052490234,
+          -249,
+          -97.0
+        ],
+        "heading_deg": 90,
+        "ship_ids": [
+          "sa_tie_royal_guard",
+          "sa_tie_m1",
+          "sa_tie_boarding"
+        ]
+      }
+    ],
+    "profiles": [
+      {
+        "axis": 2,
+        "value": -105.0,
+        "stations": 462,
+        "outer_x_range": [
+          274.749755859375,
+          320.909912109375
+        ]
+      },
+      {
+        "axis": 2,
+        "value": -63.8,
+        "stations": 490,
+        "outer_x_range": [
+          274.74456787109375,
+          320.91009521484375
+        ]
+      },
+      {
+        "axis": 1,
+        "value": -369.0,
+        "stations": 84,
+        "outer_x_range": [
+          320.90985107421875,
+          320.91009521484375
+        ]
+      },
+      {
+        "axis": 1,
+        "value": -201.0,
+        "stations": 117,
+        "outer_x_range": [
+          317.35443115234375,
+          317.65399169921875
+        ]
+      }
+    ],
+    "underside_tests": [
+      {
+        "x": 120,
+        "y": -345.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 120,
+        "y": -315.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 120,
+        "y": -285.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 120,
+        "y": -255.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 120,
+        "y": -225.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 160,
+        "y": -345.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 160,
+        "y": -315.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 160,
+        "y": -285.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 160,
+        "y": -255.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 160,
+        "y": -225.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 200,
+        "y": -345.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 200,
+        "y": -315.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 200,
+        "y": -285.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 200,
+        "y": -255.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 200,
+        "y": -225.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 240,
+        "y": -345.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 240,
+        "y": -315.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 240,
+        "y": -285.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 240,
+        "y": -255.0,
+        "delta_m": 0.0
+      },
+      {
+        "x": 240,
+        "y": -225.0,
+        "delta_m": 0.0
+      }
+    ],
+    "external_box": false,
+    "gate_state": "open_static",
+    "runtime_verified": false
+  },
+  "gate_state": "open_static",
+  "external_box": false
+}

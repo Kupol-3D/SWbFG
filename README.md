@@ -13,11 +13,35 @@ Rebels против Empire, выбор корабля, атмосферный б
    [поставленные задачи](TASK/README.md) и [общие интерфейсы](docs/TEAM_INTERFACES.md).
 4. Работать в своей ветке, сдавать небольшой PR: [CONTRIBUTING](CONTRIBUTING.md).
 
+## Готовая carrier-арена
+
+`scenery/space_arena_carrier` — готовый вариант арены, где Venator размещён
+вместо имперского greybox. Готовые меши и layout поставляются в
+каноническом пакете `Aircraft/sa_venator`, а сцена держит только размещение и
+связующую ссылку. Blender, `star_destroyer_pack`, локальный `work/runtime` и
+внешний carrier-pack для запуска не нужны:
+
+```sh
+cd <repo>
+fgfs --aircraft=c172p --airport=KSFO --runway=28R \
+  --fg-scenery="$PWD/scenery/space_arena_carrier" \
+  --fg-aircraft="$PWD/Aircraft"
+```
+
+Штатный мир, FGData и земная scenery берутся из обычной установки
+FlightGear/TerraSync. Это не телепорт и не готовый спавн на носителе: сцена
+только размещает корабль, аппарат стартует в KSFO. Перенос ассета в `Aircraft`
+не равен физике или AI: движение корабля — следующий этап и не заявлено.
+Готовая сцена не означает полный PvP-релиз; спавн, физика, палуба,
+столкновения и целевая приёмка 2024.1.7 ещё не приняты. Подробности —
+[CARRIER_ARENA](docs/CARRIER_ARENA.md), правило поставки —
+[RELEASE_ASSET_POLICY](docs/RELEASE_ASSET_POLICY.md).
+
 ## Состав
 
 | Каталог | Назначение |
 |---|---|
-| `Aircraft/`, `scenery/` | Разрабатываемые корабли и локация |
+| `Aircraft/`, `scenery/` | Корабли, исходная greybox и готовая carrier-арена |
 | `gateway/` | Loopback TLS/auth и двунаправленный WS↔UDP relay |
 | `server/space/` | Приватная конфигурация FGMS и локальный smoke-override |
 | `client/`, `tools/launch.py` | Пример профиля и диагностический c172p launcher |
@@ -45,7 +69,7 @@ FGMS UDP не предназначен для публичного доступ�
 | TASK2 | `sa_tie` greybox проверен (ограниченно); FDM/сетевой полёт не подтверждены |
 | TASK2+ | Прототипный набор TIE-ассетов и статические пакеты `sa_tie_royal_guard` / `sa_tie_m1` / `sa_tie_boarding` существуют; полная in-game/runtime приёмка открыта |
 | TASK3 | `sa_fdm_lab` реализован (ограниченный GO с помощниками); окончательный go/no-go у ведущего |
-| TASK4 | Пакет и статические проверки готовы; FG/физическая приёмка открыта |
+| TASK4 | Готовая carrier-сцена и статические проверки готовы; спавн/физика и целевая runtime-приёмка открыты |
 | TASK5 | Локальный relay и loopback-тесты выполнены; настоящий FGMS smoke не проведён |
 | TASK6 | GUI и headless-проверки готовы; ручной GUI/FG-запуск не принят |
 | TASK7 | Выполнена в пределах offline-ядра; сетевой авторитет вне задачи |
@@ -57,6 +81,8 @@ FGMS UDP не предназначен для публичного доступ�
 - [Правила и архитектура](docs/SPACE_ARENA_PLAN.md)
 - [Кандидаты кораблей](docs/SHIP_SURVEY.md)
 - [Сетевой контракт](docs/SPACE_ARENA_GATEWAY.md)
+- [Готовая carrier-арена](docs/CARRIER_ARENA.md)
+- [Поставка ассетов](docs/RELEASE_ASSET_POLICY.md)
 - [Происхождение и лицензии](THIRD_PARTY.md)
 
 В Git не включаются установленный движок/FGData, скачанная scenery, секреты,
