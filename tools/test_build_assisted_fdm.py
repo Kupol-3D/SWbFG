@@ -12,12 +12,38 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILDER = ROOT / "tools" / "build_assisted_fdm.py"
-PACK = ROOT.parent / "TIE_Game_Asset_Pack_v1"
+PACK = None
 SLUGS_PER_KG = 1.0 / 14.5939029372064
 FT_PER_M = 1.0 / 0.3048
 LBF_PER_N = 1.0 / 4.4482216152605
 
 SHIPS = ("m1_bizarro", "royal_guard", "boarding_craft")
+
+
+def _make_profile(name):
+    return {
+        "schema_version": 1,
+        "ship_id": name,
+        "status": "GAMEPLAY_ESTIMATE_NOT_CANON_OR_REAL_AERODYNAMICS",
+        "frame": {"x": "right", "y": "forward", "z": "up",
+                  "units": "SI; angles explicitly deg"},
+        "scale_reference_length_m": 6.3,
+        "mass_gameplay_kg": 7000,
+        "mass_status": "test fixture",
+        "assisted_flight": {
+            "speed_limit_m_s": 300,
+            "forward_accel_m_s2": 45,
+            "brake_accel_m_s2": 56.25,
+            "lateral_accel_m_s2": 13.5,
+            "vertical_accel_m_s2": 13.5,
+            "max_body_rates_deg_s": {"pitch_about_x": 90,
+                                    "yaw_about_z": 65,
+                                    "roll_about_y": 140},
+            "rate_response_time_s": 0.5,
+            "velocity_assist_time_s": 1.5,
+            "gravity_compensation": True,
+        },
+    }
 
 
 def ship_dir(name):
@@ -27,11 +53,21 @@ def ship_dir(name):
 class TestBuildAssistedFdm(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        if not PACK.is_dir():
-            raise unittest.SkipTest("TIE asset pack not available")
+        global PACK
+        import tempfile
+        cls._tmp = tempfile.TemporaryDirectory()
+        PACK = Path(cls._tmp.name) / "pack"
+        ships_root = PACK / "ships"
+        ships_root.mkdir(parents=True)
         for name in SHIPS:
-            if not (ship_dir(name) / "flight_profile.json").is_file():
-                raise unittest.SkipTest(f"missing profile for {name}")
+            sdir = ships_root / name
+            sdir.mkdir()
+            (sdir / "flight_profile.json").write_text(
+                json.dumps(_make_profile(name)), encoding="utf-8")
+
+    @classmethod
+    def tearDownClass(cls):
+        cls._tmp.cleanup()
 
     def _build(self, name, tmp, integration=None):
         out = tmp / f"{name}.xml"

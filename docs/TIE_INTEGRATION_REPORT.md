@@ -113,8 +113,8 @@ screenshot was captured. M1 and Boarding were not launched. No FPS claim is made
 ## Commands run
 
 ```sh
-python3 tools/build_tie_packages.py --assets-root /workspace/work/TIE_Game_Asset_Pack_v1/ships --output-root /workspace/work/Bombable/Aircraft
-python3 tools/build_tie_packages.py --assets-root /workspace/work/TIE_Game_Asset_Pack_v1/ships --output-root /workspace/work/Bombable/Aircraft --check
+python3 tools/build_tie_packages.py --assets-root /path/to/TIE_Game_Asset_Pack_v1/ships --output-root $PWD/Aircraft
+python3 tools/build_tie_packages.py --assets-root /path/to/TIE_Game_Asset_Pack_v1/ships --output-root $PWD/Aircraft --check
 python3 -m unittest tools.test_tie_ac_export tools.test_build_assisted_fdm tools.test_build_tie_packages -v
 python3 Aircraft/sa_tie/Sources/build_tie.py --check
 ```

@@ -11,11 +11,11 @@ by default.
 
 ```sh
 python3 tools/build_tie_packages.py \
-  --assets-root /workspace/work/TIE_Game_Asset_Pack_v1/ships \
-  --output-root /workspace/work/Bombable/Aircraft
+  --assets-root /path/to/TIE_Game_Asset_Pack_v1/ships \
+  --output-root $PWD/Aircraft
 python3 tools/build_tie_packages.py \
-  --assets-root /workspace/work/TIE_Game_Asset_Pack_v1/ships \
-  --output-root /workspace/work/Bombable/Aircraft --check
+  --assets-root /path/to/TIE_Game_Asset_Pack_v1/ships \
+  --output-root $PWD/Aircraft --check
 ```
 
 Collision data is copied as inert geometry only (`pending_collision_backend`);

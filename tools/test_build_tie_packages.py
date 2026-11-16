@@ -749,19 +749,5 @@ class TestDeterminismAndOptions(unittest.TestCase):
         self.assertIn("no 'ships/' directory", result.stderr)
         self.assertFalse(out.exists())
 
-    def test_real_asset_pack_builds_when_stage2_exports_exist(self):
-        pack = ROOT.parent / "TIE_Game_Asset_Pack_v1"
-        if not (pack / "ships" / "royal_guard" / "export" / "game_lod0.ac").is_file():
-            self.skipTest("stage-2 exports not available yet")
-        out = Path(tempfile.mkdtemp()) / "Aircraft"
-        result = run_builder(pack / "ships", out)
-        self.assertEqual(result.returncode, 0, result.stderr)
-        for package in ("sa_tie_royal_guard", "sa_tie_m1", "sa_tie_boarding"):
-            self.assertTrue((out / package).is_dir())
-            self.assertTrue(any((out / package / "Models").glob("*.ac")))
-            self.assertTrue((out / package / (package + "-set.xml")).is_file() or
-                            any((out / package).glob("*-set.xml")))
-
-
 if __name__ == "__main__":
     unittest.main()

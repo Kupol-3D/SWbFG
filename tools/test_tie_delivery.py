@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: GPL-2.0-or-later
 """Static delivery checks for the committed TIE FlightGear packages."""
-import hashlib
-import json
-import os
 import re
+import math
 import sys
 import unittest
 import xml.etree.ElementTree as ET
@@ -12,7 +10,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
-from test_sa_tie import read_ac  # noqa: E402
+from test_sa_tie import read_ac as _read_ac_raw  # noqa: E402
+
+_AC_CACHE = {}
+def read_ac(path):
+    path = Path(path)
+    if path in _AC_CACHE:
+        return _AC_CACHE[path]
+    res = _read_ac_raw(path)
+    _AC_CACHE[path] = res
+    return res
 
 PACKAGES = {
     "sa_tie_royal_guard": {
@@ -32,17 +39,53 @@ PACKAGES = {
     },
 }
 
-STL_NAMES = {
-    "royal_guard": "TIE_Royal_guard.stl",
-    "m1_bizarro": "TIE_Bizarro.stl",
-    "boarding_craft": "TIE_Boarding_craft.stl",
-}
-
-ASSET_PACK = Path(os.environ.get("TIE_ASSET_PACK",
-                                ROOT.parent / "TIE_Game_Asset_Pack_v1"))
-ASSET_PACK_AVAILABLE = (ASSET_PACK / "ships").is_dir()
-
 PERSONAL_PATH_RE = re.compile(r"/home/[A-Za-z]|/Users/[A-Za-z]")
+
+_LOD_CACHE = {}
+
+
+def _lod_files(package, asset):
+    base = ROOT / "Aircraft" / package / "Models"
+    return [base / f"{asset}.ac",
+            base / f"{asset}_lod1.ac",
+            base / f"{asset}_lod2.ac"]
+
+
+def _parse_lod(path):
+    path = Path(path)
+    if path in _LOD_CACHE:
+        return _LOD_CACHE[path]
+    materials, objects = read_ac(path)
+    tris = 0
+    area = 0.0
+    pts = []
+    for obj in objects.values():
+        for indices, _, _ in obj["faces"]:
+            tris += 1
+            a, b, c = (obj["vertices"][i] for i in indices)
+            ab = (b[0]-a[0], b[1]-a[1], b[2]-a[2])
+            ac = (c[0]-a[0], c[1]-a[1], c[2]-a[2])
+            cr = (ab[1]*ac[2]-ab[2]*ac[1],
+                  ab[2]*ac[0]-ab[0]*ac[2],
+                  ab[0]*ac[1]-ab[1]*ac[0])
+            tri_area = 0.5 * math.sqrt(cr[0]*cr[0]+cr[1]*cr[1]+cr[2]*cr[2])
+            area += tri_area
+            # degenerate check
+            assert tri_area > 0, (path, "degenerate triangle")
+            for pt in (a, b, c):
+                pts.append(pt)
+                for v in pt:
+                    assert math.isfinite(v), (path, "NaN/inf")
+    for m in materials:
+        t = m["trans"][0]
+        assert t == 0.0, (path, m["name"], t)
+    bbox = [(min(p[i] for p in pts), max(p[i] for p in pts)) for i in range(3)]
+    dims = tuple(mx - mn for mn, mx in bbox)
+    center = tuple((mn + mx) / 2.0 for mn, mx in bbox)
+    result = {"tris": tris, "area": area, "dims": dims, "center": center,
+            "materials": materials, "objects": objects}
+    _LOD_CACHE[path] = result
+    return result
 
 
 class TestTieDelivery(unittest.TestCase):
@@ -96,6 +139,57 @@ class TestTieDelivery(unittest.TestCase):
                 self.assertLessEqual(abs(actual - target), 1e-4,
                                      (package, actual, target))
 
+    def test_lod_triangle_counts_monotonic_and_floor(self):
+        for package, info in PACKAGES.items():
+            asset = info["asset"]
+            lods = [_parse_lod(p) for p in _lod_files(package, asset)]
+            self.assertGreater(lods[0]["tris"], lods[1]["tris"], package)
+            self.assertGreater(lods[1]["tris"], lods[2]["tris"], package)
+            self.assertGreaterEqual(lods[2]["tris"], 1000, package)
+
+    def test_lod_surface_area_within_25_percent(self):
+        for package, info in PACKAGES.items():
+            asset = info["asset"]
+            lods = [_parse_lod(p) for p in _lod_files(package, asset)]
+            areas = [l["area"] for l in lods]
+            for a, b in ((areas[0], areas[1]), (areas[1], areas[2])):
+                diff = abs(a - b) / max(a, b)
+                self.assertLessEqual(diff, 0.25, (package, diff))
+
+    def test_lod_bounding_boxes_match(self):
+        for package, info in PACKAGES.items():
+            asset = info["asset"]
+            lods = [_parse_lod(p) for p in _lod_files(package, asset)]
+            for l in lods[1:]:
+                for i in range(3):
+                    self.assertLessEqual(abs(l["dims"][i] - lods[0]["dims"][i]),
+                                         1e-2, (package, i))
+
+    def test_lod_centers_not_shifted(self):
+        for package, info in PACKAGES.items():
+            asset = info["asset"]
+            lods = [_parse_lod(p) for p in _lod_files(package, asset)]
+            for l in lods[1:]:
+                for i in range(3):
+                    self.assertLessEqual(abs(l["center"][i] - lods[0]["center"][i]),
+                                         0.01, (package, i))
+
+    def test_no_degenerate_or_nan_triangles(self):
+        for package, info in PACKAGES.items():
+            asset = info["asset"]
+            for path in _lod_files(package, asset):
+                lod = _parse_lod(path)  # raises on degenerate/NaN
+                self.assertGreater(lod["tris"], 0)
+
+    def test_textures_referenced_exist(self):
+        for package in PACKAGES:
+            base = ROOT / "Aircraft" / package / "Models"
+            materials, objects = read_ac(base / (PACKAGES[package]["asset"] + ".ac"))
+            for m in materials:
+                tex = m.get("texture")
+                if tex and tex != "-1":
+                    self.assertTrue((base / tex).is_file(), (package, tex))
+
     def test_set_xml_viewer_contract(self):
         for package in PACKAGES:
             root = ET.parse(ROOT / "Aircraft" / package / f"{package}-set.xml").getroot()
@@ -139,24 +233,6 @@ class TestTieDelivery(unittest.TestCase):
                     continue
                 text = path.read_text(encoding="utf-8", errors="replace")
                 self.assertIsNone(PERSONAL_PATH_RE.search(text), str(path))
-
-    @unittest.skipUnless(ASSET_PACK_AVAILABLE, "asset pack not available")
-    def test_source_stl_hashes_match_external_pack(self):
-        for asset, stl_name in STL_NAMES.items():
-            # map asset id to package? asset ids are royal_guard etc.
-            pkg_dir = None
-            for p in PACKAGES:
-                if PACKAGES[p]["asset"] == asset:
-                    pkg_dir = p
-                    break
-            stl_path = ASSET_PACK / "ships" / asset / "source" / "files" / stl_name
-            self.assertTrue(stl_path.is_file(), str(stl_path))
-            sha = hashlib.sha256(stl_path.read_bytes()).hexdigest()
-            meta = json.loads((ASSET_PACK / "ships" / asset / "working" /
-                               "scale_and_axes.json").read_text())
-            self.assertEqual(sha, meta["source_sha256"], asset)
-            self.assertEqual(len(sha), 64)
-
 
 if __name__ == "__main__":
     unittest.main()

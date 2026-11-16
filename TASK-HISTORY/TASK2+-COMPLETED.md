@@ -10,6 +10,7 @@
 
 ### Пакет ассетов (источник подготовки)
 - Корень: `work/TIE_Game_Asset_Pack_v1/`
+- Примечание: `TIE_Game_Asset_Pack_v1` — внешний входной пакет (референсы/STL/контракты); в репозиторий не входит и тестами не требуется.
 - На корабль: `ships/<id>/working/02_game.blend`, `ships/<id>/export/02_game.blend`, `ships/<id>/export/{game.glb,lod1.glb,lod2.glb,collision.glb,game_lod0.ac,game_lod1.ac,game_lod2.ac,cockpit.ac,integration.json,metrics.json,textures/*,ac_scenes/*}`, `ships/<id>/export/previews/02_game/*.png`, `ships/<id>/export/previews/lods/*.png`
 - Сводки/аудит: `work/TIE_Game_Asset_Pack_v1/working/delivery_summary.json`, `working/visual_review.json`, `working/material_preview_report.json`, `working/audit/FINAL_ACCEPTANCE.md`, `working/audit/contact_*.png`
 
@@ -45,8 +46,8 @@
 - Ранее Beam: **69 тестов OK** (статический/пакетный объём, включая delivery-проверки по факту наличия артефактов). Актуальный повторный прогон в этом аудите: см. `working/audit/FINAL_ACCEPTANCE.md` / итог ниже (сумма по фактическим счётчикам runner, без завышения).
 - **69 → 79 corroborated (2026-11-15, docs-recorded re-run):** `python3 -m unittest tools.test_tie_ac_export tools.test_build_assisted_fdm tools.test_build_tie_packages tools.test_tie_delivery tools.test_sa_tie` → **Ran 79, OK**; целевой `tools.test_tie_delivery` → Ran 4, OK. Прежние тест-факты не переписаны; рост счётчика — итог добавленных в ходе TASK2+ модулей, не пересмотр прежних результатов.
 - Команды воспроизведения (из корня репозитория, при наличии входов):
-  - `python3 tools/build_tie_packages.py --assets-root /workspace/work/TIE_Game_Asset_Pack_v1/ships --output-root "$PWD/Aircraft"`
-  - `python3 tools/build_tie_packages.py --assets-root /workspace/work/TIE_Game_Asset_Pack_v1/ships --output-root "$PWD/Aircraft" --check`
+  - `python3 tools/build_tie_packages.py --assets-root /path/to/TIE_Game_Asset_Pack_v1/ships --output-root "$PWD/Aircraft"`
+  - `python3 tools/build_tie_packages.py --assets-root /path/to/TIE_Game_Asset_Pack_v1/ships --output-root "$PWD/Aircraft" --check`
   - `python3 Aircraft/sa_tie/Sources/build_tie.py --check`
   - `python3 -m unittest tools.test_tie_ac_export tools.test_build_assisted_fdm tools.test_build_tie_packages tools.test_tie_delivery tools.test_sa_tie -v` (и др. целевые модули по необходимости)
 

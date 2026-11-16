@@ -18,10 +18,10 @@
 - Source: **official TerraSync HTTP directory/index content** at `https://flightgear.sourceforge.net/scenery` (directory structure with `.dirindex`). Missing files were fetched by exact `.dirindex`-listed paths; SHA1 hashes matched the published `.dirindex` entries.
 - Repair scope limited to the missing sentinel shared-model files and their recursively referenced local deps (no whole-archive/world-terrain download; total **7 files, 459,340 bytes**).
 - Installed into a **new host/shared-workspace scenery root** (not an existing user scenery root, not FG_ROOT):  
-  - Host/container: `<repo>/work/runtime/tie-shared-scenery` 
+  - Host/container: `$PWD/work/runtime/tie-shared-scenery`
   - Contents installed: `Models/Airport/Vehicle/Cobus_3000.{xml,ac,png}`, `Models/Residential/french_house_s.{xml,ac}`, `Models/Residential/texture_french_house_s{1,2}.png`
 - **Existing files unmodified, none deleted/overwritten, no backups required/created.** No user FG config changed. Newly downloaded scenery is runtime data (not committed to repo).
-- Evidence/manifest: `/workspace/work/runtime/tie-scenery-repair/repair-manifest.json` (and host `fetch-missing.json`), including SHA1s, sizes, source URLs, before/after preflight results.
+- Evidence/manifest: `$PWD/work/runtime/tie-scenery-repair/repair-manifest.json` (and host `fetch-missing.json`), including SHA1s, sizes, source URLs, before/after preflight results.
 
 ## Preflight helper (recommended)
 - `Bombable/tools/check_shared_scenery.py` — read-only by default; checks sentinel shared-model paths and known/parsed local deps across explicit scenery roots (and optional `--fg-root`). Fails clearly with `--fail-on-missing` (suitable for launcher/preflight) instead of relying on a silent/in-engine warning.
@@ -32,7 +32,7 @@
 Prepend the repair root so its `Models/` are found before the incomplete TerraSync root:
 
 ```bash
---fg-scenery=<repo>/work/runtime/tie-shared-scenery:$TERRASYNC_ROOT --disable-terrasync
+--fg-scenery=$PWD/work/runtime/tie-shared-scenery:$TERRASYNC_ROOT --disable-terrasync
 ```
 
 (If TerraSync is enabled and allowed to complete, it may also supply missing shared models; this path is for the observed `--disable-terrasync` case and uses verified official files in an isolated root.)

@@ -30,10 +30,10 @@ Each package contains:
 Usage::
 
     python3 tools/build_tie_packages.py \\
-        --assets-root /.../TIE_Game_Asset_Pack_v1/ships \\
+        --assets-root /path/to/asset-pack/ships \\
         --output-root /.../Bombable/Aircraft
     python3 tools/build_tie_packages.py \\
-        --assets-root /.../TIE_Game_Asset_Pack_v1/ships \\
+        --assets-root /path/to/asset-pack/ships \\
         --output-root /.../Bombable/Aircraft --check
 
 ``--check`` regenerates the expected tree in memory, compares it with the
@@ -1534,10 +1534,10 @@ def _render_readme(spec: ShipSpec, asset_id: str, ship_id: str,
         '',
         '```sh',
         'python3 tools/build_tie_packages.py \\',
-        f'  --assets-root /path/to/TIE_Game_Asset_Pack_v1/ships \\',
+        f'  --assets-root /path/to/asset-pack/ships \\',
         f'  --output-root "$PWD/Aircraft"',
         'python3 tools/build_tie_packages.py \\',
-        '  --assets-root /path/to/TIE_Game_Asset_Pack_v1/ships \\',
+        '  --assets-root /path/to/asset-pack/ships \\',
         '  --output-root "$PWD/Aircraft" --check',
         '```',
         '',
